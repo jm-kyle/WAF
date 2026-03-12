@@ -76,11 +76,22 @@ const heroTl = gsap.timeline({ delay: 0.1 })
 heroTl
   .from('.hero__title', {
     opacity: 0,
-    y: 40,
-    duration: 1,
-    stagger: 0.15,
+    y: 50,
+    duration: 1.1,
+    stagger: 0.12,
     ease: 'settle',
   })
+  .from(
+    '.hero__rule',
+    {
+      opacity: 0,
+      scaleX: 0,
+      transformOrigin: 'left center',
+      duration: 0.7,
+      ease: 'reveal',
+    },
+    '-=0.5'
+  )
   .from(
     '.hero__tagline',
     {
@@ -89,7 +100,7 @@ heroTl
       duration: 0.9,
       ease: 'reveal',
     },
-    '-=0.4'
+    '-=0.35'
   )
   .from(
     '.hero__buttons',
@@ -111,6 +122,52 @@ heroTl
     },
     '-=0.4'
   )
+  .from(
+    '.hero__scroll',
+    {
+      opacity: 0,
+      duration: 1,
+      ease: 'reveal',
+    },
+    '-=0.3'
+  )
+
+// ===== Hero parallax — background shifts on scroll =====
+gsap.to('.hero', {
+  backgroundPositionY: '55%',
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true,
+  },
+})
+
+// Fade out hero content as user scrolls
+gsap.to('.hero__content', {
+  opacity: 0,
+  y: -40,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: '60% top',
+    end: 'bottom top',
+    scrub: true,
+  },
+})
+
+// Scroll indicator fades out quickly
+gsap.to('.hero__scroll', {
+  opacity: 0,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: '5% top',
+    end: '15% top',
+    scrub: true,
+  },
+})
 
 // ===== 3. Challenge — scroll-triggered reveals =====
 gsap.from('.challenge__heading > *', {

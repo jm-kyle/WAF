@@ -164,18 +164,40 @@ a {
 .hero {
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 	width: 100%;
-	padding: 5em 5em 7.5em;
-	gap: 3em;
+	min-height: 100svh;
 	position: relative;
 	overflow: clip;
-	background-image:
-		linear-gradient(var(--hero-overlay), var(--hero-overlay)),
-		url("https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg");
-	background-size: auto, cover;
-	background-position:
-		0% 0%,
-		center;
+	background-image: url("https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg");
+	background-size: cover;
+	background-position: center 35%;
+}
+
+.hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		175deg,
+		rgba(27, 67, 50, 0.05) 0%,
+		rgba(27, 67, 50, 0.18) 25%,
+		rgba(27, 67, 50, 0.52) 50%,
+		rgba(27, 67, 50, 0.82) 70%,
+		rgba(27, 67, 50, 0.94) 100%
+	);
+	z-index: 1;
+}
+
+.hero__content {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 0 5em 4.5em;
+	gap: 2em;
 }
 
 .hero__titles {
@@ -187,9 +209,9 @@ a {
 
 .hero__title {
 	font-family: "Fraunces", system-ui, sans-serif;
-	font-size: clamp(3rem, 2rem + 3.5vw, 6rem);
-	line-height: 1.06;
-	letter-spacing: -0.03em;
+	font-size: clamp(3.5rem, 2rem + 6vw, 8.5rem);
+	line-height: 0.92;
+	letter-spacing: -0.035em;
 	font-weight: 400;
 	color: var(--cream);
 }
@@ -197,6 +219,15 @@ a {
 .hero__title--accent {
 	color: var(--light-green);
 	font-style: italic;
+	margin-top: 0.05em;
+}
+
+.hero__rule {
+	width: 4em;
+	height: 1px;
+	background: var(--light-green);
+	opacity: 0.5;
+	margin: 0.5em 0;
 }
 
 .hero__bottom {
@@ -208,15 +239,15 @@ a {
 .hero__left {
 	display: flex;
 	flex-direction: column;
-	width: 32.5em;
+	width: 30em;
 	flex-shrink: 0;
 	gap: 1.5em;
 }
 
 .hero__tagline {
 	font-family: "Fraunces", system-ui, sans-serif;
-	font-size: clamp(1.125rem, 1rem + 0.3vw, 1.375rem);
-	line-height: 1.55;
+	font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.25rem);
+	line-height: 1.6;
 	font-weight: 400;
 	font-style: italic;
 	color: var(--cream-85);
@@ -225,7 +256,7 @@ a {
 .hero__buttons {
 	display: flex;
 	align-items: center;
-	padding-top: 0.5em;
+	padding-top: 0.25em;
 	gap: 1em;
 }
 
@@ -268,10 +299,38 @@ a {
 .hero__description {
 	font-family: "Figtree", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.07vw, 1rem);
-	line-height: 1.63;
+	line-height: 1.7;
 	font-weight: 400;
 	color: var(--cream-75);
 	flex: 1;
+	max-width: 36em;
+}
+
+/* Hero scroll indicator */
+.hero__scroll {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.625em;
+	padding-bottom: 2em;
+}
+
+.hero__scroll-text {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.6875rem;
+	font-weight: 500;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--cream-55);
+}
+
+.hero__scroll-line {
+	display: block;
+	width: 1px;
+	height: 2.5em;
+	background: linear-gradient(to bottom, var(--cream-55), transparent);
 }
 
 /* ===== 3. Challenge ===== */
@@ -866,8 +925,8 @@ a {
 	.nav {
 		padding: 1.5em 2.5em;
 	}
-	.hero {
-		padding: 3.75em 2.5em 5em;
+	.hero__content {
+		padding: 0 2.5em 4em;
 	}
 	.challenge {
 		padding: 6.25em 2.5em;
@@ -991,9 +1050,12 @@ a {
 	}
 
 	/* Hero */
-	.hero {
-		padding: 3em 1.5em 4em;
-		gap: 2em;
+	.hero__content {
+		padding: 0 1.5em 3em;
+		gap: 1.5em;
+	}
+	.hero__title {
+		font-size: clamp(2.75rem, 1.5rem + 5vw, 4.5rem);
 	}
 	.hero__bottom {
 		flex-direction: column;
@@ -1001,6 +1063,9 @@ a {
 	}
 	.hero__left {
 		width: 100%;
+	}
+	.hero__scroll {
+		padding-bottom: 1.5em;
 	}
 	.btn-primary,
 	.btn-secondary {
