@@ -427,6 +427,33 @@ document.querySelectorAll('.nav__btn').forEach((btn) => {
   btn.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
 })
 
+// ===== Outline button hover — swoop bottom to top =====
+document.querySelectorAll('.btn-secondary').forEach((btn) => {
+  const bg = btn.querySelector('.btn-secondary__bg')
+  const text = btn.querySelector('.btn-secondary__text')
+
+  const enterTl = gsap.timeline({ paused: true })
+  enterTl
+    .to(bg, {
+      scaleY: 1,
+      duration: φInv * φInv,  // 0.382s
+      ease: 'reveal',
+    })
+    .to(
+      text,
+      { color: '#1b4332', duration: φInv * φInv, ease: 'reveal' },
+      0
+    )
+    .to(
+      btn,
+      { borderColor: '#f8f6f1', duration: φInv * φInv, ease: 'reveal' },
+      0
+    )
+
+  btn.addEventListener('mouseenter', () => enterTl.timeScale(1).play())
+  btn.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
+})
+
 // ===== Green button hover — swoop bottom to top =====
 document.querySelectorAll('.btn-primary').forEach((btn) => {
   const bg = btn.querySelector('.btn-primary__bg')
