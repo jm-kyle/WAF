@@ -341,6 +341,16 @@ if (!prefersReducedMotion) {
 		},
 	});
 
+	gsap.from(".team__lead", {
+		...fadeUp,
+		duration: φInv + φInv * φInv,
+		ease: "reveal",
+		scrollTrigger: {
+			trigger: ".team__lead",
+			start: "top 85%",
+		},
+	});
+
 	document.querySelectorAll(".member").forEach((member, i) => {
 		gsap.from(member, {
 			...fadeUp,
@@ -353,15 +363,6 @@ if (!prefersReducedMotion) {
 			},
 		});
 
-		gsap.from(member.querySelector(".member__portrait img"), {
-			scale: 1.05,
-			duration: 2 * φInv, // ≈ 1.236
-			ease: "reveal",
-			scrollTrigger: {
-				trigger: member,
-				start: "top 85%",
-			},
-		});
 	});
 
 	// ===== 7. Resources — row-by-row reveal =====
@@ -447,3 +448,73 @@ if (!prefersReducedMotion) {
 		},
 	});
 } // end reduced-motion guard
+
+// ===== Bio Modal =====
+const bioModal = document.querySelector(".bio-modal");
+const bioBackdrop = bioModal.querySelector(".bio-modal__backdrop");
+const bioCard = bioModal.querySelector(".bio-modal__card");
+const bioRole = bioModal.querySelector(".bio-modal__role");
+const bioName = bioModal.querySelector(".bio-modal__name");
+const bioBio = bioModal.querySelector(".bio-modal__bio");
+const bioClose = bioModal.querySelector(".bio-modal__close");
+
+function openBioModal(member) {
+	const role = member.querySelector(".member__role").textContent;
+	const name = member.querySelector(".member__name").textContent;
+	const bio = member.querySelector(".member__bio").textContent.trim();
+
+	bioRole.textContent = role;
+	bioName.textContent = name;
+	bioBio.textContent = bio;
+
+	bioModal.classList.add("bio-modal--open");
+	bioModal.setAttribute("aria-hidden", "false");
+	if (lenis) lenis.stop();
+
+	const tl = gsap.timeline();
+	tl.fromTo(
+		bioBackdrop,
+		{ opacity: 0 },
+		{ opacity: 1, duration: 0.3, ease: "power2.out" },
+	);
+	tl.fromTo(
+		bioCard,
+		{ opacity: 0, y: 40, scale: 0.95 },
+		{ opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.4)" },
+		"-=0.15",
+	);
+}
+
+function closeBioModal() {
+	const tl = gsap.timeline({
+		onComplete: () => {
+			bioModal.classList.remove("bio-modal--open");
+			bioModal.setAttribute("aria-hidden", "true");
+			if (lenis) lenis.start();
+		},
+	});
+	tl.to(bioCard, {
+		opacity: 0,
+		y: 20,
+		scale: 0.97,
+		duration: 0.25,
+		ease: "power2.in",
+	});
+	tl.to(bioBackdrop, { opacity: 0, duration: 0.2, ease: "power2.in" }, "-=0.1");
+}
+
+document.querySelectorAll(".member__more").forEach((link) => {
+	link.addEventListener("click", (e) => {
+		e.preventDefault();
+		const member = link.closest(".member");
+		openBioModal(member);
+	});
+});
+
+bioClose.addEventListener("click", closeBioModal);
+bioBackdrop.addEventListener("click", closeBioModal);
+document.addEventListener("keydown", (e) => {
+	if (e.key === "Escape" && bioModal.classList.contains("bio-modal--open")) {
+		closeBioModal();
+	}
+});
