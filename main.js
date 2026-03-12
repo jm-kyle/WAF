@@ -34,51 +34,56 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-expanded', isOpen)
 })
 
-// ===== Custom eases =====
-// Smooth decel with an extended glide — the "unhurried luxury" feel
+// ===== Golden ratio =====
+const φ = 1.6180339887
+const φInv = 1 / φ // 0.618…
+
+// ===== Custom eases — curves shaped by φ =====
+// Smooth decel — exponent is φ² ≈ 2.618 for an unhurried glide
 gsap.registerEase('reveal', (p) => {
-  // Custom deceleration: fast initial movement, very long gentle tail
-  return 1 - Math.pow(1 - p, 4)
+  return 1 - Math.pow(1 - p, φ * φ)
 })
 
-// Soft overshoot then settle — confident entrance with a breath
+// Soft overshoot then settle — overshoot amount is φ−1, transition at 1/φ
 gsap.registerEase('settle', (p) => {
-  const c = 1.4 // overshoot amount (subtle)
-  return p < 0.72
-    ? 1 + (c + 1) * Math.pow(p / 0.72 - 1, 3) + c * Math.pow(p / 0.72 - 1, 2)
-    : 1 + Math.sin(((p - 0.72) / 0.28) * Math.PI) * 0.018 * (1 - p)
+  const c = φ - 1 // 0.618 overshoot
+  return p < φInv
+    ? 1 + (c + 1) * Math.pow(p / φInv - 1, 3) + c * Math.pow(p / φInv - 1, 2)
+    : 1 + Math.sin(((p - φInv) / (1 - φInv)) * Math.PI) * 0.018 * (1 - p)
 })
 
-// Exponential decel for count-up numbers — fast start, slow arrival
+// Exponential decel for count-up — decay rate is φ⁵ ≈ 11.09
 gsap.registerEase('countUp', (p) => {
-  return 1 - Math.pow(2, -12 * p)
+  return 1 - Math.pow(2, -Math.pow(φ, 5) * p)
 })
 
-// Smooth ease-out with a slight cushion at the end — for lateral movements
+// Lateral ease-out — exponent φ², cushion scaled by 1/φ
 gsap.registerEase('drift', (p) => {
-  return p < 1 ? 1 - Math.pow(1 - p, 3.5) * (1 - 0.15 * Math.sin(p * Math.PI)) : 1
+  return p < 1
+    ? 1 - Math.pow(1 - p, φ * φ) * (1 - φInv * 0.236 * Math.sin(p * Math.PI))
+    : 1
 })
 
 // ===== Animation defaults =====
-const fadeUp = { opacity: 0, y: 30 }
+const fadeUp = { opacity: 0, y: φ * 18.5 } // ≈ 30
 
 // ===== 1. Nav — fade in on load =====
 gsap.from('.nav', {
   opacity: 0,
-  duration: 0.8,
-  delay: 0.3,
+  duration: φInv,           // 0.618s
+  delay: φInv * φInv,       // 0.382s
   ease: 'reveal',
 })
 
 // ===== 2. Hero — staggered entrance on load =====
-const heroTl = gsap.timeline({ delay: 0.1 })
+const heroTl = gsap.timeline({ delay: φInv * 0.16 }) // ≈ 0.1
 
 heroTl
   .from('.hero__title', {
     opacity: 0,
-    y: 50,
-    duration: 1.1,
-    stagger: 0.12,
+    y: φ * 30,               // ≈ 48.5
+    duration: φ,              // 1.618s
+    stagger: φInv * 0.2,     // ≈ 0.124
     ease: 'settle',
   })
   .from(
@@ -87,49 +92,49 @@ heroTl
       opacity: 0,
       scaleX: 0,
       transformOrigin: 'left center',
-      duration: 0.7,
+      duration: φInv,        // 0.618s
       ease: 'reveal',
     },
-    '-=0.5'
+    `-=${φInv * φInv}`       // -=0.382
   )
   .from(
     '.hero__tagline',
     {
       opacity: 0,
-      y: 24,
-      duration: 0.9,
+      y: φ * 15,             // ≈ 24.3
+      duration: φInv + φInv * φInv, // ≈ 1.0
       ease: 'reveal',
     },
-    '-=0.35'
+    `-=${φInv * φInv}`       // -=0.382
   )
   .from(
     '.hero__buttons',
     {
       opacity: 0,
-      y: 20,
-      duration: 0.8,
+      y: φ * 12,             // ≈ 19.4
+      duration: φInv,        // 0.618s
       ease: 'reveal',
     },
-    '-=0.5'
+    `-=${φInv * φInv}`       // -=0.382
   )
   .from(
     '.hero__description',
     {
       opacity: 0,
-      y: 20,
-      duration: 0.9,
+      y: φ * 12,
+      duration: φInv + φInv * φInv, // ≈ 1.0
       ease: 'reveal',
     },
-    '-=0.4'
+    `-=${φInv * φInv}`
   )
   .from(
     '.hero__scroll',
     {
       opacity: 0,
-      duration: 1,
+      duration: φInv + φInv * φInv, // ≈ 1.0
       ease: 'reveal',
     },
-    '-=0.3'
+    `-=${φInv * φInv}`
   )
 
 // ===== Hero parallax — background shifts on scroll =====
@@ -185,8 +190,8 @@ gsap.to('.hero__scroll-text', {
 // ===== 3. Challenge — scroll-triggered reveals =====
 gsap.from('.challenge__heading > *', {
   ...fadeUp,
-  duration: 0.8,
-  stagger: 0.1,
+  duration: φInv,
+  stagger: φInv * 0.2,
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.challenge__heading',
@@ -207,7 +212,7 @@ document.querySelectorAll('.stat__number').forEach((el, i) => {
 
   gsap.from(el.closest('.stat'), {
     ...fadeUp,
-    duration: 0.7,
+    duration: φInv,
     ease: 'reveal',
     scrollTrigger: {
       trigger: el.closest('.stat'),
@@ -215,7 +220,7 @@ document.querySelectorAll('.stat__number').forEach((el, i) => {
       onEnter: () => {
         gsap.to(obj, {
           val: value,
-          duration: 1.4,
+          duration: φ,          // 1.618s count-up
           ease: 'countUp',
           snap: { val: suffix === 'M' ? 0.1 : 1 },
           onUpdate() {
@@ -235,8 +240,8 @@ document.querySelectorAll('.stat__number').forEach((el, i) => {
 // Challenge body text
 gsap.from('.challenge__text', {
   ...fadeUp,
-  duration: 0.8,
-  stagger: 0.15,
+  duration: φInv,
+  stagger: φInv * 0.25,     // ≈ 0.155
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.challenge__body',
@@ -247,7 +252,7 @@ gsap.from('.challenge__text', {
 // ===== 4. Approach — header + staggered pillars =====
 gsap.from('.approach__header', {
   ...fadeUp,
-  duration: 0.9,
+  duration: φInv + φInv * φInv, // ≈ 1.0
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.approach__header',
@@ -257,8 +262,8 @@ gsap.from('.approach__header', {
 
 gsap.from('.pillar', {
   ...fadeUp,
-  duration: 0.8,
-  stagger: 0.12,
+  duration: φInv,
+  stagger: φInv * 0.2,
   ease: 'settle',
   scrollTrigger: {
     trigger: '.pillar',
@@ -269,7 +274,7 @@ gsap.from('.pillar', {
 // ===== 5. Where We Work — layered reveal =====
 gsap.from('.where__header', {
   ...fadeUp,
-  duration: 0.9,
+  duration: φInv + φInv * φInv,
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.where__header',
@@ -280,7 +285,7 @@ gsap.from('.where__header', {
 gsap.from('.map-placeholder', {
   opacity: 0,
   scale: 0.97,
-  duration: 1,
+  duration: φ,               // 1.618s
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.map-placeholder',
@@ -291,7 +296,7 @@ gsap.from('.map-placeholder', {
 gsap.from('.gaviota__image', {
   opacity: 0,
   scale: 1.03,
-  duration: 1,
+  duration: φ,
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.gaviota',
@@ -301,8 +306,8 @@ gsap.from('.gaviota__image', {
 
 gsap.from('.gaviota__text > *', {
   ...fadeUp,
-  duration: 0.8,
-  stagger: 0.1,
+  duration: φInv,
+  stagger: φInv * 0.2,
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.gaviota',
@@ -313,7 +318,7 @@ gsap.from('.gaviota__text > *', {
 // ===== 6. Team — portrait + bio reveals =====
 gsap.from('.team__header', {
   ...fadeUp,
-  duration: 0.9,
+  duration: φInv + φInv * φInv,
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.team__header',
@@ -324,8 +329,8 @@ gsap.from('.team__header', {
 document.querySelectorAll('.member').forEach((member, i) => {
   gsap.from(member, {
     ...fadeUp,
-    duration: 0.9,
-    delay: i * 0.15,
+    duration: φInv + φInv * φInv,
+    delay: i * φInv * 0.25,  // ≈ 0.155
     ease: 'settle',
     scrollTrigger: {
       trigger: member,
@@ -335,7 +340,7 @@ document.querySelectorAll('.member').forEach((member, i) => {
 
   gsap.from(member.querySelector('.member__portrait img'), {
     scale: 1.05,
-    duration: 1.2,
+    duration: 2 * φInv,      // ≈ 1.236
     ease: 'reveal',
     scrollTrigger: {
       trigger: member,
@@ -347,7 +352,7 @@ document.querySelectorAll('.member').forEach((member, i) => {
 // ===== 7. Resources — row-by-row reveal =====
 gsap.from('.resources__heading', {
   ...fadeUp,
-  duration: 0.9,
+  duration: φInv + φInv * φInv,
   ease: 'reveal',
   scrollTrigger: {
     trigger: '.resources__inner',
@@ -357,8 +362,8 @@ gsap.from('.resources__heading', {
 
 gsap.from('.resource-row', {
   ...fadeUp,
-  duration: 0.7,
-  stagger: 0.1,
+  duration: φInv,
+  stagger: φInv * 0.2,
   ease: 'settle',
   scrollTrigger: {
     trigger: '.resources__list',
@@ -366,11 +371,45 @@ gsap.from('.resource-row', {
   },
 })
 
+// Resource row hover — black bg scales in, colors invert
+document.querySelectorAll('.resource-row').forEach((row) => {
+  const bg = row.querySelector('.resource-row__bg')
+  const title = row.querySelector('.resource-row__title')
+  const tag = row.querySelector('.resource-row__tag')
+  const icon = row.querySelector('.resource-row__icon')
+
+  const enterTl = gsap.timeline({ paused: true })
+  enterTl
+    .to(bg, {
+      scaleY: 1,
+      duration: φInv * φInv,  // 0.382s
+      ease: 'reveal',
+    })
+    .to(
+      title,
+      { color: '#f8f6f1', duration: φInv * φInv, ease: 'reveal' },
+      φInv * 0.062             // ≈ 0.038
+    )
+    .to(
+      tag,
+      { color: 'rgba(248,246,241,0.55)', duration: φInv * φInv, ease: 'reveal' },
+      φInv * 0.16              // ≈ 0.1
+    )
+    .to(
+      icon,
+      { color: '#f8f6f1', y: -2, duration: φInv * φInv, ease: 'reveal' },
+      φInv * 0.1               // ≈ 0.062
+    )
+
+  row.addEventListener('mouseenter', () => enterTl.timeScale(1).play())
+  row.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
+})
+
 // ===== 8. Contact — split reveal =====
 gsap.from('.contact__left', {
   opacity: 0,
-  x: -40,
-  duration: 1,
+  x: -φ * 24,               // ≈ -38.8
+  duration: φ,               // 1.618s
   ease: 'drift',
   scrollTrigger: {
     trigger: '.contact',
@@ -380,8 +419,8 @@ gsap.from('.contact__left', {
 
 gsap.from('.contact__right', {
   opacity: 0,
-  x: 40,
-  duration: 1,
+  x: φ * 24,
+  duration: φ,
   ease: 'drift',
   scrollTrigger: {
     trigger: '.contact',
