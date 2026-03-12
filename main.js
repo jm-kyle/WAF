@@ -5,6 +5,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+ScrollTrigger.config({
+	ignoreMobileResize: true,
+});
+ScrollTrigger.defaults({
+	fastScrollEnd: true,
+	once: true,
+});
+
 const prefersReducedMotion = window.matchMedia(
 	"(prefers-reduced-motion: reduce)",
 ).matches;
@@ -187,6 +195,7 @@ if (!prefersReducedMotion) {
 			start: "top top",
 			end: "bottom top",
 			scrub: true,
+			once: false,
 		},
 	});
 
@@ -200,6 +209,7 @@ if (!prefersReducedMotion) {
 			start: "60% top",
 			end: "bottom top",
 			scrub: true,
+			once: false,
 		},
 	});
 
@@ -354,18 +364,17 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	document.querySelectorAll(".member").forEach((member, i) => {
-		gsap.from(member, {
-			...fadeUp,
-			duration: φInv + φInv * φInv,
-			delay: i * φInv * 0.25, // ≈ 0.155
-			ease: "settle",
-			scrollTrigger: {
-				trigger: member,
-				start: "top 85%",
-			},
-		});
-
+	ScrollTrigger.batch(".member", {
+		start: "top 85%",
+		onEnter: (batch) => {
+			gsap.from(batch, {
+				...fadeUp,
+				duration: φInv + φInv * φInv,
+				stagger: φInv * 0.25,
+				ease: "settle",
+			});
+		},
+		once: true,
 	});
 
 	// ===== 7. Resources — row-by-row reveal =====

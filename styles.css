@@ -187,6 +187,7 @@ a {
 	background-image: url("https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg");
 	background-size: cover;
 	background-position: center 35%;
+	will-change: background-position;
 }
 
 .hero::before {
@@ -384,6 +385,9 @@ a {
 	width: 100%;
 	padding: 12em 5em 8.75em;
 	gap: 4em;
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 1200px;
 }
 
 .challenge__header {
@@ -482,6 +486,9 @@ a {
 	width: 100%;
 	padding: 8.75em 5em;
 	background-color: var(--dark-green);
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 900px;
 }
 
 .approach__header {
@@ -574,6 +581,9 @@ a {
 	width: 100%;
 	padding: 8.75em 5em;
 	gap: 4em;
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 1100px;
 }
 
 .where__header {
@@ -729,6 +739,9 @@ a {
 	padding: 8.75em 5em;
 	gap: 4em;
 	background-color: var(--dark-green);
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 800px;
 }
 
 .team__header {
@@ -884,12 +897,15 @@ a {
 	background-color: var(--cream);
 	padding: 3em;
 	max-width: 36em;
+	max-height: 90vh;
+	overflow-y: auto;
 	width: 100%;
 	box-shadow: 0 1.5em 4em rgba(0, 0, 0, 0.25);
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
 	opacity: 0;
+	will-change: transform, opacity;
 }
 
 .bio-modal__close {
@@ -942,6 +958,9 @@ a {
 	width: 100%;
 	padding: 8.75em 5em;
 	gap: 3em;
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 600px;
 }
 
 .resources__inner {
@@ -1040,6 +1059,9 @@ a {
 	padding: 8.75em 5em;
 	gap: 5em;
 	justify-content: center;
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 500px;
 	background-color: var(--dark-green);
 }
 
@@ -1058,6 +1080,7 @@ a {
 	font-weight: 400;
 	color: var(--cream);
 	text-wrap: balance;
+	max-width: 28ch;
 }
 
 .contact__right {
