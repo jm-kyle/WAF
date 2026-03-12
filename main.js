@@ -165,9 +165,10 @@ if (!prefersReducedMotion) {
 			`-=${φInv * φInv}`,
 		)
 		.from(
-			".hero__scroll",
+			".hero__banner",
 			{
 				opacity: 0,
+				y: φ * 15,
 				duration: φInv + φInv * φInv, // ≈ 1.0
 				ease: "reveal",
 			},
@@ -195,31 +196,6 @@ if (!prefersReducedMotion) {
 			trigger: ".hero",
 			start: "60% top",
 			end: "bottom top",
-			scrub: true,
-		},
-	});
-
-	// Scroll indicator fades out with stagger — line first, then text
-	gsap.to(".hero__scroll-line", {
-		opacity: 0,
-		yPercent: -20,
-		ease: "none",
-		scrollTrigger: {
-			trigger: ".hero",
-			start: "35% top",
-			end: "55% top",
-			scrub: true,
-		},
-	});
-
-	gsap.to(".hero__scroll-text", {
-		opacity: 0,
-		yPercent: -30,
-		ease: "none",
-		scrollTrigger: {
-			trigger: ".hero",
-			start: "40% top",
-			end: "60% top",
 			scrub: true,
 		},
 	});

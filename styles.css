@@ -178,7 +178,7 @@ a {
 	width: 100%;
 	min-height: 100svh;
 	position: relative;
-	overflow: clip;
+	overflow: visible;
 	background-image: url("https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg");
 	background-size: cover;
 	background-position: center 35%;
@@ -204,7 +204,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding: 0 5em 4.5em;
+	padding: 15em 5em 2em;
 	gap: 2em;
 }
 
@@ -219,8 +219,9 @@ a {
 }
 
 .hero__titles {
-	/*display: inline-flex;
-	flex-direction: column;*/
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
 	width: 100%;
 	font: inherit;
 }
@@ -232,6 +233,7 @@ a {
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	color: var(--cream);
+	text-wrap: pretty;
 }
 
 .hero__title--accent {
@@ -258,7 +260,7 @@ a {
 .hero__left {
 	display: flex;
 	flex-direction: column;
-	width: 30em;
+	max-width: 35em;
 	flex-shrink: 0;
 	gap: 1.5em;
 }
@@ -270,6 +272,7 @@ a {
 	font-weight: 400;
 	font-style: italic;
 	color: var(--cream-85);
+	text-wrap: pretty;
 }
 
 .hero__buttons {
@@ -344,31 +347,29 @@ a {
 	text-wrap: pretty;
 }
 
-/* Hero scroll indicator */
-.hero__scroll {
+/* Hero banner — overlaps hero and challenge sections */
+.hero__banner {
 	position: relative;
-	z-index: 2;
+	z-index: 10;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: 0.625em;
-	padding-bottom: 2em;
+	gap: 1.25em;
+	width: calc(100% - 10em);
+	margin: 0 auto;
+	padding: 3em 4em;
+	background-color: var(--bg-warm);
+	transform: translateY(50%);
+	border-radius: 4px;
+	margin-top: -4em;
 }
 
-.hero__scroll-text {
+.hero__banner-text {
 	font-family: "Figtree", system-ui, sans-serif;
-	font-size: 0.6875rem;
-	font-weight: 500;
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	color: var(--cream-55);
-}
-
-.hero__scroll-line {
-	display: block;
-	width: 1px;
-	height: 2.5em;
-	background: linear-gradient(to bottom, var(--cream-55), transparent);
+	font-size: clamp(0.9375rem, 0.9rem + 0.12vw, 1.0625rem);
+	line-height: 1.8;
+	font-weight: 400;
+	color: var(--body-text);
+	text-wrap: pretty;
 }
 
 /* ===== 3. Challenge ===== */
@@ -376,7 +377,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding: 8.75em 5em;
+	padding: 12em 5em 8.75em;
 	gap: 4em;
 }
 
@@ -984,7 +985,7 @@ a {
 		padding: 1.5em 2.5em;
 	}
 	.hero__content {
-		padding: 0 2.5em 4em;
+		padding: 15em 2.5em 4em;
 	}
 	.challenge {
 		padding: 6.25em 2.5em;
@@ -1109,7 +1110,7 @@ a {
 
 	/* Hero */
 	.hero__content {
-		padding: 0 1.5em 3em;
+		padding: 15em 1.5em 3em;
 		gap: 1.5em;
 	}
 	.hero__title {
@@ -1293,5 +1294,12 @@ a {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
+	}
+}
+
+/* ===== Responsive: Large screens (>1440px) ===== */
+@media (min-width: 1441px) {
+	.hero__left {
+		max-width: 40em;
 	}
 }
