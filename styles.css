@@ -27,7 +27,7 @@
 }
 
 html {
-  font-size: clamp(16px, 0.8rem + 0.75vw, 1.5rem);
+  font-size: clamp(1rem, 1.25vw, 6rem);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -52,12 +52,12 @@ a {
 .skip-link {
   position: absolute;
   top: -100%;
-  left: 16px;
-  padding: 12px 20px;
+  left: 1em;
+  padding: 0.75em 1.25em;
   background: var(--dark-green);
   color: var(--cream);
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   border-radius: 0 0 4px 4px;
   z-index: 100;
@@ -88,11 +88,11 @@ a {
 /* ===== Utility ===== */
 .section-label {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  line-height: 16px;
+  line-height: 1.23;
 }
 
 .section-label--green { color: var(--forest-green); }
@@ -104,13 +104,13 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 80px;
+  padding: 1.75em 5em;
   width: 100%;
 }
 
 .nav__logo {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.2;
@@ -120,17 +120,17 @@ a {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 2.25em;
   list-style: none;
 }
 
 .nav__link {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 18px;
+  line-height: 1.29;
   color: var(--dark-text);
 }
 
@@ -138,15 +138,15 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
+  padding: 0.625em 1.5em;
   border-radius: 4px;
   background-color: var(--dark-green);
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 18px;
+  line-height: 1.29;
   color: var(--cream);
   border: none;
   cursor: pointer;
@@ -157,8 +157,8 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 80px 80px 120px;
-  gap: 48px;
+  padding: 5em 5em 7.5em;
+  gap: 3em;
   position: relative;
   overflow: clip;
   background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)),
@@ -176,7 +176,7 @@ a {
 
 .hero__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(48px, calc(31px + 4.5vw), 96px);
+  font-size: clamp(3rem, 2rem + 3.5vw, 6rem);
   line-height: 1.06;
   letter-spacing: -0.03em;
   font-weight: 400;
@@ -191,20 +191,20 @@ a {
 .hero__bottom {
   display: flex;
   width: 100%;
-  gap: 80px;
+  gap: 5em;
 }
 
 .hero__left {
   display: flex;
   flex-direction: column;
-  width: 520px;
+  width: 32.5em;
   flex-shrink: 0;
-  gap: 24px;
+  gap: 1.5em;
 }
 
 .hero__tagline {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(18px, calc(16.5px + 0.38vw), 22px);
+  font-size: clamp(1.125rem, 1rem + 0.3vw, 1.375rem);
   line-height: 1.55;
   font-weight: 400;
   font-style: italic;
@@ -214,23 +214,23 @@ a {
 .hero__buttons {
   display: flex;
   align-items: center;
-  padding-top: 8px;
-  gap: 16px;
+  padding-top: 0.5em;
+  gap: 1em;
 }
 
 .btn-primary {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 32px;
+  padding: 0.875em 2em;
   border-radius: 4px;
   background-color: var(--light-green);
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 18px;
+  line-height: 1.29;
   color: var(--dark-green);
   border: none;
   cursor: pointer;
@@ -240,23 +240,23 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 32px;
+  padding: 0.875em 2em;
   border-radius: 4px;
   border: 1.5px solid var(--border-dark);
   background: transparent;
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 18px;
+  line-height: 1.29;
   color: var(--cream-80);
   cursor: pointer;
 }
 
 .hero__description {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(15px, calc(14.6px + 0.09vw), 16px);
+  font-size: clamp(0.9375rem, 0.9rem + 0.07vw, 1rem);
   line-height: 1.63;
   font-weight: 400;
   color: var(--cream-75);
@@ -268,27 +268,27 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 140px 80px;
-  gap: 64px;
+  padding: 8.75em 5em;
+  gap: 4em;
 }
 
 .challenge__header {
   display: flex;
   width: 100%;
   align-items: flex-end;
-  gap: 80px;
+  gap: 5em;
 }
 
 .challenge__heading {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .challenge__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(36px, calc(30.4px + 1.5vw), 52px);
+  font-size: clamp(2.25rem, 1.9rem + 1.2vw, 3.25rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
   font-weight: 400;
@@ -298,19 +298,19 @@ a {
 .challenge__stats {
   display: flex;
   flex-shrink: 0;
-  gap: 48px;
+  gap: 3em;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  padding-bottom: 4px;
-  gap: 6px;
+  padding-bottom: 0.25em;
+  gap: 0.375em;
 }
 
 .stat__number {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(40px, calc(31.5px + 2.25vw), 64px);
+  font-size: clamp(2.5rem, 2rem + 1.8vw, 4rem);
   line-height: 1;
   letter-spacing: -0.03em;
   font-weight: 400;
@@ -319,24 +319,24 @@ a {
 
 .stat__label {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(12px, calc(11.6px + 0.09vw), 13px);
+  font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
   line-height: 1.4;
   font-weight: 400;
   color: var(--gray);
-  max-width: 160px;
+  max-width: 10em;
 }
 
 .challenge__body {
   display: flex;
   width: 100%;
-  padding-top: 48px;
-  gap: 48px;
+  padding-top: 3em;
+  gap: 3em;
   border-top: 1px solid var(--border-light);
 }
 
 .challenge__text {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(15px, calc(14.3px + 0.19vw), 17px);
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
   line-height: 1.65;
   font-weight: 400;
   color: var(--body-text);
@@ -348,27 +348,27 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 140px 80px;
+  padding: 8.75em 5em;
   background-color: var(--dark-green);
 }
 
 .approach__header {
   display: flex;
   width: 100%;
-  gap: 80px;
-  padding-bottom: 44px;
+  gap: 5em;
+  padding-bottom: 2.75em;
 }
 
 .approach__heading {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .approach__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(34px, calc(29px + 1.31vw), 48px);
+  font-size: clamp(2.125rem, 1.8rem + 1vw, 3rem);
   line-height: 1.17;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -384,7 +384,7 @@ a {
 
 .approach__desc {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(15px, calc(14.3px + 0.19vw), 17px);
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
   line-height: 1.65;
   font-weight: 400;
   color: var(--cream-75);
@@ -395,8 +395,8 @@ a {
   display: flex;
   width: 100%;
   align-items: flex-start;
-  padding: 40px 0;
-  gap: 40px;
+  padding: 2.5em 0;
+  gap: 2.5em;
   border-bottom: 1px solid var(--border-dark);
 }
 
@@ -406,29 +406,29 @@ a {
 
 .pillar__number {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 0.875rem;
+  line-height: 1.29;
   font-weight: 400;
   color: var(--light-green);
-  width: 40px;
+  width: 2.5em;
   flex-shrink: 0;
-  padding-top: 6px;
+  padding-top: 0.375em;
 }
 
 .pillar__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(24px, calc(22.6px + 0.38vw), 28px);
+  font-size: clamp(1.5rem, 1.4rem + 0.3vw, 1.75rem);
   line-height: 1.29;
   letter-spacing: -0.01em;
   font-weight: 400;
   color: var(--cream);
-  width: 320px;
+  width: 20em;
   flex-shrink: 0;
 }
 
 .pillar__desc {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(14px, calc(13.3px + 0.19vw), 16px);
+  font-size: clamp(0.875rem, 0.83rem + 0.15vw, 1rem);
   line-height: 1.63;
   font-weight: 400;
   color: var(--cream-75);
@@ -440,26 +440,26 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 140px 80px;
-  gap: 64px;
+  padding: 8.75em 5em;
+  gap: 4em;
 }
 
 .where__header {
   display: flex;
   width: 100%;
-  gap: 80px;
+  gap: 5em;
 }
 
 .where__heading {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .where__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(34px, calc(29px + 1.31vw), 48px);
+  font-size: clamp(2.125rem, 1.8rem + 1vw, 3rem);
   line-height: 1.17;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -472,7 +472,7 @@ a {
 
 .where__desc {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(15px, calc(14.3px + 0.19vw), 17px);
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
   line-height: 1.65;
   font-weight: 400;
   color: var(--body-text);
@@ -483,8 +483,8 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 480px;
-  border-radius: 8px;
+  height: 30em;
+  border-radius: 0.5em;
   overflow: clip;
   background-color: var(--bg-warm);
   position: relative;
@@ -495,30 +495,30 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 0.75em;
   position: relative;
   z-index: 1;
 }
 
 .map-placeholder__icon {
-  width: 48px;
-  height: 48px;
+  width: 3em;
+  height: 3em;
   color: var(--gray);
   opacity: 0.5;
 }
 
 .map-placeholder__title {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 0.875rem;
+  line-height: 1.29;
   font-weight: 500;
   color: var(--muted-text);
 }
 
 .map-placeholder__sub {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 0.8125rem;
+  line-height: 1.38;
   font-weight: 400;
   color: var(--gray);
 }
@@ -526,9 +526,9 @@ a {
 .gaviota {
   display: flex;
   width: 100%;
-  border-radius: 8px;
-  padding: 48px;
-  gap: 48px;
+  border-radius: 0.5em;
+  padding: 3em;
+  gap: 3em;
   background-color: var(--bg-warm);
 }
 
@@ -536,12 +536,12 @@ a {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 12px;
+  gap: 0.75em;
 }
 
 .gaviota__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(22px, calc(19.9px + 0.56vw), 28px);
+  font-size: clamp(1.375rem, 1.25rem + 0.4vw, 1.75rem);
   line-height: 1.29;
   font-weight: 400;
   color: var(--dark-text);
@@ -549,15 +549,15 @@ a {
 
 .gaviota__desc {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(14px, calc(13.6px + 0.09vw), 15px);
+  font-size: clamp(0.875rem, 0.85rem + 0.07vw, 0.9375rem);
   line-height: 1.67;
   font-weight: 400;
   color: var(--muted-text);
 }
 
 .gaviota__image {
-  width: 320px;
-  height: 200px;
+  width: 20em;
+  height: 12.5em;
   border-radius: 6px;
   object-fit: cover;
   flex-shrink: 0;
@@ -568,8 +568,8 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 140px 80px;
-  gap: 64px;
+  padding: 8.75em 5em;
+  gap: 4em;
   background-color: var(--dark-green);
 }
 
@@ -577,8 +577,8 @@ a {
   display: flex;
   width: 100%;
   align-items: start;
-  padding-bottom: 16px;
-  gap: 80px;
+  padding-bottom: 1em;
+  gap: 5em;
   justify-content: center;
 }
 
@@ -586,12 +586,12 @@ a {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .team__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(36px, calc(30.4px + 1.5vw), 52px);
+  font-size: clamp(2.25rem, 1.9rem + 1.2vw, 3.25rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
   font-weight: 400;
@@ -600,29 +600,29 @@ a {
 
 .team__desc {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(15px, calc(14.6px + 0.09vw), 16px);
+  font-size: clamp(0.9375rem, 0.91rem + 0.07vw, 1rem);
   line-height: 1.63;
   font-weight: 400;
   color: var(--cream-75);
-  max-width: 480px;
+  max-width: 30em;
 }
 
 .team__members {
   display: flex;
   width: 100%;
-  gap: 48px;
+  gap: 3em;
 }
 
 .member {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 24px;
+  gap: 1.5em;
 }
 
 .member__portrait {
   width: 100%;
-  height: 460px;
+  height: 28.75em;
   overflow: clip;
   background-color: var(--forest-green);
   flex-shrink: 0;
@@ -637,23 +637,23 @@ a {
 .member__info {
   display: flex;
   flex-direction: column;
-  padding-top: 8px;
-  gap: 16px;
+  padding-top: 0.5em;
+  gap: 1em;
 }
 
 .member__role {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  line-height: 16px;
+  line-height: 1.23;
   color: var(--light-green);
 }
 
 .member__name {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(28px, calc(25.2px + 0.75vw), 36px);
+  font-size: clamp(1.75rem, 1.58rem + 0.6vw, 2.25rem);
   line-height: 1.17;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -662,7 +662,7 @@ a {
 
 .member__bio {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(14px, calc(13.6px + 0.09vw), 15px);
+  font-size: clamp(0.875rem, 0.85rem + 0.07vw, 0.9375rem);
   line-height: 1.6;
   font-weight: 400;
   color: var(--cream-75);
@@ -673,28 +673,28 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 140px 80px;
-  gap: 48px;
+  padding: 8.75em 5em;
+  gap: 3em;
 }
 
 .resources__inner {
   display: flex;
   width: 100%;
   align-items: flex-start;
-  gap: 80px;
+  gap: 5em;
 }
 
 .resources__heading {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 25em;
   flex-shrink: 0;
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .resources__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(30px, calc(27.9px + 0.56vw), 36px);
+  font-size: clamp(1.875rem, 1.75rem + 0.4vw, 2.25rem);
   line-height: 1.22;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -711,7 +711,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 0;
+  padding: 1.75em 0;
   border-top: 1px solid var(--border-light);
 }
 
@@ -726,12 +726,12 @@ a {
 .resource-row__left {
   display: flex;
   align-items: baseline;
-  gap: 16px;
+  gap: 1em;
 }
 
 .resource-row__title {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(18px, calc(16.6px + 0.38vw), 22px);
+  font-size: clamp(1.125rem, 1.04rem + 0.3vw, 1.375rem);
   line-height: 1.27;
   font-weight: 400;
   color: var(--dark-text);
@@ -739,15 +739,15 @@ a {
 
 .resource-row__tag {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 13px;
-  line-height: 16px;
+  font-size: 0.8125rem;
+  line-height: 1.23;
   font-weight: 400;
   color: var(--gray);
 }
 
 .resource-row__icon {
-  width: 18px;
-  height: 18px;
+  width: 1.125em;
+  height: 1.125em;
   color: var(--dark-text);
 }
 
@@ -756,8 +756,8 @@ a {
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 140px 80px;
-  gap: 80px;
+  padding: 8.75em 5em;
+  gap: 5em;
   justify-content: center;
   background-color: var(--dark-green);
 }
@@ -766,12 +766,12 @@ a {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 24px;
+  gap: 1.5em;
 }
 
 .contact__title {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: clamp(34px, calc(27.7px + 1.69vw), 52px);
+  font-size: clamp(2.125rem, 1.73rem + 1.3vw, 3.25rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
   font-weight: 400;
@@ -782,14 +782,14 @@ a {
 .contact__right {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 25em;
   flex-shrink: 0;
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .contact__desc {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: clamp(15px, calc(14.6px + 0.09vw), 16px);
+  font-size: clamp(0.9375rem, 0.91rem + 0.07vw, 1rem);
   line-height: 1.63;
   font-weight: 400;
   color: var(--cream-75);
@@ -801,14 +801,14 @@ a {
   align-items: center;
   justify-content: center;
   align-self: flex-start;
-  padding: 16px 40px;
+  padding: 1em 2.5em;
   border-radius: 4px;
   background-color: var(--light-green);
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  line-height: 18px;
+  line-height: 1.2;
   color: var(--dark-green);
   border: none;
   cursor: pointer;
@@ -820,13 +820,13 @@ a {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 32px 80px;
+  padding: 2em 5em;
   border-top: 1px solid var(--bg-warm);
 }
 
 .footer__sponsor {
   font-family: "Figtree", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.57;
   font-weight: 400;
   color: var(--gray);
@@ -834,7 +834,7 @@ a {
 
 .footer__logo {
   font-family: "Fraunces", system-ui, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.25;
   font-weight: 400;
   color: var(--dark-text);
@@ -847,51 +847,51 @@ a {
   border: none;
   cursor: pointer;
   color: var(--dark-text);
-  padding: 4px;
+  padding: 0.25em;
 }
 
-/* ===== Responsive: Tablet (≤1024px) ===== */
+/* ===== Responsive: Tablet (<=1024px) ===== */
 @media (max-width: 1024px) {
-  .nav { padding: 24px 40px; }
-  .hero { padding: 60px 40px 80px; }
-  .challenge { padding: 100px 40px; }
-  .approach { padding: 100px 40px; }
-  .where { padding: 100px 40px; }
-  .team { padding: 100px 40px; }
-  .resources { padding: 100px 40px; }
-  .contact { padding: 100px 40px; }
-  .footer { padding: 28px 40px; }
+  .nav { padding: 1.5em 2.5em; }
+  .hero { padding: 3.75em 2.5em 5em; }
+  .challenge { padding: 6.25em 2.5em; }
+  .approach { padding: 6.25em 2.5em; }
+  .where { padding: 6.25em 2.5em; }
+  .team { padding: 6.25em 2.5em; }
+  .resources { padding: 6.25em 2.5em; }
+  .contact { padding: 6.25em 2.5em; }
+  .footer { padding: 1.75em 2.5em; }
 
-  .hero__bottom { gap: 48px; }
-  .hero__left { width: 400px; }
+  .hero__bottom { gap: 3em; }
+  .hero__left { width: 25em; }
 
-  .challenge__header { gap: 48px; }
-  .challenge__stats { gap: 32px; }
+  .challenge__header { gap: 3em; }
+  .challenge__stats { gap: 2em; }
 
-  .approach__header { gap: 48px; }
-  .pillar__title { width: 240px; }
-  .pillar { gap: 24px; }
+  .approach__header { gap: 3em; }
+  .pillar__title { width: 15em; }
+  .pillar { gap: 1.5em; }
 
-  .where__header { gap: 48px; }
+  .where__header { gap: 3em; }
 
-  .team__header { gap: 48px; }
-  .team__members { gap: 32px; }
-  .member__portrait { height: 360px; }
+  .team__header { gap: 3em; }
+  .team__members { gap: 2em; }
+  .member__portrait { height: 22.5em; }
 
-  .resources__inner { gap: 48px; }
-  .resources__heading { width: 320px; }
+  .resources__inner { gap: 3em; }
+  .resources__heading { width: 20em; }
 
-  .contact { gap: 48px; }
-  .contact__right { width: 340px; }
+  .contact { gap: 3em; }
+  .contact__right { width: 21.25em; }
 
-  .gaviota { gap: 32px; padding: 36px; }
-  .gaviota__image { width: 260px; height: 180px; }
+  .gaviota { gap: 2em; padding: 2.25em; }
+  .gaviota__image { width: 16.25em; height: 11.25em; }
 }
 
-/* ===== Responsive: Mobile (≤768px) ===== */
+/* ===== Responsive: Mobile (<=768px) ===== */
 @media (max-width: 768px) {
   /* Nav */
-  .nav { padding: 20px 24px; position: relative; }
+  .nav { padding: 1.25em 1.5em; position: relative; }
   .nav__hamburger { display: flex; }
   .nav__menu {
     display: none;
@@ -900,7 +900,7 @@ a {
     left: 0;
     right: 0;
     background: var(--cream);
-    padding: 24px;
+    padding: 1.5em;
     border-bottom: 1px solid var(--border-light);
     z-index: 10;
   }
@@ -908,78 +908,78 @@ a {
   .nav__links {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 0.25em;
   }
   .nav__link {
     display: block;
-    padding: 10px 0;
+    padding: 0.625em 0;
   }
-  .nav__btn { margin-top: 4px; }
+  .nav__btn { margin-top: 0.25em; }
 
   /* Hero */
-  .hero { padding: 48px 24px 64px; gap: 32px; }
-  .hero__bottom { flex-direction: column; gap: 24px; }
+  .hero { padding: 3em 1.5em 4em; gap: 2em; }
+  .hero__bottom { flex-direction: column; gap: 1.5em; }
   .hero__left { width: 100%; }
   .btn-primary,
-  .btn-secondary { padding: 12px 24px; font-size: 13px; }
+  .btn-secondary { padding: 0.75em 1.5em; font-size: 0.8125rem; }
 
   /* Challenge */
-  .challenge { padding: 80px 24px; gap: 48px; }
-  .challenge__header { flex-direction: column; gap: 32px; align-items: flex-start; }
+  .challenge { padding: 5em 1.5em; gap: 3em; }
+  .challenge__header { flex-direction: column; gap: 2em; align-items: flex-start; }
   .stat__label { max-width: none; }
-  .challenge__stats { gap: 24px; }
+  .challenge__stats { gap: 1.5em; }
   .stat { flex: 1; }
-  .challenge__body { flex-direction: column; gap: 24px; padding-top: 32px; }
+  .challenge__body { flex-direction: column; gap: 1.5em; padding-top: 2em; }
 
   /* Approach */
-  .approach { padding: 80px 24px; }
-  .approach__header { flex-direction: column; gap: 20px; padding-bottom: 32px; }
-  .approach__desc { padding-bottom: 8px; }
+  .approach { padding: 5em 1.5em; }
+  .approach__header { flex-direction: column; gap: 1.25em; padding-bottom: 2em; }
+  .approach__desc { padding-bottom: 0.5em; }
   .pillar {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    padding: 28px 0;
+    gap: 0.75em;
+    padding: 1.75em 0;
   }
-  .pillar__number { width: auto; flex-shrink: 0; padding-top: 6px; }
+  .pillar__number { width: auto; flex-shrink: 0; padding-top: 0.375em; }
   .pillar__title { width: auto; flex: 1; }
   .pillar__desc { flex-basis: 100%; }
 
   /* Where */
-  .where { padding: 80px 24px; gap: 40px; }
-  .where__header { flex-direction: column; gap: 16px; }
-  .map-placeholder { height: 280px; }
-  .map-placeholder__icon { width: 36px; height: 36px; }
+  .where { padding: 5em 1.5em; gap: 2.5em; }
+  .where__header { flex-direction: column; gap: 1em; }
+  .map-placeholder { height: 17.5em; }
+  .map-placeholder__icon { width: 2.25em; height: 2.25em; }
   .gaviota { flex-direction: column-reverse; padding: 0; overflow: clip; }
-  .gaviota__image { width: 100%; height: 200px; border-radius: 0; }
-  .gaviota__text { padding: 28px 24px 32px; }
+  .gaviota__image { width: 100%; height: 12.5em; border-radius: 0; }
+  .gaviota__text { padding: 1.75em 1.5em 2em; }
 
   /* Team */
-  .team { padding: 80px 24px; gap: 48px; }
-  .team__header { flex-direction: column; gap: 20px; padding-bottom: 0; }
+  .team { padding: 5em 1.5em; gap: 3em; }
+  .team__header { flex-direction: column; gap: 1.25em; padding-bottom: 0; }
   .team__desc { max-width: none; }
-  .team__members { flex-direction: column; gap: 48px; }
-  .member__portrait { height: 320px; }
-  .member__info { gap: 12px; }
+  .team__members { flex-direction: column; gap: 3em; }
+  .member__portrait { height: 20em; }
+  .member__info { gap: 0.75em; }
 
   /* Resources */
-  .resources { padding: 80px 24px; }
-  .resources__inner { flex-direction: column; gap: 32px; width: 100%; }
+  .resources { padding: 5em 1.5em; }
+  .resources__inner { flex-direction: column; gap: 2em; width: 100%; }
   .resources__list { width: 100%; }
   .resources__heading { width: 100%; }
-  .resource-row { padding: 20px 0; }
-  .resource-row__left { gap: 12px; flex: 1; }
+  .resource-row { padding: 1.25em 0; }
+  .resource-row__left { gap: 0.75em; flex: 1; }
 
   /* Contact */
-  .contact { flex-direction: column; padding: 80px 24px; gap: 32px; }
+  .contact { flex-direction: column; padding: 5em 1.5em; gap: 2em; }
   .contact__right { width: 100%; }
 
   /* Footer */
   .footer {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 24px;
+    gap: 0.75em;
+    padding: 1.5em;
     text-align: center;
   }
 }
