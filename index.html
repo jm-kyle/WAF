@@ -11,15 +11,17 @@
 </head>
 <body>
 
+  <a href="#hero" class="skip-link">Skip to content</a>
+
   <!-- 1. Nav -->
   <header class="nav">
     <a href="#" class="nav__logo">Wild America Fund</a>
-    <button class="nav__hamburger" aria-label="Menu">
+    <button class="nav__hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </button>
-    <nav class="nav__menu">
+    <nav class="nav__menu" id="nav-menu">
       <ul class="nav__links">
         <li><a href="#challenge" class="nav__link">Our Work</a></li>
         <li><a href="#approach" class="nav__link">Approach</a></li>
@@ -29,18 +31,13 @@
       </ul>
     </nav>
   </header>
-  <script>
-    document.querySelector('.nav__hamburger').addEventListener('click', function() {
-      document.querySelector('.nav__menu').classList.toggle('nav__menu--open');
-    });
-  </script>
 
   <!-- 2. Hero -->
-  <section class="hero">
-    <div class="hero__titles">
-      <h1 class="hero__title">Wild America</h1>
-      <h1 class="hero__title hero__title--accent">Fund</h1>
-    </div>
+  <section class="hero" id="hero">
+    <h1 class="hero__titles">
+      <span class="hero__title">Wild America</span>
+      <span class="hero__title hero__title--accent">Fund</span>
+    </h1>
     <div class="hero__bottom">
       <div class="hero__left">
         <p class="hero__tagline">Catalyzing land protection at the speed and scale needed to preserve biodiversity in the United States.</p>
@@ -137,13 +134,14 @@
     </div>
     <div class="gaviota">
       <div class="gaviota__text">
-        <span class="section-label section-label--green" style="letter-spacing: 0.12em;">Initial Engagement</span>
+        <span class="section-label section-label--green section-label--tight">Initial Engagement</span>
         <h3 class="gaviota__title">Gaviota Coast, Santa Barbara</h3>
         <p class="gaviota__desc">A site of high biodiversity and intact coastal natural systems on California's Central Coast. Strategic planning is underway for WAF to begin engagement across its national portfolio of sites.</p>
       </div>
       <img class="gaviota__image"
         src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/0X8G5W5W987XB6BK0K58CV11RY.jpg"
-        alt="Gaviota Coast, Santa Barbara">
+        alt="Gaviota Coast, Santa Barbara"
+        loading="lazy">
     </div>
   </section>
 
@@ -159,7 +157,7 @@
     <div class="team__members">
       <div class="member">
         <div class="member__portrait">
-          <img src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/7YZMEAPEJ9S23RD984JCHB3M5F.jpg" alt="Kim Elliman">
+          <img src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/7YZMEAPEJ9S23RD984JCHB3M5F.jpg" alt="Kim Elliman" loading="lazy">
         </div>
         <div class="member__info">
           <span class="member__role">Co-Founder</span>
@@ -169,7 +167,7 @@
       </div>
       <div class="member">
         <div class="member__portrait">
-          <img src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/448N13PM01QVBMR3BA8CW6KSNZ.jpg" alt="Michael Mantell">
+          <img src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/448N13PM01QVBMR3BA8CW6KSNZ.jpg" alt="Michael Mantell" loading="lazy">
         </div>
         <div class="member__info">
           <span class="member__role">Co-Founder</span>
@@ -179,7 +177,7 @@
       </div>
       <div class="member">
         <div class="member__portrait">
-          <img src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/1GRMZF6Q419BQHHKD67F26K4JQ.jpg" alt="Michael Bell">
+          <img src="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/1GRMZF6Q419BQHHKD67F26K4JQ.jpg" alt="Michael Bell" loading="lazy">
         </div>
         <div class="member__info">
           <span class="member__role">Founding CEO</span>
@@ -198,7 +196,7 @@
         <h2 class="resources__title">Download materials to learn more about our work.</h2>
       </div>
       <div class="resources__list">
-        <div class="resource-row">
+        <a href="#" class="resource-row">
           <div class="resource-row__left">
             <span class="resource-row__title">Organization Prospectus</span>
             <span class="resource-row__tag">PDF</span>
@@ -206,8 +204,8 @@
           <svg class="resource-row__icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 3v9m0 0l-3.5-3.5M9 12l3.5-3.5M3 15h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <div class="resource-row">
+        </a>
+        <a href="#" class="resource-row">
           <div class="resource-row__left">
             <span class="resource-row__title">Strategy Overview</span>
             <span class="resource-row__tag">PDF</span>
@@ -215,8 +213,8 @@
           <svg class="resource-row__icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 3v9m0 0l-3.5-3.5M9 12l3.5-3.5M3 15h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <div class="resource-row">
+        </a>
+        <a href="#" class="resource-row">
           <div class="resource-row__left">
             <span class="resource-row__title">Landscape Analysis</span>
             <span class="resource-row__tag">PDF</span>
@@ -224,7 +222,7 @@
           <svg class="resource-row__icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 3v9m0 0l-3.5-3.5M9 12l3.5-3.5M3 15h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
+        </a>
       </div>
     </div>
   </section>

@@ -26,6 +26,14 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   })
 })
 
+// ===== Mobile nav toggle =====
+const hamburger = document.querySelector('.nav__hamburger')
+const navMenu = document.querySelector('.nav__menu')
+hamburger.addEventListener('click', () => {
+  const isOpen = navMenu.classList.toggle('nav__menu--open')
+  hamburger.setAttribute('aria-expanded', isOpen)
+})
+
 // ===== Custom eases =====
 // Smooth decel with an extended glide — the "unhurried luxury" feel
 gsap.registerEase('reveal', (p) => {
