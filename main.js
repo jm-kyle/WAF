@@ -405,6 +405,49 @@ document.querySelectorAll('.resource-row').forEach((row) => {
   row.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
 })
 
+// ===== Green button hover — swoop bottom to top =====
+document.querySelectorAll('.btn-primary').forEach((btn) => {
+  const bg = btn.querySelector('.btn-primary__bg')
+  const text = btn.querySelector('.btn-primary__text')
+
+  const enterTl = gsap.timeline({ paused: true })
+  enterTl
+    .to(bg, {
+      scaleY: 1,
+      duration: φInv * φInv,  // 0.382s
+      ease: 'reveal',
+    })
+    .to(
+      text,
+      { color: '#f8f6f1', duration: φInv * φInv, ease: 'reveal' },
+      0
+    )
+
+  btn.addEventListener('mouseenter', () => enterTl.timeScale(1).play())
+  btn.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
+})
+
+document.querySelectorAll('.contact__btn').forEach((btn) => {
+  const bg = btn.querySelector('.contact__btn-bg')
+  const text = btn.querySelector('.contact__btn-text')
+
+  const enterTl = gsap.timeline({ paused: true })
+  enterTl
+    .to(bg, {
+      scaleY: 1,
+      duration: φInv * φInv,  // 0.382s
+      ease: 'reveal',
+    })
+    .to(
+      text,
+      { color: '#1b4332', duration: φInv * φInv, ease: 'reveal' },
+      0
+    )
+
+  btn.addEventListener('mouseenter', () => enterTl.timeScale(1).play())
+  btn.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
+})
+
 // ===== 8. Contact — split reveal =====
 gsap.from('.contact__left', {
   opacity: 0,
