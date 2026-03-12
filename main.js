@@ -5,23 +5,30 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Smooth scrolling
-const lenis = new Lenis()
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-lenis.on('scroll', ScrollTrigger.update)
+// Smooth scrolling (skip if reduced motion preferred)
+let lenis
+if (!prefersReducedMotion) {
+  lenis = new Lenis()
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+  gsap.ticker.lagSmoothing(0)
+}
 
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000)
-})
-gsap.ticker.lagSmoothing(0)
-
-// Intercept anchor links to use Lenis smooth scroll
+// Intercept anchor links for smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', (e) => {
     const target = anchor.getAttribute('href')
     if (target && target !== '#') {
       e.preventDefault()
-      lenis.scrollTo(target)
+      if (lenis) {
+        lenis.scrollTo(target)
+      } else {
+        document.querySelector(target)?.scrollIntoView()
+      }
     }
   })
 })
@@ -29,10 +36,39 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 // ===== Mobile nav toggle =====
 const hamburger = document.querySelector('.nav__hamburger')
 const navMenu = document.querySelector('.nav__menu')
+
+function closeMenu() {
+  navMenu.classList.remove('nav__menu--open')
+  hamburger.setAttribute('aria-expanded', 'false')
+  hamburger.focus()
+}
+
 hamburger.addEventListener('click', () => {
   const isOpen = navMenu.classList.toggle('nav__menu--open')
   hamburger.setAttribute('aria-expanded', isOpen)
+  if (isOpen) {
+    const firstLink = navMenu.querySelector('a, button')
+    if (firstLink) firstLink.focus()
+  }
 })
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navMenu.classList.contains('nav__menu--open')) {
+    closeMenu()
+  }
+})
+
+// Close menu when a nav link is clicked
+navMenu.querySelectorAll('.nav__link, .nav__btn').forEach((link) => {
+  link.addEventListener('click', () => {
+    if (navMenu.classList.contains('nav__menu--open')) {
+      closeMenu()
+    }
+  })
+})
+
+// ===== Animations (skip entirely if reduced motion preferred) =====
+if (!prefersReducedMotion) {
 
 // ===== Golden ratio =====
 const φ = 1.6180339887
@@ -519,3 +555,5 @@ gsap.from('.contact__right', {
     start: 'top 80%',
   },
 })
+
+} // end reduced-motion guard
