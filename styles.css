@@ -45,6 +45,11 @@ img {
 	max-width: 100%;
 }
 
+p,
+span {
+	text-wrap: pretty;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -233,7 +238,7 @@ a {
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	color: var(--cream);
-	text-wrap: pretty;
+	text-wrap: balance;
 }
 
 .hero__title--accent {
@@ -402,6 +407,7 @@ a {
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	color: var(--dark-text);
+	text-wrap: balance;
 }
 
 .challenge__stats {
@@ -437,10 +443,27 @@ a {
 
 .challenge__body {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	padding-top: 3em;
 	gap: 3em;
 	border-top: 1px solid var(--border-light);
+}
+
+.challenge__columns {
+	display: flex;
+	gap: 3em;
+}
+
+.challenge__lead {
+	font-family: "Fraunces", system-ui, sans-serif;
+	font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+	line-height: 1.6;
+	font-weight: 400;
+	color: var(--dark-green);
+	width: 100%;
+	max-width: 66ch;
+	text-wrap: pretty;
 }
 
 .challenge__text {
@@ -573,6 +596,7 @@ a {
 	letter-spacing: -0.02em;
 	font-weight: 400;
 	color: var(--dark-text);
+	text-wrap: balance;
 }
 
 .where__desc-wrap {
@@ -654,6 +678,7 @@ a {
 	line-height: 1.29;
 	font-weight: 400;
 	color: var(--dark-text);
+	text-wrap: balance;
 }
 
 .gaviota__desc {
@@ -705,6 +730,7 @@ a {
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	color: var(--cream);
+	text-wrap: balance;
 }
 
 .team__desc {
@@ -808,6 +834,7 @@ a {
 	letter-spacing: -0.02em;
 	font-weight: 400;
 	color: var(--dark-text);
+	text-wrap: balance;
 }
 
 .resources__list {
@@ -1155,6 +1182,10 @@ a {
 		flex-direction: column;
 		gap: 1.5em;
 		padding-top: 2em;
+	}
+	.challenge__columns {
+		flex-direction: column;
+		gap: 1.5em;
 	}
 
 	/* Approach */
