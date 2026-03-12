@@ -12,7 +12,10 @@ const prefersReducedMotion = window.matchMedia(
 // Smooth scrolling (skip if reduced motion preferred)
 let lenis;
 if (!prefersReducedMotion) {
-	lenis = new Lenis();
+	lenis = new Lenis({
+		lerp: 0.12,
+		duration: 0.9,
+	});
 	lenis.on("scroll", ScrollTrigger.update);
 	gsap.ticker.add((time) => {
 		lenis.raf(time * 1000);
