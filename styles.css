@@ -848,10 +848,12 @@ a {
 	line-height: 1.6;
 	font-weight: 400;
 	color: var(--cream-75);
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
+	max-height: 4.8em; /* 3 lines × 1.6 line-height */
 	overflow: hidden;
+}
+
+.member__bio p {
+	margin: 0;
 }
 
 .member__more {
@@ -949,6 +951,13 @@ a {
 	line-height: 1.65;
 	font-weight: 400;
 	color: var(--body-text);
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+.bio-modal__bio p {
+	margin: 0;
 }
 
 /* ===== 7. Resources ===== */

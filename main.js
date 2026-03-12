@@ -473,11 +473,11 @@ const bioClose = bioModal.querySelector(".bio-modal__close");
 function openBioModal(member) {
 	const role = member.querySelector(".member__role").textContent;
 	const name = member.querySelector(".member__name").textContent;
-	const bio = member.querySelector(".member__bio").textContent.trim();
+	const bio = member.querySelector(".member__bio").innerHTML;
 
 	bioRole.textContent = role;
 	bioName.textContent = name;
-	bioBio.textContent = bio;
+	bioBio.innerHTML = bio;
 
 	bioModal.classList.add("bio-modal--open");
 	bioModal.setAttribute("aria-hidden", "false");
