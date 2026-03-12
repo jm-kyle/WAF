@@ -157,14 +157,27 @@ gsap.to('.hero__content', {
   },
 })
 
-// Scroll indicator fades out quickly
-gsap.to('.hero__scroll', {
+// Scroll indicator fades out with stagger — line first, then text
+gsap.to('.hero__scroll-line', {
   opacity: 0,
+  yPercent: -20,
   ease: 'none',
   scrollTrigger: {
     trigger: '.hero',
-    start: '5% top',
-    end: '15% top',
+    start: '35% top',
+    end: '55% top',
+    scrub: true,
+  },
+})
+
+gsap.to('.hero__scroll-text', {
+  opacity: 0,
+  yPercent: -30,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: '40% top',
+    end: '60% top',
     scrub: true,
   },
 })
