@@ -159,23 +159,12 @@ a {
 	color: var(--cream);
 	border: none;
 	cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	z-index: 0;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.nav__btn-bg {
-	position: absolute;
-	inset: 0;
-	background: var(--light-green);
-	z-index: -1;
-	transform: scaleY(0);
-	transform-origin: bottom;
-}
-
-.nav__btn-text {
-	position: relative;
-	z-index: 1;
+.nav__btn:hover {
+	background-color: var(--light-green);
+	color: var(--dark-green);
 }
 
 /* ===== 2. Hero ===== */
@@ -304,23 +293,12 @@ a {
 	color: var(--dark-green);
 	border: none;
 	cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	z-index: 0;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-primary__bg {
-	position: absolute;
-	inset: 0;
-	background: var(--dark-green);
-	z-index: -1;
-	transform: scaleY(0);
-	transform-origin: bottom;
-}
-
-.btn-primary__text {
-	position: relative;
-	z-index: 1;
+.btn-primary:hover {
+	background-color: var(--dark-green);
+	color: var(--cream);
 }
 
 .btn-secondary {
@@ -339,23 +317,13 @@ a {
 	line-height: 1.29;
 	color: var(--cream-80);
 	cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	z-index: 0;
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.btn-secondary__bg {
-	position: absolute;
-	inset: 0;
-	background: var(--cream);
-	z-index: -1;
-	transform: scaleY(0);
-	transform-origin: bottom;
-}
-
-.btn-secondary__text {
-	position: relative;
-	z-index: 1;
+.btn-secondary:hover {
+	background-color: var(--cream);
+	color: var(--dark-green);
+	border-color: var(--cream);
 }
 
 .hero__description {
@@ -958,23 +926,11 @@ a {
 	color: var(--dark-green);
 	border: none;
 	cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	z-index: 0;
+	transition: background-color 0.3s ease;
 }
 
-.contact__btn-bg {
-	position: absolute;
-	inset: 0;
-	background: var(--cream);
-	z-index: -1;
-	transform: scaleY(0);
-	transform-origin: bottom;
-}
-
-.contact__btn-text {
-	position: relative;
-	z-index: 1;
+.contact__btn:hover {
+	background-color: var(--cream);
 }
 
 /* ===== 9. Footer ===== */
