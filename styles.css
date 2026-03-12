@@ -159,6 +159,23 @@ a {
 	color: var(--cream);
 	border: none;
 	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+}
+
+.nav__btn-bg {
+	position: absolute;
+	inset: 0;
+	background: var(--light-green);
+	z-index: -1;
+	transform: scaleY(0);
+	transform-origin: bottom;
+}
+
+.nav__btn-text {
+	position: relative;
+	z-index: 1;
 }
 
 /* ===== 2. Hero ===== */

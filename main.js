@@ -405,6 +405,28 @@ document.querySelectorAll('.resource-row').forEach((row) => {
   row.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
 })
 
+// ===== Nav button hover — swoop bottom to top =====
+document.querySelectorAll('.nav__btn').forEach((btn) => {
+  const bg = btn.querySelector('.nav__btn-bg')
+  const text = btn.querySelector('.nav__btn-text')
+
+  const enterTl = gsap.timeline({ paused: true })
+  enterTl
+    .to(bg, {
+      scaleY: 1,
+      duration: φInv * φInv,  // 0.382s
+      ease: 'reveal',
+    })
+    .to(
+      text,
+      { color: '#1b4332', duration: φInv * φInv, ease: 'reveal' },
+      0
+    )
+
+  btn.addEventListener('mouseenter', () => enterTl.timeScale(1).play())
+  btn.addEventListener('mouseleave', () => enterTl.timeScale(φ).reverse())
+})
+
 // ===== Green button hover — swoop bottom to top =====
 document.querySelectorAll('.btn-primary').forEach((btn) => {
   const bg = btn.querySelector('.btn-primary__bg')
