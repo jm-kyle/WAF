@@ -26,8 +26,32 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   })
 })
 
+// ===== Custom eases =====
+// Smooth decel with an extended glide — the "unhurried luxury" feel
+gsap.registerEase('reveal', (p) => {
+  // Custom deceleration: fast initial movement, very long gentle tail
+  return 1 - Math.pow(1 - p, 4)
+})
+
+// Soft overshoot then settle — confident entrance with a breath
+gsap.registerEase('settle', (p) => {
+  const c = 1.4 // overshoot amount (subtle)
+  return p < 0.72
+    ? 1 + (c + 1) * Math.pow(p / 0.72 - 1, 3) + c * Math.pow(p / 0.72 - 1, 2)
+    : 1 + Math.sin(((p - 0.72) / 0.28) * Math.PI) * 0.018 * (1 - p)
+})
+
+// Exponential decel for count-up numbers — fast start, slow arrival
+gsap.registerEase('countUp', (p) => {
+  return 1 - Math.pow(2, -12 * p)
+})
+
+// Smooth ease-out with a slight cushion at the end — for lateral movements
+gsap.registerEase('drift', (p) => {
+  return p < 1 ? 1 - Math.pow(1 - p, 3.5) * (1 - 0.15 * Math.sin(p * Math.PI)) : 1
+})
+
 // ===== Animation defaults =====
-const ease = 'power2.out'
 const fadeUp = { opacity: 0, y: 30 }
 
 // ===== 1. Nav — fade in on load =====
@@ -35,7 +59,7 @@ gsap.from('.nav', {
   opacity: 0,
   duration: 0.8,
   delay: 0.3,
-  ease,
+  ease: 'reveal',
 })
 
 // ===== 2. Hero — staggered entrance on load =====
@@ -45,17 +69,17 @@ heroTl
   .from('.hero__title', {
     opacity: 0,
     y: 40,
-    duration: 0.9,
+    duration: 1,
     stagger: 0.15,
-    ease: 'power3.out',
+    ease: 'settle',
   })
   .from(
     '.hero__tagline',
     {
       opacity: 0,
       y: 24,
-      duration: 0.8,
-      ease,
+      duration: 0.9,
+      ease: 'reveal',
     },
     '-=0.4'
   )
@@ -64,8 +88,8 @@ heroTl
     {
       opacity: 0,
       y: 20,
-      duration: 0.7,
-      ease,
+      duration: 0.8,
+      ease: 'reveal',
     },
     '-=0.5'
   )
@@ -74,8 +98,8 @@ heroTl
     {
       opacity: 0,
       y: 20,
-      duration: 0.8,
-      ease,
+      duration: 0.9,
+      ease: 'reveal',
     },
     '-=0.4'
   )
@@ -85,7 +109,7 @@ gsap.from('.challenge__heading > *', {
   ...fadeUp,
   duration: 0.8,
   stagger: 0.1,
-  ease,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.challenge__heading',
     start: 'top 85%',
@@ -106,15 +130,15 @@ document.querySelectorAll('.stat__number').forEach((el, i) => {
   gsap.from(el.closest('.stat'), {
     ...fadeUp,
     duration: 0.7,
-    ease,
+    ease: 'reveal',
     scrollTrigger: {
       trigger: el.closest('.stat'),
       start: 'top 85%',
       onEnter: () => {
         gsap.to(obj, {
           val: value,
-          duration: 1.2,
-          ease: 'power2.out',
+          duration: 1.4,
+          ease: 'countUp',
           snap: { val: suffix === 'M' ? 0.1 : 1 },
           onUpdate() {
             if (suffix === 'M') {
@@ -135,7 +159,7 @@ gsap.from('.challenge__text', {
   ...fadeUp,
   duration: 0.8,
   stagger: 0.15,
-  ease,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.challenge__body',
     start: 'top 85%',
@@ -145,8 +169,8 @@ gsap.from('.challenge__text', {
 // ===== 4. Approach — header + staggered pillars =====
 gsap.from('.approach__header', {
   ...fadeUp,
-  duration: 0.8,
-  ease,
+  duration: 0.9,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.approach__header',
     start: 'top 85%',
@@ -155,9 +179,9 @@ gsap.from('.approach__header', {
 
 gsap.from('.pillar', {
   ...fadeUp,
-  duration: 0.7,
+  duration: 0.8,
   stagger: 0.12,
-  ease,
+  ease: 'settle',
   scrollTrigger: {
     trigger: '.pillar',
     start: 'top 85%',
@@ -167,8 +191,8 @@ gsap.from('.pillar', {
 // ===== 5. Where We Work — layered reveal =====
 gsap.from('.where__header', {
   ...fadeUp,
-  duration: 0.8,
-  ease,
+  duration: 0.9,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.where__header',
     start: 'top 85%',
@@ -178,8 +202,8 @@ gsap.from('.where__header', {
 gsap.from('.map-placeholder', {
   opacity: 0,
   scale: 0.97,
-  duration: 0.9,
-  ease,
+  duration: 1,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.map-placeholder',
     start: 'top 85%',
@@ -189,8 +213,8 @@ gsap.from('.map-placeholder', {
 gsap.from('.gaviota__image', {
   opacity: 0,
   scale: 1.03,
-  duration: 0.9,
-  ease,
+  duration: 1,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.gaviota',
     start: 'top 80%',
@@ -199,9 +223,9 @@ gsap.from('.gaviota__image', {
 
 gsap.from('.gaviota__text > *', {
   ...fadeUp,
-  duration: 0.7,
+  duration: 0.8,
   stagger: 0.1,
-  ease,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.gaviota',
     start: 'top 80%',
@@ -211,8 +235,8 @@ gsap.from('.gaviota__text > *', {
 // ===== 6. Team — portrait + bio reveals =====
 gsap.from('.team__header', {
   ...fadeUp,
-  duration: 0.8,
-  ease,
+  duration: 0.9,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.team__header',
     start: 'top 85%',
@@ -222,9 +246,9 @@ gsap.from('.team__header', {
 document.querySelectorAll('.member').forEach((member, i) => {
   gsap.from(member, {
     ...fadeUp,
-    duration: 0.8,
+    duration: 0.9,
     delay: i * 0.15,
-    ease,
+    ease: 'settle',
     scrollTrigger: {
       trigger: member,
       start: 'top 85%',
@@ -233,8 +257,8 @@ document.querySelectorAll('.member').forEach((member, i) => {
 
   gsap.from(member.querySelector('.member__portrait img'), {
     scale: 1.05,
-    duration: 1,
-    ease,
+    duration: 1.2,
+    ease: 'reveal',
     scrollTrigger: {
       trigger: member,
       start: 'top 85%',
@@ -245,8 +269,8 @@ document.querySelectorAll('.member').forEach((member, i) => {
 // ===== 7. Resources — row-by-row reveal =====
 gsap.from('.resources__heading', {
   ...fadeUp,
-  duration: 0.8,
-  ease,
+  duration: 0.9,
+  ease: 'reveal',
   scrollTrigger: {
     trigger: '.resources__inner',
     start: 'top 85%',
@@ -255,9 +279,9 @@ gsap.from('.resources__heading', {
 
 gsap.from('.resource-row', {
   ...fadeUp,
-  duration: 0.6,
+  duration: 0.7,
   stagger: 0.1,
-  ease,
+  ease: 'settle',
   scrollTrigger: {
     trigger: '.resources__list',
     start: 'top 85%',
@@ -268,8 +292,8 @@ gsap.from('.resource-row', {
 gsap.from('.contact__left', {
   opacity: 0,
   x: -40,
-  duration: 0.9,
-  ease,
+  duration: 1,
+  ease: 'drift',
   scrollTrigger: {
     trigger: '.contact',
     start: 'top 80%',
@@ -279,8 +303,8 @@ gsap.from('.contact__left', {
 gsap.from('.contact__right', {
   opacity: 0,
   x: 40,
-  duration: 0.9,
-  ease,
+  duration: 1,
+  ease: 'drift',
   scrollTrigger: {
     trigger: '.contact',
     start: 'top 80%',
