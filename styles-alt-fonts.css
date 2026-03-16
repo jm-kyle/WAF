@@ -1,0 +1,46 @@
+/* ==========================================================
+   Alt-fonts override — swaps Fraunces → Plus Jakarta Sans
+   on all headings/display text, EXCEPT the logo marks.
+   Load AFTER styles.css so these selectors win by source order.
+   ========================================================== */
+
+.hero__title,
+.hero__tagline,
+.challenge__title,
+.challenge__lead,
+.approach__title,
+.pillar__title,
+.where__title,
+.where__lead,
+.gaviota__title,
+.team__title,
+.team__lead,
+.member__name,
+.bio-modal__name,
+.resources__title,
+.contact__title {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+.hero__title {
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+.stat__number {
+	font-size: clamp(3.125rem, 2.5rem + 2.25vw, 4.5rem);
+}
+
+.challenge__stats {
+	gap: 4em;
+}
+
+.challenge__title,
+.approach__title,
+.where__title,
+.team__title,
+.resources__title,
+.contact__title {
+	font-weight: 800;
+	line-height: 1.1;
+}
