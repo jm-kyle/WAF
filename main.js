@@ -11,6 +11,7 @@ ScrollTrigger.config({
 ScrollTrigger.defaults({
 	fastScrollEnd: true,
 	once: true,
+	toggleActions: "play none none none",
 });
 
 const prefersReducedMotion = window.matchMedia(
@@ -114,6 +115,30 @@ if (!prefersReducedMotion) {
 
 	// ===== Animation defaults =====
 	const fadeUp = { opacity: 0, y: φ * 18.5 }; // ≈ 30
+
+	// Adaptive scroll-trigger start — ensures trigger is reachable on all viewport sizes
+	// On tall/portrait screens, bottom sections may not scroll far enough for fixed thresholds
+	function adaptiveStart(idealPct) {
+		return (self) => {
+			const vh = window.innerHeight;
+			const docH = document.documentElement.scrollHeight;
+			const maxScroll = docH - vh;
+			if (maxScroll <= 0) return `top ${idealPct}%`;
+
+			let top = 0,
+				el = self.trigger;
+			while (el) {
+				top += el.offsetTop;
+				el = el.offsetParent;
+			}
+
+			// Minimum viewport % the trigger top can reach at max scroll
+			const minPct = ((top - maxScroll) / vh) * 100;
+			return `top ${Math.min(Math.max(minPct + 5, idealPct), 97)}%`;
+		};
+	}
+	const s85 = adaptiveStart(85);
+	const s80 = adaptiveStart(80);
 
 	// ===== 1. Nav — fade in on load =====
 	gsap.from(".nav", {
@@ -221,19 +246,19 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".challenge__heading",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
 	// Stat countUp
 	const statData = [
-		{ suffix: "%", value: 73 },
-		{ suffix: "%", value: 40 },
-		{ suffix: "M", value: 1 },
+		{ suffix: "%", value: 50 },
+		{ suffix: "%", value: 70 },
+		{ suffix: "%", value: 30 },
 	];
 
 	document.querySelectorAll(".stat__number").forEach((el, i) => {
-		const { value, suffix } = statData[i];
+		const { value, suffix, prefix = "" } = statData[i];
 		const obj = { val: 0 };
 
 		gsap.from(el.closest(".stat"), {
@@ -242,22 +267,15 @@ if (!prefersReducedMotion) {
 			ease: "reveal",
 			scrollTrigger: {
 				trigger: el.closest(".stat"),
-				start: "top 85%",
+				start: s85,
 				onEnter: () => {
 					gsap.to(obj, {
 						val: value,
 						duration: φ, // 1.618s count-up
 						ease: "countUp",
-						snap: { val: suffix === "M" ? 0.1 : 1 },
+						snap: { val: 1 },
 						onUpdate() {
-							if (suffix === "M") {
-								el.textContent =
-									obj.val >= 1
-										? `${Math.round(obj.val)}M`
-										: `${obj.val.toFixed(1).replace(/^0/, "")}M`;
-							} else {
-								el.textContent = `${Math.round(obj.val)}${suffix}`;
-							}
+							el.textContent = `${prefix}${Math.round(obj.val)}${suffix}`;
 						},
 					});
 				},
@@ -273,7 +291,7 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".challenge__body",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
@@ -284,7 +302,7 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".approach__header",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
@@ -295,7 +313,7 @@ if (!prefersReducedMotion) {
 		ease: "settle",
 		scrollTrigger: {
 			trigger: ".pillar",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
@@ -306,18 +324,66 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".where__header",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
-	gsap.from(".map-placeholder", {
-		opacity: 0,
-		scale: 0.97,
-		duration: φ, // 1.618s
+	// Map — fetch SVG inline, then animate states + stagger pins
+	const mapContainer = document.querySelector(".map-placeholder[data-svg-src]");
+	if (mapContainer) {
+		fetch(mapContainer.dataset.svgSrc)
+			.then((r) => r.text())
+			.then((svgText) => {
+				mapContainer.innerHTML = svgText;
+				const svg = mapContainer.querySelector("svg");
+				const states = svg.querySelector("#states");
+				const borders = svg.querySelector("#borders");
+				const markers = svg.querySelectorAll(".marker");
+
+				// Hide everything initially
+				gsap.set([states, borders], { opacity: 0 });
+				gsap.set(markers, { opacity: 0, scale: 0, transformOrigin: "center center" });
+
+				// Refresh ScrollTrigger after SVG changes page height
+				ScrollTrigger.refresh();
+
+				// Animate on scroll
+				ScrollTrigger.create({
+					trigger: mapContainer,
+					start: s85,
+					once: true,
+					onEnter: () => {
+						const tl = gsap.timeline();
+						// States fade in
+						tl.to([states, borders], {
+							opacity: 1,
+							duration: φInv, // faster map reveal
+							ease: "reveal",
+						});
+						// Pins stagger in almost immediately after
+						tl.to(
+							markers,
+							{
+								opacity: 1,
+								scale: 1,
+								duration: φInv * 0.6,
+								stagger: φInv * 0.08,
+								ease: "settle",
+							},
+							`-=${φInv * 0.5}`,
+						);
+					},
+				});
+			});
+	}
+
+	gsap.from(".where__lead-block", {
+		...fadeUp,
+		duration: φInv + φInv * φInv,
 		ease: "reveal",
 		scrollTrigger: {
-			trigger: ".map-placeholder",
-			start: "top 85%",
+			trigger: ".where__lead-block",
+			start: s85,
 		},
 	});
 
@@ -328,7 +394,7 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".gaviota",
-			start: "top 80%",
+			start: s80,
 		},
 	});
 
@@ -339,7 +405,7 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".gaviota",
-			start: "top 80%",
+			start: s80,
 		},
 	});
 
@@ -350,7 +416,7 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".team__header",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
@@ -360,12 +426,12 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".team__lead",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
 	ScrollTrigger.batch(".member", {
-		start: "top 85%",
+		start: s85,
 		onEnter: (batch) => {
 			gsap.from(batch, {
 				...fadeUp,
@@ -384,7 +450,7 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".resources__inner",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
@@ -395,7 +461,7 @@ if (!prefersReducedMotion) {
 		ease: "settle",
 		scrollTrigger: {
 			trigger: ".resources__list",
-			start: "top 85%",
+			start: s85,
 		},
 	});
 
@@ -445,7 +511,7 @@ if (!prefersReducedMotion) {
 		ease: "drift",
 		scrollTrigger: {
 			trigger: ".contact",
-			start: "top 80%",
+			start: s80,
 		},
 	});
 
@@ -456,7 +522,28 @@ if (!prefersReducedMotion) {
 		ease: "drift",
 		scrollTrigger: {
 			trigger: ".contact",
-			start: "top 80%",
+			start: s80,
+		},
+	});
+	// ===== 9. Footer — reveal on enter, guaranteed to fire =====
+	gsap.from(".footer__sponsor", {
+		...fadeUp,
+		duration: φInv,
+		ease: "reveal",
+		scrollTrigger: {
+			trigger: ".footer",
+			start: "top bottom",
+		},
+	});
+
+	gsap.from(".footer__logo", {
+		...fadeUp,
+		duration: φInv,
+		delay: φInv * 0.15,
+		ease: "reveal",
+		scrollTrigger: {
+			trigger: ".footer",
+			start: "top bottom",
 		},
 	});
 } // end reduced-motion guard
