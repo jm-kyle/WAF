@@ -254,7 +254,7 @@ if (!prefersReducedMotion) {
 								el.textContent =
 									obj.val >= 1
 										? `${Math.round(obj.val)}M`
-										: `${obj.val.toFixed(1)}M`;
+										: `${obj.val.toFixed(1).replace(/^0/, "")}M`;
 							} else {
 								el.textContent = `${Math.round(obj.val)}${suffix}`;
 							}
