@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>US Map - Biodiversity Regions Reference</title>
+<style>
+  body { font-family: sans-serif; background: #1a1a2e; color: #eee; margin: 20px; }
+  h1 { text-align: center; }
+  .map-container { max-width: 960px; margin: 0 auto; }
+  svg { width: 100%; height: auto; }
+
+  /* Map styling */
+  .state-fill { fill: #2a2a4a; stroke: #3a3a5a; stroke-width: 0.5; }
+  .state-borders { stroke: #3a3a5a; stroke-width: 0.5; fill: none; }
+
+  /* Marker styling */
+  .region-marker { fill: #4ecdc4; stroke: #fff; stroke-width: 1.5; cursor: pointer; }
+  .region-marker:hover { fill: #ff6b6b; r: 8; }
+  .region-label {
+    font-size: 7px;
+    fill: #ccc;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .region-label-bg {
+    font-size: 7px;
+    fill: none;
+    stroke: #1a1a2e;
+    stroke-width: 3;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  /* Info table */
+  table { margin: 20px auto; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 6px 12px; border: 1px solid #444; text-align: left; }
+  th { background: #2a2a4a; }
+</style>
+</head>
+<body>
+
+<h1>Continental US - 16 Priority Biodiversity Regions</h1>
+
+<div class="map-container">
+<!--
+  SVG SOURCE: Wikimedia Commons "Blank US Map (states only)"
+  URL: https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg
+  License: Public Domain
+  Original viewBox: 959 x 593 (no Alaska/Hawaii shown below for conservation focus on continental US)
+
+  USAGE: Copy the <svg> block below into your page. The state paths use the
+  Wikimedia projection which is close to Albers Equal-Area Conic.
+  Marker coordinates below are calibrated to this exact SVG coordinate space.
+-->
+
+<svg viewBox="0 0 959 593" xmlns="http://www.w3.org/2000/svg">
+  <!-- ============================================================ -->
+  <!-- STATE FILLS - each state as a filled path                     -->
+  <!-- Source: Wikimedia Commons, Public Domain                      -->
+  <!-- To use: fetch the full SVG from the URL above and paste the   -->
+  <!-- <g class="state"> group here. The paths use CSS classes like  -->
+  <!-- .al, .az, .ca etc. for individual state styling.              -->
+  <!--                                                               -->
+  <!-- The full SVG is ~57KB. Below is a representative subset.      -->
+  <!-- For production, use the complete file from Wikimedia.         -->
+  <!-- ============================================================ -->
+
+  <g class="state-fill">
+    <!-- Alabama -->
+    <path d="m 643,467.4 .4,-7.3 -.9,-1.2 -1.7,-.7 -2.5,-2.8 .5,-2.9 48.8,-5.1 -.7,-2.2 -1.5,-1.5 -.5,-1.4 .6,-6.3 -2.4,-5.7 .5,-2.6 .3,-3.7 2.2,-3.8 -.2,-1.1 -1.7,-1 v -3.2 l -1.8,-1.9 -2.9,-6.1 -12.9,-45.8 -45.7,4 1.3,2 -1.3,67 4.4,33.2 .9,-.5 1.3,.1 .6,.4 .8,-.1 2,-3.8 v -2.3 l 1.1,-1.1 1.4,.5 3.4,6.4 v .9 l -3.3,2.2 3.5,-.4 4.9,-1.6 z"/>
+    <!-- Add remaining state paths from the Wikimedia SVG source -->
+    <!-- Full file: https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg -->
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- STATE BORDERS - rendered as stroked lines on top of fills     -->
+  <!-- These create the visible state boundary lines.                -->
+  <!-- Copy the <g class="borders"> group from the Wikimedia SVG.    -->
+  <!-- ============================================================ -->
+
+  <g class="state-borders">
+    <!-- Border paths go here - copy from Wikimedia SVG -->
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- 16 BIODIVERSITY REGION MARKERS                                -->
+  <!-- Coordinates calibrated to the 959x593 Wikimedia SVG           -->
+  <!-- ============================================================ -->
+
+  <g id="biodiversity-markers">
+
+    <!-- 1. Scatter Creek-Capital Forest (WA, near Olympia) -->
+    <circle class="region-marker" cx="108" cy="96" r="5" data-region="scatter-creek"/>
+    <text class="region-label-bg" x="108" y="86"><tspan>Scatter Creek-</tspan><tspan x="108" dy="8">Capital Forest</tspan></text>
+    <text class="region-label" x="108" y="86"><tspan>Scatter Creek-</tspan><tspan x="108" dy="8">Capital Forest</tspan></text>
+
+    <!-- 2. Devils Staircase (OR coast) -->
+    <circle class="region-marker" cx="91" cy="145" r="5" data-region="devils-staircase"/>
+    <text class="region-label-bg" x="91" y="135"><tspan>Devils</tspan><tspan x="91" dy="8">Staircase</tspan></text>
+    <text class="region-label" x="91" y="135"><tspan>Devils</tspan><tspan x="91" dy="8">Staircase</tspan></text>
+
+    <!-- 3. High Divide (MT/ID border) -->
+    <circle class="region-marker" cx="228" cy="108" r="5" data-region="high-divide"/>
+    <text class="region-label-bg" x="228" y="100">High Divide</text>
+    <text class="region-label" x="228" y="100">High Divide</text>
+
+    <!-- 4. Western Sierra (CA, Sierra Nevada) -->
+    <circle class="region-marker" cx="88" cy="280" r="5" data-region="western-sierra"/>
+    <text class="region-label-bg" x="68" y="274">Western Sierra</text>
+    <text class="region-label" x="68" y="274">Western Sierra</text>
+
+    <!-- 5. CA Central Coast Range -->
+    <circle class="region-marker" cx="80" cy="310" r="5" data-region="ca-central-coast"/>
+    <text class="region-label-bg" x="60" y="322">CA Central Coast</text>
+    <text class="region-label" x="60" y="322">CA Central Coast</text>
+
+    <!-- 6. Medicine Bow (WY) -->
+    <circle class="region-marker" cx="310" cy="193" r="5" data-region="medicine-bow"/>
+    <text class="region-label-bg" x="310" y="185">Medicine Bow</text>
+    <text class="region-label" x="310" y="185">Medicine Bow</text>
+
+    <!-- 7. Sky Islands (AZ/NM border, southern) -->
+    <circle class="region-marker" cx="230" cy="408" r="5" data-region="sky-islands"/>
+    <text class="region-label-bg" x="230" y="400">Sky Islands</text>
+    <text class="region-label" x="230" y="400">Sky Islands</text>
+
+    <!-- 8. Prairie Potholes (ND/SD) -->
+    <circle class="region-marker" cx="420" cy="108" r="5" data-region="prairie-potholes"/>
+    <text class="region-label-bg" x="420" y="100">Prairie Potholes</text>
+    <text class="region-label" x="420" y="100">Prairie Potholes</text>
+
+    <!-- 9. Nebraska Sandhills -->
+    <circle class="region-marker" cx="385" cy="220" r="5" data-region="ne-sandhills"/>
+    <text class="region-label-bg" x="385" y="212">NE Sandhills</text>
+    <text class="region-label" x="385" y="212">NE Sandhills</text>
+
+    <!-- 10. Purgatoire Canyon (southern CO) -->
+    <circle class="region-marker" cx="330" cy="300" r="5" data-region="purgatoire-canyon"/>
+    <text class="region-label-bg" x="330" y="292">Purgatoire Canyon</text>
+    <text class="region-label" x="330" y="292">Purgatoire Canyon</text>
+
+    <!-- 11. Edwards Plateau (central TX) -->
+    <circle class="region-marker" cx="420" cy="430" r="5" data-region="edwards-plateau"/>
+    <text class="region-label-bg" x="420" y="422">Edwards Plateau</text>
+    <text class="region-label" x="420" y="422">Edwards Plateau</text>
+
+    <!-- 12. Laguna Madre (southern TX coast) -->
+    <circle class="region-marker" cx="445" cy="498" r="5" data-region="laguna-madre"/>
+    <text class="region-label-bg" x="445" y="510">Laguna Madre</text>
+    <text class="region-label" x="445" y="510">Laguna Madre</text>
+
+    <!-- 13. Emerald Coast (FL panhandle / AL coast) -->
+    <circle class="region-marker" cx="630" cy="440" r="5" data-region="emerald-coast"/>
+    <text class="region-label-bg" x="630" y="453">Emerald Coast</text>
+    <text class="region-label" x="630" y="453">Emerald Coast</text>
+
+    <!-- 14. Southern Blue Ridge (W NC / N GA) -->
+    <circle class="region-marker" cx="690" cy="345" r="5" data-region="southern-blue-ridge"/>
+    <text class="region-label-bg" x="690" y="337">S. Blue Ridge</text>
+    <text class="region-label" x="690" y="337">S. Blue Ridge</text>
+
+    <!-- 15. SC Low Country (SC coast) -->
+    <circle class="region-marker" cx="745" cy="380" r="5" data-region="sc-low-country"/>
+    <text class="region-label-bg" x="745" y="393">SC Low Country</text>
+    <text class="region-label" x="745" y="393">SC Low Country</text>
+
+    <!-- 16. Mountains of the Dawn (Maine) -->
+    <circle class="region-marker" cx="880" cy="100" r="5" data-region="mountains-dawn"/>
+    <text class="region-label-bg" x="880" y="92">Mtns of the Dawn</text>
+    <text class="region-label" x="880" y="92">Mtns of the Dawn</text>
+
+  </g>
+
+</svg>
+</div>
+
+<h2>Coordinate Reference</h2>
+<p>All coordinates are for the <strong>959 x 593</strong> Wikimedia Commons US map SVG (public domain).<br>
+Projection is close to Albers Equal-Area Conic for the continental US.</p>
+
+<table>
+<thead>
+<tr><th>#</th><th>Region</th><th>cx</th><th>cy</th><th>Geographic Reference</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Scatter Creek-Capital Forest</td><td>108</td><td>96</td><td>WA, near Olympia (~46.9N, 122.9W)</td></tr>
+<tr><td>2</td><td>Devils Staircase</td><td>91</td><td>145</td><td>OR coast (~43.8N, 123.8W)</td></tr>
+<tr><td>3</td><td>High Divide</td><td>228</td><td>108</td><td>MT/ID border (~46.5N, 115.5W)</td></tr>
+<tr><td>4</td><td>Western Sierra</td><td>88</td><td>280</td><td>CA Sierra Nevada (~37.5N, 119.5W)</td></tr>
+<tr><td>5</td><td>CA Central Coast Range</td><td>80</td><td>310</td><td>CA central coast (~35.5N, 120.5W)</td></tr>
+<tr><td>6</td><td>Medicine Bow</td><td>310</td><td>193</td><td>SE Wyoming (~41.5N, 106.3W)</td></tr>
+<tr><td>7</td><td>Sky Islands</td><td>230</td><td>408</td><td>AZ/NM border, southern (~31.8N, 109.2W)</td></tr>
+<tr><td>8</td><td>Prairie Potholes</td><td>420</td><td>108</td><td>ND/SD (~46.5N, 99.5W)</td></tr>
+<tr><td>9</td><td>Nebraska Sandhills</td><td>385</td><td>220</td><td>Central NE (~42N, 101W)</td></tr>
+<tr><td>10</td><td>Purgatoire Canyon</td><td>330</td><td>300</td><td>Southern CO (~37.3N, 104.5W)</td></tr>
+<tr><td>11</td><td>Edwards Plateau</td><td>420</td><td>430</td><td>Central TX (~30.5N, 99.8W)</td></tr>
+<tr><td>12</td><td>Laguna Madre</td><td>445</td><td>498</td><td>S TX coast (~26.5N, 97.4W)</td></tr>
+<tr><td>13</td><td>Emerald Coast</td><td>630</td><td>440</td><td>FL panhandle / AL coast (~30.4N, 86.5W)</td></tr>
+<tr><td>14</td><td>Southern Blue Ridge</td><td>690</td><td>345</td><td>W NC / N GA (~35.2N, 83.5W)</td></tr>
+<tr><td>15</td><td>SC Low Country</td><td>745</td><td>380</td><td>SC coast (~32.5N, 80W)</td></tr>
+<tr><td>16</td><td>Mountains of the Dawn</td><td>880</td><td>100</td><td>Maine interior (~45.5N, 68.5W)</td></tr>
+</tbody>
+</table>
+
+<h2>SVG Map Source</h2>
+<p>
+  <strong>Wikimedia Commons - Blank US Map (states only)</strong><br>
+  <a href="https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg">
+    https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg
+  </a><br>
+  License: <strong>Public Domain</strong><br>
+  Dimensions: 959 x 593<br>
+  Includes: All 48 continental states + DC as individual SVG paths with CSS classes (e.g., <code>.ca</code>, <code>.tx</code>),
+  plus all state border lines as separate stroke paths. Alaska and Hawaii are included but positioned separately.
+</p>
+
+<h3>How to Use</h3>
+<ol>
+  <li>Download the full SVG from the Wikimedia link above (~57KB)</li>
+  <li>The SVG contains two main groups:
+    <ul>
+      <li><code>&lt;g class="state"&gt;</code> - filled state shapes (classes like <code>.al</code>, <code>.ca</code>, <code>.tx</code>)</li>
+      <li><code>&lt;g class="borders"&gt;</code> - state border lines (classes like <code>.al-ga</code>, <code>.ca-nv</code>)</li>
+    </ul>
+  </li>
+  <li>Restyle using CSS: change <code>.state</code> fill, <code>.borders</code> stroke, or target individual states</li>
+  <li>Overlay the marker <code>&lt;g id="biodiversity-markers"&gt;</code> group on top</li>
+  <li>Remove Alaska (<code>.ak</code>) and Hawaii (<code>.hi</code>) paths if not needed, or keep for context</li>
+</ol>
+
+<h3>Alternative: D3.js + TopoJSON Approach</h3>
+<p>For a programmatic approach, use <code>us-atlas</code> (npm) with <code>d3-geo</code>:</p>
+<pre><code>import {feature} from 'topojson-client';
+import {geoAlbersUsa, geoPath} from 'd3-geo';
+import us from 'us-atlas/states-10m.json';
+
+const projection = geoAlbersUsa().scale(1070).translate([480, 300]);
+const path = geoPath(projection);
+const states = feature(us, us.objects.states);
+// Render states.features as SVG paths
+// Use projection([lon, lat]) to get marker [x, y] coordinates
+</code></pre>
+
+</body>
+</html>
