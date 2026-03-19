@@ -122,11 +122,14 @@ a {
 }
 
 .nav__logo {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	font-family: "Fraunces", system-ui, sans-serif;
 	font-size: 1.25rem;
 	font-weight: 700;
 	text-transform: uppercase;
-	line-height: 1.2;
+	line-height: 1;
 	color: var(--dark-green);
 }
 
@@ -377,6 +380,40 @@ a {
 	text-wrap: pretty;
 }
 
+.hero__banner-stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2em 3em;
+	width: calc(100% - 10em);
+	margin: 0 auto;
+	padding: 2.5em 4em 0;
+}
+
+.banner-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25em;
+}
+
+.banner-stat__number {
+	font-family: "Fraunces", system-ui, sans-serif;
+	font-size: clamp(2rem, 1.6rem + 1.5vw, 3rem);
+	line-height: 1;
+	letter-spacing: -0.03em;
+	font-weight: 400;
+	color: var(--dark-green);
+}
+
+.banner-stat__label {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
+	line-height: 1.4;
+	font-weight: 400;
+	color: var(--gray);
+	max-width: 14ch;
+	text-transform: capitalize;
+}
+
 /* ===== 3. Challenge ===== */
 .challenge {
 	display: flex;
@@ -417,7 +454,7 @@ a {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	flex-shrink: 0;
-	gap: 4em;
+	gap: 2.5em 4em;
 }
 
 .stat {
@@ -1116,9 +1153,12 @@ a {
 }
 
 .footer__logo {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	font-family: "Fraunces", system-ui, sans-serif;
 	font-size: 1rem;
-	line-height: 1.25;
+	line-height: 1;
 	font-weight: 700;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
@@ -1286,6 +1326,15 @@ a {
 		gap: 1em;
 		transform: translateY(40%);
 		margin-top: -2em;
+	}
+	.hero__banner-stats {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5em 1em;
+		width: 100%;
+		padding: 1.5em 1.5em 0;
+	}
+	.banner-stat__label {
+		max-width: none;
 	}
 	.btn-primary,
 	.btn-secondary {
