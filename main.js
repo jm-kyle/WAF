@@ -253,11 +253,15 @@ if (!prefersReducedMotion) {
 	// Stat countUp
 	const statData = [
 		{ suffix: "%", value: 50 },
-		{ suffix: "%", value: 70 },
 		{ suffix: "%", value: 30 },
+		{ suffix: "%", value: 50 },
+		{ suffix: "%", value: 70 },
+		{ suffix: "%", value: 40 },
+		{ prefix: "~", suffix: "%", value: 40 },
 	];
 
 	document.querySelectorAll(".stat__number").forEach((el, i) => {
+		if (!statData[i]) return;
 		const { value, suffix, prefix = "" } = statData[i];
 		const obj = { val: 0 };
 
@@ -295,13 +299,25 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	// ===== 4. Approach — header + staggered pillars =====
-	gsap.from(".approach__header", {
+	// ===== 4. Approach — header + intro + staggered pillars =====
+	gsap.from(".approach__header > *", {
 		...fadeUp,
 		duration: φInv + φInv * φInv, // ≈ 1.0
+		stagger: φInv * 0.2,
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".approach__header",
+			start: s85,
+		},
+	});
+
+	gsap.from(".approach__intro-text", {
+		...fadeUp,
+		duration: φInv,
+		stagger: φInv * 0.18,
+		ease: "reveal",
+		scrollTrigger: {
+			trigger: ".approach__intro",
 			start: s85,
 		},
 	});

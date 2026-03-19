@@ -531,14 +531,12 @@ a {
 .approach__header {
 	display: flex;
 	width: 100%;
-	gap: 5em;
-	padding-bottom: 4em;
+	padding-bottom: 2em;
 }
 
 .approach__heading {
 	display: flex;
 	flex-direction: column;
-	flex: 1;
 	gap: 1.25em;
 }
 
@@ -552,19 +550,27 @@ a {
 	text-wrap: balance;
 }
 
-.approach__desc-wrap {
+.approach__intro {
 	display: flex;
 	flex-direction: column;
-	flex: 1;
+	gap: 1em;
+	max-width: 52em;
+	padding-bottom: 4em;
+	border-bottom: 1px solid var(--border-dark);
 }
 
-.approach__desc {
+.approach__intro-text {
 	font-family: "Figtree", system-ui, sans-serif;
-	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
-	line-height: 1.65;
+	font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+	line-height: 1.7;
 	font-weight: 400;
 	color: var(--cream-75);
 	text-wrap: pretty;
+}
+
+.approach__intro-text--emphasis {
+	color: var(--cream);
+	font-weight: 500;
 }
 
 .pillar {
@@ -755,7 +761,7 @@ a {
 .team__header {
 	display: flex;
 	width: 100%;
-	align-items: start;
+	align-items: end;
 	padding-bottom: 1em;
 	gap: 5em;
 }
@@ -1221,7 +1227,10 @@ a {
 	}
 
 	.approach__header {
-		gap: 3em;
+		padding-bottom: 1.5em;
+	}
+	.approach__intro {
+		padding-bottom: 3em;
 	}
 	.pillar__title {
 		width: 15em;
@@ -1374,12 +1383,10 @@ a {
 		padding: 5em 1.5em;
 	}
 	.approach__header {
-		flex-direction: column;
-		gap: 1.25em;
-		padding-bottom: 2em;
+		padding-bottom: 1.25em;
 	}
-	.approach__desc {
-		padding-bottom: 0.5em;
+	.approach__intro {
+		padding-bottom: 2.5em;
 	}
 	.pillar {
 		display: flex;
