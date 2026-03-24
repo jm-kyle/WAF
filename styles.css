@@ -17,6 +17,8 @@
 	--bg-warm: #edeae3;
 	--hero-overlay: #1b4332e6;
 	--border-dark: #f8f6f11f;
+	--white: #fff;
+	--black: #000;
 }
 
 /* ===== Reset & Base ===== */
@@ -561,6 +563,13 @@ a {
 
 .approach__intro p {
 	text-wrap: pretty;
+}
+
+.approach__intro h1,
+.approach__intro h2,
+.approach__intro h3,
+.approach__intro h4 {
+	color: var(--cream);
 }
 
 .approach__intro-text {
