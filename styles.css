@@ -608,7 +608,7 @@ a {
 	letter-spacing: -0.01em;
 	font-weight: 400;
 	color: var(--cream);
-	width: 20em;
+	width: clamp(12em, 10em + 15vw, 20em);
 	flex-shrink: 0;
 }
 
