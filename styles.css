@@ -553,10 +553,14 @@ a {
 .approach__intro {
 	display: flex;
 	flex-direction: column;
-	gap: 1em;
 	max-width: 52em;
 	padding-bottom: 4em;
 	border-bottom: 1px solid var(--border-dark);
+	color: var(--cream-75);
+}
+
+.approach__intro p {
+	text-wrap: pretty;
 }
 
 .approach__intro-text {
