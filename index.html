@@ -4,6 +4,23 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Wild America Fund</title>
+		<meta
+			name="description"
+			content="Wild America Fund accelerates biodiversity-focused land conservation across the United States through strategic transactions, scientific rigor, and durable stewardship."
+		/>
+		<meta property="og:title" content="Wild America Fund" />
+		<meta
+			property="og:description"
+			content="Accelerating biodiversity-focused land conservation across the United States."
+		/>
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:image"
+			content="https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg"
+		/>
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="canonical" href="https://wildamericafund.org/" />
+		<meta property="og:url" content="https://wildamericafund.org/" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -19,6 +36,13 @@
 			type="font/woff2"
 			crossorigin
 			href="https://fonts.gstatic.com/s/figtree/v7/Cn-0PlGvIAA7dwfRDWFF.woff2"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			crossorigin
+			href="https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KU7NShXUEKi4Rw.woff2"
 		/>
 		<link
 			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Figtree:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
@@ -59,7 +83,7 @@
 					/>
 				</svg>
 			</button>
-			<nav class="nav__menu" id="nav-menu">
+			<nav class="nav__menu" id="nav-menu" aria-label="Main navigation">
 				<ul class="nav__links">
 					<li><a href="#challenge" class="nav__link">Our Work</a></li>
 					<li><a href="#approach" class="nav__link">Approach</a></li>
@@ -74,10 +98,10 @@
 
 		<main>
 			<!-- 2. Hero -->
-			<section class="hero" id="hero">
+			<section class="hero" id="hero" aria-labelledby="hero-heading">
 				<div class="hero__content">
 					<h1 class="hero__titles">
-						<span class="hero__title"
+						<span class="hero__title" id="hero-heading"
 							>Catalyzing land protection at the speed and scale
 							needed to preserve biodiversity
 						</span>
@@ -99,7 +123,7 @@
 									href="#resources"
 									class="btn-secondary"
 									aria-label="View prospectus and resources"
-									>Summary</a
+									>WAF Resources</a
 								>
 							</div>
 						</div>
@@ -119,14 +143,19 @@
 					>
 					<p class="hero__banner-text">
 						America has long led the world in protecting wild
-						places. Now, that legacy is at risk. The next decade
+						places. Now, that legacy is at risk. As development
+						pressure on undeveloped land across the U.S.
+						accelerates, competition for undeveloped land has never
+						been more intense. Conservation must rise to meet this
+						moment—or risk losing the landscapes that sustain
+						biodiversity and climate resilience. The next decade
 						will determine the future of our most irreplaceable
 						ecosystems, the biodiversity they hold, and the climate
 						resilience they deliver.
 					</p>
 					<p class="hero__banner-text">
 						Biodiversity’s future will be decided in the
-						marketplace. We make conservation competitive
+						marketplace. We make conservation competitive.
 					</p>
 				</div>
 			</section>
@@ -140,52 +169,37 @@
 						>
 						<h2 class="challenge__title">The Game has Changed</h2>
 					</div>
-					<div class="challenge__stats">
-						<div class="stat">
-							<span class="stat__number">50%</span>
-							<span class="stat__label"
-								>of U.S. wetlands lost</span
-							>
+					<dl class="challenge__stats">
+						<div class="stat" role="group" aria-label="50% of U.S. wetlands lost">
+							<dt class="stat__number">50%</dt>
+							<dd class="stat__label">of U.S. wetlands lost</dd>
 						</div>
-						<div class="stat">
-							<span class="stat__number">30%</span>
-							<span class="stat__label"
-								>of U.S. bird populations declined</span
-							>
+						<div class="stat" role="group" aria-label="30% of U.S. bird populations declined">
+							<dt class="stat__number">30%</dt>
+							<dd class="stat__label">of U.S. bird populations declined</dd>
 						</div>
-						<div class="stat">
-							<span class="stat__number">50%</span>
-							<span class="stat__label"
-								>of U.S. grasslands at risk</span
-							>
+						<div class="stat" role="group" aria-label="50% of U.S. grasslands at risk">
+							<dt class="stat__number">50%</dt>
+							<dd class="stat__label">of U.S. grasslands at risk</dd>
 						</div>
-						<div class="stat">
-							<span class="stat__number">70%</span>
-							<span class="stat__label"
-								>of U.S. insect populations declined</span
-							>
+						<div class="stat" role="group" aria-label="70% of U.S. insect populations declined">
+							<dt class="stat__number">70%</dt>
+							<dd class="stat__label">of U.S. insect populations declined</dd>
 						</div>
-						<div class="stat">
-							<span class="stat__number">40%</span>
-							<span class="stat__label"
-								>of U.S. forest at risk of collapse</span
-							>
+						<div class="stat" role="group" aria-label="40% of U.S. forest at risk of collapse">
+							<dt class="stat__number">40%</dt>
+							<dd class="stat__label">of U.S. forest at risk of collapse</dd>
 						</div>
-						<div class="stat">
-							<span class="stat__number">~40%</span>
-							<span class="stat__label"
-								>of U.S. plants &amp; animals risk
-								extinction</span
-							>
+						<div class="stat" role="group" aria-label="~40% of U.S. plants and animals risk extinction">
+							<dt class="stat__number">~40%</dt>
+							<dd class="stat__label">of U.S. plants &amp; animals risk extinction</dd>
 						</div>
-					</div>
+					</dl>
 				</div>
 				<div class="challenge__body">
 					<p class="challenge__lead">
-						Wildlife populations worldwide have declined by an
-						average of 73% since 1970, and one million species face
-						extinction. The United States—one of the world's ten
-						most biodiverse countries—is not immune: 34% of plant
+						The United States—one of the world's ten most biodiverse
+						countries—is facing a biodiversity crisis: 34% of plant
 						species and 40% of animal species are at risk.
 					</p>
 					<div class="challenge__columns">
@@ -203,17 +217,17 @@
 						</p>
 						<p class="challenge__text">
 							Development will continue—housing, energy, and
-							economic growth are unavoidable—but market-driven
+							economic growth are unavoidable—and market-driven
 							outcomes are determined by who can compete
-							effectively at the transaction table. This growing
+							effectively at the transaction table. A growing
 							imbalance between private-market capability and
 							conservation capacity presents an urgent threat to
 							biodiversity protection and climate resilience
 							nationwide. Conservation must modernize its
 							transactional model—deploying flexible capital and
-							dedicated expertise—to secure the most
-							scientifically critical landscapes at the urgency
-							this moment demands.
+							dedicated expertise—to secure the most biodiverse
+							and climate critical landscapes at the speed this
+							moment demands.
 						</p>
 					</div>
 				</div>
@@ -282,8 +296,7 @@
 					</ul>
 					<p>
 						The result is a more selective approach that produces
-						fewer, but significantly more durable and ecologically
-						meaningful outcomes.
+						durable and ecologically meaningful outcomes.
 					</p>
 				</div>
 				<div class="pillar">
@@ -361,7 +374,9 @@
 					role="img"
 					aria-label="Map showing 16 priority biodiversity regions across the continental United States"
 					data-svg-src="images/us-map.svg"
-				></div>
+				>
+					<p class="map-placeholder__fallback">Map of 16 priority biodiversity regions across the continental United States</p>
+				</div>
 				<div class="where__lead-block">
 					<p class="where__lead">
 						The science-based refinement and selection of geographic
@@ -419,7 +434,7 @@
 								and a proving ground for our model:
 								demonstrating how focused collaboration and a
 								commitment to ecological integrity can deliver
-								lasting, landscape-scale conservation
+								lasting, landscape-scale conservation.
 							</p>
 						</div>
 					</div>
@@ -471,9 +486,10 @@
 							<h3 class="member__name">Kim Elliman</h3>
 							<div class="member__bio">
 								<p>
-									Christopher (Kim) Elliman retired as CEO of
-									the Open Space Institute in 2024, after 32
-									years with OSI. In those years, in over 1000
+									Christopher (Kim) Elliman is co-chair of the
+									Wild America Fund. Kim retired as CEO of the
+									Open Space Institute in 2024, after 32 years
+									with OSI. In those years, in over 1000
 									transactions, OSI conserved more than 2.5
 									million acres in the eastern United States
 									and created or enhanced over 600 parks and
@@ -534,7 +550,7 @@
 									Jennifer Cunningham.
 								</p>
 							</div>
-							<a href="#" class="member__more">Learn More</a>
+							<a href="#" class="member__more" aria-label="Learn more about Kim Elliman">Learn More</a>
 						</div>
 					</div>
 					<div class="member">
@@ -590,7 +606,7 @@
 									The Wilderness Society.
 								</p>
 							</div>
-							<a href="#" class="member__more">Learn More</a>
+							<a href="#" class="member__more" aria-label="Learn more about Michael Mantell">Learn More</a>
 						</div>
 					</div>
 					<div class="member">
@@ -683,7 +699,7 @@
 									wife, daughter, son, and dog.
 								</p>
 							</div>
-							<a href="#" class="member__more">Learn More</a>
+							<a href="#" class="member__more" aria-label="Learn more about Michael Bell">Learn More</a>
 						</div>
 					</div>
 				</div>
@@ -701,10 +717,11 @@
 						</h2>
 					</div>
 					<div class="resources__list">
-						<a
-							href="#"
+						<span
+							role="link"
+							aria-disabled="true"
 							class="resource-row"
-							aria-label="Download Organization Prospectus (PDF)"
+							aria-label="Download WAF Summary (PDF)"
 						>
 							<div class="resource-row__bg"></div>
 							<div class="resource-row__left">
@@ -728,11 +745,12 @@
 									stroke-linejoin="round"
 								/>
 							</svg>
-						</a>
-						<a
-							href="#"
+						</span>
+						<span
+							role="link"
+							aria-disabled="true"
 							class="resource-row"
-							aria-label="Download Strategy Overview (PDF)"
+							aria-label="Download WAF Background Paper (PDF)"
 						>
 							<div class="resource-row__bg"></div>
 							<div class="resource-row__left">
@@ -756,7 +774,7 @@
 									stroke-linejoin="round"
 								/>
 							</svg>
-						</a>
+						</span>
 					</div>
 				</div>
 			</section>
@@ -796,7 +814,7 @@
 		</footer>
 
 		<!-- Bio Modal -->
-		<div class="bio-modal" aria-hidden="true">
+		<div class="bio-modal" role="dialog" aria-modal="true" aria-labelledby="bio-modal-name" aria-hidden="true">
 			<div class="bio-modal__backdrop"></div>
 			<div class="bio-modal__card" data-lenis-prevent>
 				<button class="bio-modal__close" aria-label="Close">
@@ -815,7 +833,7 @@
 					</svg>
 				</button>
 				<span class="bio-modal__role"></span>
-				<h3 class="bio-modal__name"></h3>
+				<h3 class="bio-modal__name" id="bio-modal-name"></h3>
 				<div class="bio-modal__bio"></div>
 			</div>
 		</div>

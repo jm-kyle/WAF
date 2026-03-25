@@ -482,6 +482,8 @@ if (!prefersReducedMotion) {
 	});
 
 	// Resource row hover — black bg scales in, colors invert
+	const creamColor = getComputedStyle(document.documentElement).getPropertyValue('--cream').trim();
+	const cream55Color = getComputedStyle(document.documentElement).getPropertyValue('--cream-55').trim();
 	document.querySelectorAll(".resource-row").forEach((row) => {
 		const bg = row.querySelector(".resource-row__bg");
 		const title = row.querySelector(".resource-row__title");
@@ -497,13 +499,13 @@ if (!prefersReducedMotion) {
 			})
 			.to(
 				title,
-				{ color: "#f8f6f1", duration: φInv * φInv, ease: "reveal" },
+				{ color: creamColor, duration: φInv * φInv, ease: "reveal" },
 				φInv * 0.062, // ≈ 0.038
 			)
 			.to(
 				tag,
 				{
-					color: "rgba(248,246,241,0.55)",
+					color: cream55Color,
 					duration: φInv * φInv,
 					ease: "reveal",
 				},
@@ -511,7 +513,7 @@ if (!prefersReducedMotion) {
 			)
 			.to(
 				icon,
-				{ color: "#f8f6f1", y: -2, duration: φInv * φInv, ease: "reveal" },
+				{ color: creamColor, y: -2, duration: φInv * φInv, ease: "reveal" },
 				φInv * 0.1, // ≈ 0.062
 			);
 
@@ -573,18 +575,47 @@ const bioName = bioModal.querySelector(".bio-modal__name");
 const bioBio = bioModal.querySelector(".bio-modal__bio");
 const bioClose = bioModal.querySelector(".bio-modal__close");
 
+let bioTriggerEl = null;
+
+function getFocusableElements() {
+	return bioCard.querySelectorAll(
+		'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])',
+	);
+}
+
+function handleFocusTrap(e) {
+	if (e.key !== "Tab") return;
+	const focusable = getFocusableElements();
+	if (focusable.length === 0) return;
+	const first = focusable[0];
+	const last = focusable[focusable.length - 1];
+	if (e.shiftKey) {
+		if (document.activeElement === first) {
+			e.preventDefault();
+			last.focus();
+		}
+	} else {
+		if (document.activeElement === last) {
+			e.preventDefault();
+			first.focus();
+		}
+	}
+}
+
 function openBioModal(member) {
 	const role = member.querySelector(".member__role").textContent;
 	const name = member.querySelector(".member__name").textContent;
-	const bio = member.querySelector(".member__bio").innerHTML;
 
 	bioRole.textContent = role;
 	bioName.textContent = name;
-	bioBio.innerHTML = bio;
+	bioBio.replaceChildren(member.querySelector(".member__bio").cloneNode(true));
 
 	bioModal.classList.add("bio-modal--open");
 	bioModal.setAttribute("aria-hidden", "false");
 	if (lenis) lenis.stop();
+
+	bioClose.focus();
+	bioCard.addEventListener("keydown", handleFocusTrap);
 
 	const tl = gsap.timeline();
 	tl.fromTo(
@@ -601,11 +632,16 @@ function openBioModal(member) {
 }
 
 function closeBioModal() {
+	bioCard.removeEventListener("keydown", handleFocusTrap);
 	const tl = gsap.timeline({
 		onComplete: () => {
 			bioModal.classList.remove("bio-modal--open");
 			bioModal.setAttribute("aria-hidden", "true");
 			if (lenis) lenis.start();
+			if (bioTriggerEl) {
+				bioTriggerEl.focus();
+				bioTriggerEl = null;
+			}
 		},
 	});
 	tl.to(bioCard, {
@@ -621,6 +657,7 @@ function closeBioModal() {
 document.querySelectorAll(".member__more").forEach((link) => {
 	link.addEventListener("click", (e) => {
 		e.preventDefault();
+		bioTriggerEl = link;
 		const member = link.closest(".member");
 		openBioModal(member);
 	});
