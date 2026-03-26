@@ -608,7 +608,11 @@ function openBioModal(member) {
 
 	bioRole.textContent = role;
 	bioName.textContent = name;
-	bioBio.replaceChildren(member.querySelector(".member__bio").cloneNode(true));
+	const sourceBio = member.querySelector(".member__bio");
+	bioBio.replaceChildren();
+	for (const child of sourceBio.childNodes) {
+		bioBio.appendChild(child.cloneNode(true));
+	}
 
 	bioModal.classList.add("bio-modal--open");
 	bioModal.setAttribute("aria-hidden", "false");
