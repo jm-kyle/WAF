@@ -1151,21 +1151,72 @@ a {
 	max-width: 28ch;
 }
 
-.contact__right {
+.contact__form {
 	display: flex;
 	flex-direction: column;
-	max-width: 25em;
+	width: 100%;
+	max-width: 28em;
 	flex-shrink: 0;
 	gap: 1.25em;
 }
 
-.contact__desc {
+.contact__form-row {
+	display: flex;
+	gap: 1.25em;
+}
+
+.contact__form-row .contact__field {
+	flex: 1;
+}
+
+.contact__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+
+.contact__label {
 	font-family: "Figtree", system-ui, sans-serif;
-	font-size: clamp(0.9375rem, 0.91rem + 0.07vw, 1rem);
-	line-height: 1.63;
-	font-weight: 400;
+	font-size: 0.8125rem;
+	font-weight: 500;
 	color: var(--cream-75);
-	text-wrap: pretty;
+	letter-spacing: 0.02em;
+}
+
+.contact__optional {
+	font-weight: 400;
+	color: var(--cream-50, rgba(255, 255, 255, 0.4));
+}
+
+.contact__input,
+.contact__textarea {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	font-weight: 400;
+	color: var(--cream);
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 4px;
+	padding: 0.75em 1em;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.contact__input::placeholder,
+.contact__textarea::placeholder {
+	color: rgba(255, 255, 255, 0.25);
+}
+
+.contact__input:focus,
+.contact__textarea:focus {
+	outline: none;
+	border-color: var(--light-green);
+	background: rgba(255, 255, 255, 0.09);
+}
+
+.contact__textarea {
+	resize: vertical;
+	min-height: 6em;
 }
 
 .contact__btn {
@@ -1194,19 +1245,16 @@ a {
 /* ===== 9. Footer ===== */
 .footer {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
 	width: 100%;
-	padding: 2em 5em;
-	border-top: 1px solid var(--bg-warm);
 }
 
-.footer__sponsor {
-	font-family: "Figtree", system-ui, sans-serif;
-	font-size: 0.875rem;
-	line-height: 1.57;
-	font-weight: 400;
-	color: var(--gray);
+.footer__main {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2.5em 5em;
+	border-top: 1px solid var(--bg-warm);
 }
 
 .footer__logo {
@@ -1220,6 +1268,63 @@ a {
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	color: var(--dark-text);
+}
+
+.footer__nav {
+	display: flex;
+	gap: 2.5em;
+}
+
+.footer__nav a {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--body-text);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.footer__nav a:hover {
+	color: var(--forest-green);
+}
+
+.footer__sub {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5em 5em;
+	border-top: 1px solid var(--bg-warm);
+}
+
+.footer__sponsor {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	font-weight: 400;
+	color: var(--gray);
+}
+
+.footer__legal {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	font-weight: 400;
+	color: var(--gray);
+}
+
+.footer__sep {
+	margin-inline: 0.5em;
+	color: var(--gray);
+}
+
+.footer__link {
+	color: var(--gray);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+	color: var(--forest-green);
 }
 
 /* ===== Hamburger ===== */
@@ -1258,8 +1363,9 @@ a {
 	.contact {
 		padding: 6.25em 2.5em;
 	}
-	.footer {
-		padding: 1.75em 2.5em;
+	.footer__main,
+	.footer__sub {
+		padding-inline: 2.5em;
 	}
 
 	.hero__bottom {
@@ -1312,8 +1418,8 @@ a {
 	.contact {
 		gap: 3em;
 	}
-	.contact__right {
-		width: 21.25em;
+	.contact__form {
+		max-width: 21.25em;
 	}
 
 	.gaviota {
@@ -1556,15 +1662,27 @@ a {
 		padding: 5em 1.5em;
 		gap: 2em;
 	}
-	.contact__right {
-		width: 100%;
+	.contact__form {
+		max-width: 100%;
+	}
+	.contact__form-row {
+		flex-direction: column;
 	}
 
 	/* Footer */
-	.footer {
+	.footer__main {
 		flex-direction: column;
-		align-items: center;
-		gap: 0.75em;
+		gap: 1.5em;
+		padding: 2em 1.5em;
+	}
+	.footer__nav {
+		flex-wrap: wrap;
+		gap: 1em 2em;
+		justify-content: center;
+	}
+	.footer__sub {
+		flex-direction: column;
+		gap: 0.5em;
 		padding: 1.5em;
 		text-align: center;
 	}
