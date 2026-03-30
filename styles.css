@@ -191,8 +191,8 @@ a {
 	overflow: visible;
 	/*background-image: url("https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg");*/
 	background-image: url("/images/waf-header.jpg");
-	background-size: cover;
-	background-position: 30% bottom;
+	background-size: auto 100%;
+	background-position: right bottom;
 }
 
 .hero::before {
