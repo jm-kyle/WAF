@@ -416,12 +416,17 @@ a {
 }
 
 /* ===== 3. Challenge ===== */
+.section--overlay-top.approach {
+	padding-top: 12em;
+}
+
 .challenge {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding: 12em 5em 8.75em;
+	padding: 8.75em 5em;
 	gap: 4em;
+	background-color: var(--dark-green);
 	contain: layout style;
 	content-visibility: auto;
 	contain-intrinsic-size: auto 1200px;
@@ -446,7 +451,7 @@ a {
 	font-size: clamp(2.25rem, 1.9rem + 1.2vw, 3.25rem);
 	line-height: 1.1;
 	font-weight: 800;
-	color: var(--dark-text);
+	color: var(--cream);
 	text-wrap: balance;
 }
 
@@ -470,7 +475,7 @@ a {
 	line-height: 1;
 	letter-spacing: -0.03em;
 	font-weight: 400;
-	color: var(--dark-green);
+	color: var(--cream);
 }
 
 .stat__label {
@@ -478,7 +483,7 @@ a {
 	font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
 	line-height: 1.4;
 	font-weight: 400;
-	color: var(--gray);
+	color: var(--cream-75);
 	max-width: 10em;
 }
 
@@ -488,7 +493,7 @@ a {
 	width: 100%;
 	padding-top: 3em;
 	gap: 3em;
-	border-top: 1px solid var(--border-light);
+	border-top: 1px solid var(--border-dark);
 }
 
 .challenge__columns {
@@ -501,7 +506,7 @@ a {
 	font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
 	line-height: 1.6;
 	font-weight: 400;
-	color: var(--dark-green);
+	color: var(--cream);
 	width: 100%;
 	max-width: 66ch;
 	text-wrap: pretty;
@@ -512,7 +517,7 @@ a {
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.65;
 	font-weight: 400;
-	color: var(--body-text);
+	color: var(--cream-75);
 	flex: 1;
 }
 
@@ -522,7 +527,6 @@ a {
 	flex-direction: column;
 	width: 100%;
 	padding: 8.75em 5em;
-	background-color: var(--dark-green);
 	overflow: hidden;
 	contain: layout style;
 	content-visibility: auto;
@@ -546,7 +550,7 @@ a {
 	grid-template-columns: 1fr 1fr;
 	gap: 3em;
 	padding-bottom: 4em;
-	border-bottom: 1px solid var(--border-dark);
+	border-bottom: 1px solid var(--border-light);
 }
 
 .approach__photo {
@@ -571,14 +575,14 @@ a {
 	font-size: clamp(2.125rem, 1.8rem + 1vw, 3rem);
 	line-height: 1.1;
 	font-weight: 800;
-	color: var(--cream);
+	color: var(--dark-text);
 	text-wrap: balance;
 }
 
 .approach__intro {
 	display: flex;
 	flex-direction: column;
-	color: var(--cream-75);
+	color: var(--body-text);
 }
 
 .approach__intro p {
@@ -590,7 +594,7 @@ a {
 .approach__intro h3,
 .approach__intro h4,
 .approach__intro .lead {
-	color: var(--cream);
+	color: var(--dark-text);
 }
 
 .approach__intro-text {
@@ -598,12 +602,12 @@ a {
 	font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
 	line-height: 1.7;
 	font-weight: 400;
-	color: var(--cream-75);
+	color: var(--body-text);
 	text-wrap: pretty;
 }
 
 .approach__intro-text--emphasis {
-	color: var(--cream);
+	color: var(--dark-text);
 	font-weight: 500;
 }
 
@@ -613,11 +617,11 @@ a {
 	align-items: flex-start;
 	padding: 2.5em 0;
 	gap: 2.5em;
-	border-bottom: 1px solid var(--border-dark);
+	border-bottom: 1px solid var(--border-light);
 }
 
 .pillar:first-of-type {
-	border-top: 1px solid var(--border-dark);
+	border-top: 1px solid var(--border-light);
 }
 
 .pillar__number {
@@ -625,7 +629,7 @@ a {
 	font-size: 0.875rem;
 	line-height: 1.29;
 	font-weight: 400;
-	color: var(--light-green);
+	color: var(--dark-green);
 	width: 2.5em;
 	flex-shrink: 0;
 	padding-top: 0.375em;
@@ -636,7 +640,7 @@ a {
 	font-size: clamp(1.5rem, 1.4rem + 0.3vw, 1.75rem);
 	line-height: 1.29;
 	font-weight: 400;
-	color: var(--cream);
+	color: var(--dark-text);
 	width: clamp(12em, 10em + 15vw, 20em);
 	flex-shrink: 0;
 }
@@ -646,7 +650,7 @@ a {
 	font-size: clamp(0.875rem, 0.83rem + 0.15vw, 1rem);
 	line-height: 1.63;
 	font-weight: 400;
-	color: var(--cream-75);
+	color: var(--body-text);
 	flex: 1;
 }
 
