@@ -810,10 +810,10 @@ a {
 
 .team__header {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
-	align-items: end;
 	padding-bottom: 1em;
-	gap: 5em;
+	gap: 1.5em;
 }
 
 .team__heading {
@@ -834,12 +834,12 @@ a {
 }
 
 .team__desc {
-	flex: 1;
 	font-family: "Figtree", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.91rem + 0.07vw, 1rem);
 	line-height: 1.63;
 	font-weight: 400;
 	color: var(--cream-75);
+	max-width: 66ch;
 }
 
 .team__lead {
