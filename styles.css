@@ -189,8 +189,8 @@ a {
 	min-height: 100svh;
 	position: relative;
 	overflow: visible;
-	/*background-image: url("https://workers.paper.design/file-assets/01KKFKDN7241Y1HHCH2ADMWPKT/01KKFN2T69YTC00B5H81NZMF1P.jpg");*/
-	background-image: url("/images/waf-header.jpg");
+	/*background-image: url("/images/waf-header.jpg");*/
+	background-image: url("/images/01KKFN2T69YTC00B5H81NZMF1P.jpg");
 	background-size: auto 100%;
 	background-position: right bottom;
 }
@@ -1262,7 +1262,9 @@ a {
 	border: 1px solid rgba(255, 255, 255, 0.12);
 	border-radius: 4px;
 	padding: 0.75em 1em;
-	transition: border-color 0.2s ease, background-color 0.2s ease;
+	transition:
+		border-color 0.2s ease,
+		background-color 0.2s ease;
 }
 
 .contact__input::placeholder,
