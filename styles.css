@@ -1792,6 +1792,6 @@ a {
 /* ===== Responsive: Large screens (>1440px) ===== */
 @media (min-width: 1441px) {
 	.hero__left {
-		max-width: 40em;
+		max-width: 53em;
 	}
 }
