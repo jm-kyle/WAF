@@ -270,7 +270,7 @@ a {
 .hero__left {
 	display: flex;
 	flex-direction: column;
-	max-width: 35em;
+	max-width: 52em;
 	flex-shrink: 0;
 	gap: 1.5em;
 }
@@ -278,9 +278,8 @@ a {
 .hero__tagline {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.25rem);
-	line-height: 1.6;
+	line-height: 1.7;
 	font-weight: 400;
-	font-style: italic;
 	color: var(--cream-85);
 	text-wrap: pretty;
 }
@@ -344,17 +343,6 @@ a {
 	background-color: var(--cream);
 	color: var(--dark-green);
 	border-color: var(--cream);
-}
-
-.hero__description {
-	font-family: "Figtree", system-ui, sans-serif;
-	font-size: clamp(0.9375rem, 0.9rem + 0.07vw, 1rem);
-	line-height: 1.7;
-	font-weight: 400;
-	color: var(--cream-75);
-	flex: 1;
-	max-width: 36em;
-	text-wrap: pretty;
 }
 
 /* Hero banner — overlaps hero and challenge sections */
