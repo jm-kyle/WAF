@@ -403,11 +403,77 @@ a {
 	text-transform: capitalize;
 }
 
-/* ===== 3. Challenge ===== */
-.section--overlay-top.approach {
+/* ===== 3. Biodiversity Challenge ===== */
+.section--overlay-top.biodiversity {
 	padding-top: 12em;
 }
 
+.biodiversity {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 8.75em 5em;
+	gap: 4em;
+	background-color: var(--dark-green);
+	contain: layout style;
+	content-visibility: auto;
+	contain-intrinsic-size: auto 1200px;
+}
+
+.biodiversity__header {
+	display: flex;
+	width: 100%;
+	align-items: flex-end;
+	gap: 5em;
+}
+
+.biodiversity__heading {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25em;
+}
+
+.biodiversity__title {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(2.25rem, 1.9rem + 1.2vw, 3.25rem);
+	line-height: 1.1;
+	font-weight: 800;
+	color: var(--cream);
+	text-wrap: balance;
+}
+
+.biodiversity__body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-top: 3em;
+	gap: 1.5em;
+	border-top: 1px solid var(--border-dark);
+}
+
+.biodiversity__lead {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+	line-height: 1.6;
+	font-weight: 400;
+	color: var(--cream);
+	width: 100%;
+	max-width: 66ch;
+	text-wrap: pretty;
+}
+
+.biodiversity__text {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+	line-height: 1.65;
+	font-weight: 400;
+	color: var(--cream-75);
+	width: 100%;
+	max-width: 72ch;
+}
+
+/* ===== 4. Challenge ===== */
 .challenge {
 	display: flex;
 	flex-direction: column;
@@ -509,7 +575,7 @@ a {
 	flex: 1;
 }
 
-/* ===== 4. Approach ===== */
+/* ===== 5. Approach ===== */
 .approach {
 	display: flex;
 	flex-direction: column;
@@ -686,6 +752,15 @@ a {
 	line-height: 1.65;
 	font-weight: 400;
 	color: var(--body-text);
+}
+
+.where__details {
+	width: 100%;
+	padding-top: 0.5em;
+}
+
+.where__details .prose h3 {
+	color: var(--dark-text);
 }
 
 .where__lead-block {
@@ -1333,6 +1408,9 @@ a {
 	.hero__content {
 		padding: 15em 2.5em 4em;
 	}
+	.biodiversity {
+		padding: 6.25em 2.5em;
+	}
 	.challenge {
 		padding: 6.25em 2.5em;
 	}
@@ -1363,6 +1441,9 @@ a {
 		width: 25em;
 	}
 
+	.biodiversity__header {
+		gap: 3em;
+	}
 	.challenge__header {
 		gap: 3em;
 	}
@@ -1498,6 +1579,22 @@ a {
 	}
 
 	/* Challenge */
+	.section--overlay-top.biodiversity {
+		padding-top: 10em;
+	}
+	.biodiversity {
+		padding: 10em 1.5em 5em;
+		gap: 3em;
+	}
+	.biodiversity__header {
+		flex-direction: column;
+		gap: 2em;
+		align-items: flex-start;
+	}
+	.biodiversity__body {
+		gap: 1.5em;
+		padding-top: 2em;
+	}
 	.challenge {
 		padding: 10em 1.5em 5em;
 		gap: 3em;
