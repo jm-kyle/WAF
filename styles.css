@@ -405,7 +405,7 @@ a {
 
 /* ===== 3. Biodiversity Challenge ===== */
 .section--overlay-top.biodiversity {
-	padding-top: 12em;
+	padding-top: 16em;
 }
 
 .biodiversity {
@@ -1582,7 +1582,7 @@ a {
 
 	/* Challenge */
 	.section--overlay-top.biodiversity {
-		padding-top: 10em;
+		padding-top: 16em;
 	}
 	.biodiversity {
 		padding: 10em 1.5em 5em;

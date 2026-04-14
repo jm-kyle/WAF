@@ -191,16 +191,6 @@ if (!prefersReducedMotion) {
 			`-=${φInv * φInv}`, // -=0.382
 		)
 		.from(
-			".hero__description",
-			{
-				opacity: 0,
-				y: φ * 12,
-				duration: φInv + φInv * φInv, // ≈ 1.0
-				ease: "reveal",
-			},
-			`-=${φInv * φInv}`,
-		)
-		.from(
 			".hero__banner",
 			{
 				opacity: 0,
@@ -238,7 +228,29 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	// ===== 3. Challenge — scroll-triggered reveals =====
+	// ===== 3. Biodiversity + Challenge — scroll-triggered reveals =====
+	gsap.from(".biodiversity__heading > *", {
+		...fadeUp,
+		duration: φInv,
+		stagger: φInv * 0.2,
+		ease: "reveal",
+		scrollTrigger: {
+			trigger: ".biodiversity__heading",
+			start: s85,
+		},
+	});
+
+	gsap.from(".biodiversity__body > *", {
+		...fadeUp,
+		duration: φInv,
+		stagger: φInv * 0.2,
+		ease: "reveal",
+		scrollTrigger: {
+			trigger: ".biodiversity__body",
+			start: s85,
+		},
+	});
+
 	gsap.from(".challenge__heading > *", {
 		...fadeUp,
 		duration: φInv,
@@ -311,7 +323,7 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	gsap.from(".approach__intro-text", {
+	gsap.from(".approach__intro > *", {
 		...fadeUp,
 		duration: φInv,
 		stagger: φInv * 0.18,
@@ -393,12 +405,12 @@ if (!prefersReducedMotion) {
 			});
 	}
 
-	gsap.from(".where__lead-block", {
+	gsap.from(".where__details", {
 		...fadeUp,
 		duration: φInv + φInv * φInv,
 		ease: "reveal",
 		scrollTrigger: {
-			trigger: ".where__lead-block",
+			trigger: ".where__details",
 			start: s85,
 		},
 	});
@@ -432,16 +444,6 @@ if (!prefersReducedMotion) {
 		ease: "reveal",
 		scrollTrigger: {
 			trigger: ".team__header",
-			start: s85,
-		},
-	});
-
-	gsap.from(".team__lead", {
-		...fadeUp,
-		duration: φInv + φInv * φInv,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".team__lead",
 			start: s85,
 		},
 	});
@@ -533,7 +535,7 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	gsap.from(".contact__right", {
+	gsap.from(".contact__form", {
 		opacity: 0,
 		x: φ * 24,
 		duration: φ,
