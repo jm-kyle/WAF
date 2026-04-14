@@ -1635,7 +1635,7 @@ a {
 	}
 	.approach__photo {
 		order: 0;
-		max-height: 16em;
+		max-height: 32em;
 	}
 	.approach__intro {
 		order: 0;
