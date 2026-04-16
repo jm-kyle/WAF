@@ -368,11 +368,17 @@ if (!prefersReducedMotion) {
 				const svg = mapContainer.querySelector("svg");
 				const states = svg.querySelector("#states");
 				const borders = svg.querySelector("#borders");
-				const markers = svg.querySelectorAll(".marker");
+				const markers = svg.querySelectorAll(".marker, circle");
 
 				// Hide everything initially
 				gsap.set([states, borders], { opacity: 0 });
-				gsap.set(markers, { opacity: 0, scale: 0, transformOrigin: "center center" });
+				if (markers.length) {
+					gsap.set(markers, {
+						opacity: 0,
+						scale: 0,
+						transformOrigin: "center center",
+					});
+				}
 
 				// Refresh ScrollTrigger after SVG changes page height
 				ScrollTrigger.refresh();
@@ -391,17 +397,19 @@ if (!prefersReducedMotion) {
 							ease: "reveal",
 						});
 						// Pins stagger in almost immediately after
-						tl.to(
-							markers,
-							{
-								opacity: 1,
-								scale: 1,
-								duration: φInv * 0.6,
-								stagger: φInv * 0.08,
-								ease: "settle",
-							},
-							`-=${φInv * 0.5}`,
-						);
+						if (markers.length) {
+							tl.to(
+								markers,
+								{
+									opacity: 1,
+									scale: 1,
+									duration: φInv * 0.6,
+									stagger: φInv * 0.08,
+									ease: "settle",
+								},
+								`-=${φInv * 0.5}`,
+							);
+						}
 					},
 				});
 			});
