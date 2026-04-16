@@ -818,6 +818,280 @@ a {
 	aspect-ratio: 2030 / 1350;
 }
 
+.where-map__ai2html {
+	width: 100%;
+	margin-inline: auto;
+	position: relative;
+	overflow: clip;
+	border-radius: 0.5em;
+	background-color: var(--white);
+	flex-shrink: 0;
+}
+
+.science-map {
+	display: block;
+}
+
+.science-map__image {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.science-map__overlay {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+#g-big_map-box {
+	margin: 0 auto;
+}
+
+#g-big_map-box p {
+	margin: 0;
+}
+
+#g-big_map-box .g-aiAbs {
+	position: absolute;
+}
+
+#g-big_map-box .g-aiSymbol {
+	position: absolute;
+	box-sizing: border-box;
+}
+
+#g-big_map-box .g-aiPointText p {
+	white-space: nowrap;
+}
+
+#g-big_map-Artboard-xl p,
+#g-big_map-Artboard-s p,
+#g-big_map-Artboard-l p {
+	font-family: "Figtree", arial, helvetica, sans-serif;
+	font-weight: 300;
+	line-height: 16px;
+	opacity: 1;
+	letter-spacing: 0;
+	font-size: 13px;
+	text-align: left;
+	color: rgb(0, 0, 0);
+	text-transform: none;
+	padding-bottom: 0;
+	padding-top: 0;
+	mix-blend-mode: normal;
+	font-style: normal;
+	height: auto;
+	position: static;
+}
+
+#g-big_map-Artboard-xl .g-pstyle0,
+#g-big_map-Artboard-s .g-pstyle0,
+#g-big_map-Artboard-l .g-pstyle0 {
+	font-weight: 700;
+	line-height: 19px;
+	height: 19px;
+	font-size: 16px;
+	text-align: center;
+	top: 1.3px;
+	position: relative;
+}
+
+#g-big_map-Artboard-xl .g-pstyle1 {
+	font-weight: 500;
+	line-height: 8px;
+	height: 8px;
+	opacity: 0.8;
+	font-size: 11px;
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(51, 51, 51);
+	top: 0.9px;
+	position: relative;
+}
+
+#g-big_map-Artboard-xl .g-pstyle2 {
+	height: 16px;
+	top: 1px;
+	position: relative;
+}
+
+#g-big_map-Artboard-xl .g-pstyle3 {
+	height: 16px;
+	text-align: right;
+	top: 1px;
+	position: relative;
+}
+
+#g-big_map-Artboard-xl .g-pstyle4 {
+	font-weight: 500;
+	line-height: 8px;
+	height: 8px;
+	opacity: 0.8;
+	font-size: 11px;
+	text-align: center;
+	color: rgb(51, 51, 51);
+	top: 0.9px;
+	position: relative;
+}
+
+#g-big_map-Artboard-xl .g-pstyle5 {
+	font-weight: 500;
+	line-height: 8px;
+	height: 8px;
+	opacity: 0.8;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: rgb(51, 51, 51);
+	top: 0.9px;
+	position: relative;
+}
+
+#g-big_map-Artboard-xl .g-cstyle0,
+#g-big_map-Artboard-s .g-cstyle0,
+#g-big_map-Artboard-l .g-cstyle0 {
+	font-weight: 700;
+}
+
+#g-big_map-Artboard-m p {
+	font-family: "Figtree", arial, helvetica, sans-serif;
+	font-weight: 700;
+	line-height: 19px;
+	height: auto;
+	opacity: 1;
+	letter-spacing: 0;
+	font-size: 16px;
+	text-align: left;
+	color: rgb(0, 0, 0);
+	top: 1.3px;
+	position: static;
+	text-transform: none;
+	padding-bottom: 0;
+	padding-top: 0;
+	mix-blend-mode: normal;
+	font-style: normal;
+}
+
+#g-big_map-Artboard-m .g-pstyle0 {
+	height: 19px;
+	text-align: center;
+	position: relative;
+}
+
+#g-big_map-Artboard-m .g-pstyle1 {
+	font-weight: 300;
+	line-height: 16px;
+	height: 16px;
+	font-size: 13px;
+	top: 1px;
+	position: relative;
+}
+
+#g-big_map-Artboard-m .g-pstyle2 {
+	font-weight: 300;
+	line-height: 16px;
+	height: 16px;
+	font-size: 13px;
+	text-align: right;
+	top: 1px;
+	position: relative;
+}
+
+#g-big_map-Artboard-s .g-pstyle1,
+#g-big_map-Artboard-l .g-pstyle1 {
+	height: 16px;
+	top: 1px;
+	position: relative;
+}
+
+#g-big_map-Artboard-s .g-pstyle2,
+#g-big_map-Artboard-l .g-pstyle2 {
+	height: 16px;
+	text-align: right;
+	top: 1px;
+	position: relative;
+}
+
+#g-big_map-Artboard-s .g-pstyle3 {
+	font-weight: 500;
+	line-height: 5px;
+	height: 5px;
+	opacity: 0.8;
+	font-size: 9px;
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(51, 51, 51);
+	top: 0.7px;
+	position: relative;
+}
+
+#g-big_map-Artboard-s .g-pstyle4 {
+	font-weight: 500;
+	line-height: 5px;
+	height: 5px;
+	opacity: 0.8;
+	font-size: 9px;
+	text-align: center;
+	color: rgb(51, 51, 51);
+	top: 0.7px;
+	position: relative;
+}
+
+#g-big_map-Artboard-s .g-pstyle5 {
+	font-weight: 500;
+	line-height: 5px;
+	height: 5px;
+	opacity: 0.8;
+	font-size: 9px;
+	text-transform: uppercase;
+	color: rgb(51, 51, 51);
+	top: 0.7px;
+	position: relative;
+}
+
+#g-big_map-Artboard-l .g-pstyle3 {
+	font-weight: 500;
+	line-height: 6px;
+	height: 6px;
+	opacity: 0.8;
+	font-size: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(51, 51, 51);
+	top: 0.8px;
+	position: relative;
+}
+
+#g-big_map-Artboard-l .g-pstyle4 {
+	font-weight: 500;
+	line-height: 6px;
+	height: 6px;
+	opacity: 0.8;
+	font-size: 10px;
+	text-align: center;
+	color: rgb(51, 51, 51);
+	top: 0.8px;
+	position: relative;
+}
+
+#g-big_map-Artboard-l .g-pstyle5 {
+	font-weight: 500;
+	line-height: 6px;
+	height: 6px;
+	opacity: 0.8;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: rgb(51, 51, 51);
+	top: 0.8px;
+	position: relative;
+}
+
+@media (max-width: 900px) {
+	#g-big_map-Artboard-xl .g-statenames {
+		display: none;
+	}
+}
+
 .where-map__caption {
 	font-family: "Figtree", system-ui, sans-serif;
 	font-size: 0.875rem;
