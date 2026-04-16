@@ -356,6 +356,57 @@ if (!prefersReducedMotion) {
 		},
 	});
 
+	const scienceMap = document.querySelector(".science-map");
+	if (scienceMap) {
+		const scienceMapImage = scienceMap.querySelector(".science-map__image");
+		const scienceMapLabels = Array.from(
+			scienceMap.querySelectorAll(".science-map__overlay .g-aiAbs"),
+		);
+
+		if (scienceMapImage) {
+			gsap.set(scienceMapImage, {
+				opacity: 0,
+				scale: 1.012,
+				transformOrigin: "center center",
+			});
+		}
+		if (scienceMapLabels.length) {
+			gsap.set(scienceMapLabels, { opacity: 0, y: 4 });
+		}
+
+		ScrollTrigger.create({
+			trigger: scienceMap,
+			start: s85,
+			once: true,
+			onEnter: () => {
+				const tl = gsap.timeline();
+
+				if (scienceMapImage) {
+					tl.to(scienceMapImage, {
+						opacity: 1,
+						scale: 1,
+						duration: φInv + φInv * φInv,
+						ease: "reveal",
+					});
+				}
+
+				if (scienceMapLabels.length) {
+					tl.to(
+						scienceMapLabels,
+						{
+							opacity: 1,
+							y: 0,
+							duration: φInv * 0.55,
+							stagger: 0.012,
+							ease: "reveal",
+						},
+						"-=0.45",
+					);
+				}
+			},
+		});
+	}
+
 	// Map — fetch SVG inline, then animate states + stagger pins.
 	// `cache: "no-cache"` forces a revalidation (ETag/If-Modified-Since) so
 	// edits to the SVG show up on reload without stale-cache surprises.
@@ -369,9 +420,12 @@ if (!prefersReducedMotion) {
 				const states = svg.querySelector("#states");
 				const borders = svg.querySelector("#borders");
 				const markers = svg.querySelectorAll(".marker, circle");
+				const mapLayers = [states, borders].filter(Boolean);
 
 				// Hide everything initially
-				gsap.set([states, borders], { opacity: 0 });
+				if (mapLayers.length) {
+					gsap.set(mapLayers, { opacity: 0 });
+				}
 				if (markers.length) {
 					gsap.set(markers, {
 						opacity: 0,
@@ -391,11 +445,13 @@ if (!prefersReducedMotion) {
 					onEnter: () => {
 						const tl = gsap.timeline();
 						// States fade in
-						tl.to([states, borders], {
-							opacity: 1,
-							duration: φInv, // faster map reveal
-							ease: "reveal",
-						});
+						if (mapLayers.length) {
+							tl.to(mapLayers, {
+								opacity: 1,
+								duration: φInv, // faster map reveal
+								ease: "reveal",
+							});
+						}
 						// Pins stagger in almost immediately after
 						if (markers.length) {
 							tl.to(
