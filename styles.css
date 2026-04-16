@@ -754,15 +754,6 @@ a {
 	color: var(--body-text);
 }
 
-.where__details {
-	width: 100%;
-	padding-top: 0.5em;
-}
-
-.where__details .prose h3 {
-	color: var(--dark-text);
-}
-
 .where__lead-block {
 	display: flex;
 	flex-direction: column;
@@ -785,6 +776,56 @@ a {
 	color: var(--dark-green);
 	max-width: 66ch;
 	text-align: center;
+}
+
+.where__maps {
+	display: flex;
+	flex-direction: column;
+	gap: 4em;
+	width: 100%;
+}
+
+.where-map {
+	width: 100%;
+	max-width: 1350px;
+	margin-inline: auto;
+	margin-block: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	flex-shrink: 0;
+}
+
+.where-map__eyebrow {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted-text);
+	text-align: center;
+}
+
+.where-map__img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 0.5em;
+	background-color: var(--muted-surface, #f3f1ec);
+}
+
+.where-map--nyt .where-map__img {
+	aspect-ratio: 2030 / 1350;
+}
+
+.where-map__caption {
+	font-family: "Figtree", system-ui, sans-serif;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--muted-text);
+	text-align: center;
+	max-width: 65ch;
+	margin-inline: auto;
 }
 
 .map-placeholder {

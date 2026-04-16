@@ -356,10 +356,12 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	// Map — fetch SVG inline, then animate states + stagger pins
+	// Map — fetch SVG inline, then animate states + stagger pins.
+	// `cache: "no-cache"` forces a revalidation (ETag/If-Modified-Since) so
+	// edits to the SVG show up on reload without stale-cache surprises.
 	const mapContainer = document.querySelector(".map-placeholder[data-svg-src]");
 	if (mapContainer) {
-		fetch(mapContainer.dataset.svgSrc)
+		fetch(mapContainer.dataset.svgSrc, { cache: "no-cache" })
 			.then((r) => r.text())
 			.then((svgText) => {
 				mapContainer.innerHTML = svgText;
@@ -404,16 +406,6 @@ if (!prefersReducedMotion) {
 				});
 			});
 	}
-
-	gsap.from(".where__details", {
-		...fadeUp,
-		duration: φInv + φInv * φInv,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".where__details",
-			start: s85,
-		},
-	});
 
 	gsap.from(".gaviota__image", {
 		opacity: 0,
