@@ -433,19 +433,11 @@ a {
 	flex-direction: column;
 	width: 100%;
 	padding: 8.75em 5em;
-	gap: 4em;
+	gap: 2.25em;
 	background-color: var(--dark-green);
 	contain: layout style;
 	content-visibility: auto;
 	contain-intrinsic-size: auto 1200px;
-}
-
-.biodiversity__header {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	align-items: stretch;
-	gap: 3em;
 }
 
 .biodiversity__stats {
@@ -455,8 +447,14 @@ a {
 	gap: 2em 1.25em;
 }
 
+.biodiversity__divider {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-top: 1px solid var(--border-dark);
+}
+
 .biodiversity__heading {
-	flex: 1;
 	display: flex;
 	flex-direction: column;
 	gap: 1.25em;
@@ -475,9 +473,8 @@ a {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding-top: 3em;
+	padding-top: 0;
 	gap: 1.5em;
-	border-top: 1px solid var(--border-dark);
 }
 
 .biodiversity__lead {
@@ -1797,9 +1794,6 @@ a {
 		padding-inline: 2.5em;
 	}
 
-	.biodiversity__header {
-		gap: 3em;
-	}
 	.biodiversity__stats {
 		grid-template-columns: repeat(3, 1fr);
 		gap: 2em 1.5em;
@@ -1946,18 +1940,12 @@ a {
 		padding: 10em 1.5em 5em;
 		gap: 3em;
 	}
-	.biodiversity__header {
-		flex-direction: column;
-		gap: 2em;
-		align-items: flex-start;
-	}
 	.biodiversity__stats {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1.5em 1em;
 	}
 	.biodiversity__body {
 		gap: 1.5em;
-		padding-top: 2em;
 	}
 	.challenge {
 		padding: 10em 1.5em 5em;
