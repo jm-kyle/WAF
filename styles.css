@@ -189,9 +189,9 @@ a {
 	position: relative;
 	overflow: visible;
 	/*background-image: url("/images/waf-header.jpg");*/
-	background-image: url("/images/01KKFN2T69YTC00B5H81NZMF1P.jpg");
+	background-image: url("/images/WAF-hero.jpg");
 	background-size: auto 100%;
-	background-position: right bottom;
+	background-position: center center;
 }
 
 .hero::before {
