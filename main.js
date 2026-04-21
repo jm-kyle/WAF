@@ -160,18 +160,7 @@ if (!prefersReducedMotion) {
 			ease: "settle",
 		})
 		.from(
-			".hero__rule",
-			{
-				opacity: 0,
-				scaleX: 0,
-				transformOrigin: "left center",
-				duration: φInv, // 0.618s
-				ease: "reveal",
-			},
-			`-=${φInv * φInv}`, // -=0.382
-		)
-		.from(
-			".hero__tagline",
+			".hero__tagline, .hero__context",
 			{
 				opacity: 0,
 				y: φ * 15, // ≈ 24.3

@@ -186,7 +186,6 @@ a {
 	justify-content: flex-end;
 	align-items: center;
 	width: 100%;
-	min-height: 100svh;
 	position: relative;
 	overflow: visible;
 	/*background-image: url("/images/waf-header.jpg");*/
@@ -215,7 +214,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding: 15em 5em 2em;
+	padding: 15em 5em 5em;
 	gap: 2em;
 }
 
@@ -243,6 +242,7 @@ a {
 	line-height: 1.1;
 	font-weight: 700;
 	color: var(--cream);
+	max-width: 23ch;
 	text-wrap: balance;
 }
 
@@ -250,14 +250,6 @@ a {
 	color: var(--light-green);
 	font-style: italic;
 	margin-top: 0.05em;
-}
-
-.hero__rule {
-	width: 4em;
-	height: 1px;
-	background: var(--light-green);
-	opacity: 0.5;
-	margin: 0.5em 0;
 }
 
 .hero__bottom {
@@ -270,15 +262,33 @@ a {
 .hero__left {
 	display: flex;
 	flex-direction: column;
+	flex: 1 1 40em;
+	min-width: 0;
 	max-width: 52em;
-	flex-shrink: 0;
 	gap: 1.5em;
+}
+
+.hero__right {
+	flex: 0 1 34em;
+	max-width: 34em;
+	margin-left: auto;
+	align-self: flex-start;
 }
 
 .hero__tagline {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.25rem);
 	line-height: 1.7;
+	font-weight: 400;
+	color: var(--cream-85);
+	text-wrap: pretty;
+}
+
+.hero__context {
+	margin: 0;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.9375rem, 0.85rem + 0.2vw, 1.0625rem);
+	line-height: 1.8;
 	font-weight: 400;
 	color: var(--cream-85);
 	text-wrap: pretty;
@@ -345,20 +355,18 @@ a {
 	border-color: var(--cream);
 }
 
-/* Hero banner — overlaps hero and challenge sections */
+/* Hero banner — section divider between biodiversity and market challenge */
 .hero__banner {
 	position: relative;
 	z-index: 10;
 	display: flex;
 	flex-direction: column;
 	gap: 1.25em;
-	width: calc(100% - 10em);
-	margin: 0 auto;
-	padding: 3em 4em;
-	background-color: var(--bg-warm);
-	transform: translateY(50%);
+	width: 100%;
+	margin-block: 2.5em 2.25em;
+	padding: 3em 5em;
+	background-color: var(--white);
 	border-radius: 4px;
-	margin-top: -4em;
 }
 
 .hero__banner-text {
@@ -403,11 +411,6 @@ a {
 	text-transform: capitalize;
 }
 
-/* ===== 3. Biodiversity Challenge ===== */
-.section--overlay-top.biodiversity {
-	padding-top: 16em;
-}
-
 .biodiversity {
 	display: flex;
 	flex-direction: column;
@@ -422,9 +425,17 @@ a {
 
 .biodiversity__header {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
-	align-items: flex-end;
-	gap: 5em;
+	align-items: stretch;
+	gap: 3em;
+}
+
+.biodiversity__stats {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 2em 1.25em;
 }
 
 .biodiversity__heading {
@@ -473,14 +484,14 @@ a {
 	max-width: 72ch;
 }
 
-/* ===== 4. Challenge ===== */
+/* ===== 4. The Market Challenge ===== */
 .challenge {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	padding: 8.75em 5em;
 	gap: 4em;
-	background-color: var(--dark-green);
+	background-color: var(--bg-warm);
 	contain: layout style;
 	content-visibility: auto;
 	contain-intrinsic-size: auto 1200px;
@@ -505,7 +516,7 @@ a {
 	font-size: clamp(2.25rem, 1.9rem + 1.2vw, 3.25rem);
 	line-height: 1.1;
 	font-weight: 800;
-	color: var(--cream);
+	color: var(--dark-text);
 	text-wrap: balance;
 }
 
@@ -537,7 +548,7 @@ a {
 	font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
 	line-height: 1.4;
 	font-weight: 400;
-	color: var(--cream-75);
+	color: var(--cream-80);
 	max-width: 10em;
 }
 
@@ -547,7 +558,7 @@ a {
 	width: 100%;
 	padding-top: 3em;
 	gap: 3em;
-	border-top: 1px solid var(--border-dark);
+	border-top: 1px solid var(--border-light);
 }
 
 .challenge__columns {
@@ -560,7 +571,7 @@ a {
 	font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
 	line-height: 1.6;
 	font-weight: 400;
-	color: var(--cream);
+	color: var(--body-text);
 	width: 100%;
 	max-width: 66ch;
 	text-wrap: pretty;
@@ -571,16 +582,17 @@ a {
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.65;
 	font-weight: 400;
-	color: var(--cream-75);
+	color: var(--body-text);
 	flex: 1;
 }
 
-/* ===== 5. Approach ===== */
+/* ===== 6. Our Approach ===== */
 .approach {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	padding: 8.75em 5em;
+	background-color: var(--bg-warm);
 	overflow: hidden;
 	contain: layout style;
 	content-visibility: auto;
@@ -1723,7 +1735,7 @@ a {
 		padding: 1.5em 2.5em;
 	}
 	.hero__content {
-		padding: 15em 2.5em 4em;
+		padding: 15em 2.5em 2.5em;
 	}
 	.biodiversity {
 		padding: 6.25em 2.5em;
@@ -1755,11 +1767,25 @@ a {
 		gap: 3em;
 	}
 	.hero__left {
-		width: 25em;
+		flex-basis: 25em;
+		max-width: 33em;
+	}
+	.hero__right {
+		flex: 1 1 20em;
+		max-width: 24em;
+		margin-left: 0;
+	}
+	.hero__banner {
+		margin-block: 2em 1.75em;
+		padding-inline: 2.5em;
 	}
 
 	.biodiversity__header {
 		gap: 3em;
+	}
+	.biodiversity__stats {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2em 1.5em;
 	}
 	.challenge__header {
 		gap: 3em;
@@ -1857,7 +1883,7 @@ a {
 
 	/* Hero */
 	.hero__content {
-		padding: 15em 1.5em 3em;
+		padding: 15em 1.5em 1.5em;
 		gap: 1.5em;
 	}
 	.hero__title {
@@ -1870,6 +1896,10 @@ a {
 	.hero__left {
 		width: 100%;
 	}
+	.hero__right {
+		width: 100%;
+		max-width: none;
+	}
 	.hero__scroll {
 		padding-bottom: 1.5em;
 	}
@@ -1877,8 +1907,7 @@ a {
 		width: 100%;
 		padding: 2em 1.5em;
 		gap: 1em;
-		transform: translateY(40%);
-		margin-top: -2em;
+		margin-block: 1.75em 1.5em;
 	}
 	.hero__banner-stats {
 		grid-template-columns: repeat(2, 1fr);
@@ -1896,9 +1925,6 @@ a {
 	}
 
 	/* Challenge */
-	.section--overlay-top.biodiversity {
-		padding-top: 16em;
-	}
 	.biodiversity {
 		padding: 10em 1.5em 5em;
 		gap: 3em;
@@ -1907,6 +1933,10 @@ a {
 		flex-direction: column;
 		gap: 2em;
 		align-items: flex-start;
+	}
+	.biodiversity__stats {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5em 1em;
 	}
 	.biodiversity__body {
 		gap: 1.5em;
@@ -1938,7 +1968,7 @@ a {
 		gap: 1.5em;
 	}
 
-	/* Approach */
+	/* 6. Our Approach */
 	.approach {
 		padding: 5em 1.5em;
 	}
