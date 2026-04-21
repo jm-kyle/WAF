@@ -160,7 +160,7 @@ if (!prefersReducedMotion) {
 			ease: "settle",
 		})
 		.from(
-			".hero__tagline, .hero__context",
+			".hero__tagline, .hero__card-eyebrow, .hero__context",
 			{
 				opacity: 0,
 				y: φ * 15, // ≈ 24.3

@@ -238,11 +238,12 @@ a {
 
 .hero__title {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-	font-size: clamp(2.5rem, 1.5rem + 4vw, 4.05rem);
+	font-size: clamp(2.58rem, 1.56rem + 4.02vw, 4.15rem);
 	line-height: 1.1;
 	font-weight: 700;
 	color: var(--cream);
 	max-width: 23ch;
+	margin-bottom: 0.2em;
 	text-wrap: balance;
 }
 
@@ -290,8 +291,24 @@ a {
 	font-size: clamp(0.9375rem, 0.85rem + 0.2vw, 1.0625rem);
 	line-height: 1.8;
 	font-weight: 400;
-	color: var(--cream-85);
+	color: inherit;
 	text-wrap: pretty;
+}
+
+.hero__left .hero__context {
+	color: var(--cream-85);
+}
+
+.hero__card {
+	padding: 3em;
+	border-radius: 0.5em;
+	background-color: var(--bg-warm);
+	color: var(--body-text);
+}
+
+.hero__card-eyebrow {
+	display: block;
+	margin-bottom: 1.25em;
 }
 
 .hero__buttons {
