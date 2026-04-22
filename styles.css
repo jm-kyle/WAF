@@ -593,6 +593,13 @@ a {
 	gap: 3em;
 }
 
+.challenge__column {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
 .challenge__lead {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
