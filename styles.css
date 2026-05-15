@@ -21,6 +21,64 @@
 	--black: #000;
 }
 
+/* ===== Scroll Reveal =====
+   Elements default to visible. JS adds .reveal / .reveal-group to hide
+   them, then IntersectionObserver adds .is-visible to play the
+   transition. If JS fails or the observer never fires, a window.load
+   safety net adds .is-visible after a delay. */
+.reveal {
+	opacity: 0;
+	transform: translate3d(0, 30px, 0);
+	transition:
+		opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+		transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+	will-change: opacity, transform;
+}
+
+.reveal--from-left {
+	transform: translate3d(-38px, 0, 0);
+	transition-duration: 1.4s;
+}
+
+.reveal--from-right {
+	transform: translate3d(38px, 0, 0);
+	transition-duration: 1.4s;
+}
+
+.reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+.reveal-group > * {
+	opacity: 0;
+	transform: translate3d(0, 30px, 0);
+	transition:
+		opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+		transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+	will-change: opacity, transform;
+}
+
+.reveal-group.is-visible > * {
+	opacity: 1;
+	transform: none;
+}
+
+.reveal-group.is-visible > *:nth-child(2) { transition-delay: 0.08s; }
+.reveal-group.is-visible > *:nth-child(3) { transition-delay: 0.16s; }
+.reveal-group.is-visible > *:nth-child(4) { transition-delay: 0.24s; }
+.reveal-group.is-visible > *:nth-child(5) { transition-delay: 0.32s; }
+.reveal-group.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal,
+	.reveal-group > * {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+	}
+}
+
 /* ===== Reset & Base ===== */
 *,
 *::before,

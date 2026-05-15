@@ -11,7 +11,6 @@ ScrollTrigger.config({
 ScrollTrigger.defaults({
 	once: true,
 	toggleActions: "play none none none",
-	invalidateOnRefresh: true,
 });
 
 // Re-measure trigger positions after late-loading fonts and images so
@@ -120,33 +119,6 @@ if (!prefersReducedMotion) {
 			: 1;
 	});
 
-	// ===== Animation defaults =====
-	const fadeUp = { opacity: 0, y: φ * 18.5 }; // ≈ 30
-
-	// Adaptive scroll-trigger start — ensures trigger is reachable on all viewport sizes
-	// On tall/portrait screens, bottom sections may not scroll far enough for fixed thresholds
-	function adaptiveStart(idealPct) {
-		return (self) => {
-			const vh = window.innerHeight;
-			const docH = document.documentElement.scrollHeight;
-			const maxScroll = docH - vh;
-			if (maxScroll <= 0) return `top ${idealPct}%`;
-
-			let top = 0,
-				el = self.trigger;
-			while (el) {
-				top += el.offsetTop;
-				el = el.offsetParent;
-			}
-
-			// Minimum viewport % the trigger top can reach at max scroll
-			const minPct = ((top - maxScroll) / vh) * 100;
-			return `top ${Math.min(Math.max(minPct + 5, idealPct), 97)}%`;
-		};
-	}
-	const s85 = adaptiveStart(85);
-	const s80 = adaptiveStart(80);
-
 	// ===== 1. Nav — fade in on load =====
 	gsap.from(".nav", {
 		opacity: 0,
@@ -224,134 +196,83 @@ if (!prefersReducedMotion) {
 		},
 	});
 
-	// ===== 3. Biodiversity + Challenge — scroll-triggered reveals =====
-	gsap.from(".biodiversity__heading > *", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.2,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".biodiversity__heading",
-			start: s85,
-		},
-	});
+	// ===== Scroll reveals via IntersectionObserver =====
+	// Replaces the gsap.from() + ScrollTrigger pattern. That pattern set
+	// targets to opacity 0 immediately and relied on scroll triggers to
+	// fire; if positions were mis-measured (e.g. before fonts/images
+	// settled) or Lenis smooth-scrolling caused a trigger to be missed,
+	// the target stayed invisible forever. IO is browser-native, does
+	// not care about layout shifts, and pairs with a safety net.
 
-	gsap.from(".biodiversity__body > *", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.2,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".biodiversity__body",
-			start: s85,
-		},
-	});
-
-	gsap.from(".challenge__heading > *", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.2,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".challenge__heading",
-			start: s85,
-		},
-	});
-
-	// Stat countUp
-	const statData = [
-		{ suffix: "%", value: 50 },
-		{ suffix: "%", value: 30 },
-		{ suffix: "%", value: 50 },
-		{ suffix: "%", value: 70 },
-		{ suffix: "%", value: 40 },
-		{ prefix: "~", suffix: "%", value: 40 },
+	const revealGroups = [
+		".biodiversity__heading",
+		".biodiversity__body",
+		".challenge__heading",
+		".challenge__body",
+		".approach__heading",
+		".approach__intro",
+		".pillar-grid__header",
+		".pillar-grid__cards",
+		".gaviota__text",
+		".team__heading",
 	];
 
-	document.querySelectorAll(".stat__number").forEach((el, i) => {
-		if (!statData[i]) return;
-		const { value, suffix, prefix = "" } = statData[i];
-		const obj = { val: 0 };
+	const revealItems = [
+		".where__header",
+		".gaviota__image",
+		".team__desc",
+		".member",
+		".pillar",
+		".footer__sponsor",
+		".footer__logo",
+	];
 
-		gsap.from(el.closest(".stat"), {
-			...fadeUp,
-			duration: φInv,
-			ease: "reveal",
-			scrollTrigger: {
-				trigger: el.closest(".stat"),
-				start: s85,
-				onEnter: () => {
-					gsap.to(obj, {
-						val: value,
-						duration: φ, // 1.618s count-up
-						ease: "countUp",
-						snap: { val: 1 },
-						onUpdate() {
-							el.textContent = `${prefix}${Math.round(obj.val)}${suffix}`;
-						},
-					});
-				},
-			},
-		});
+	revealGroups.forEach((sel) => {
+		document
+			.querySelectorAll(sel)
+			.forEach((el) => el.classList.add("reveal-group"));
 	});
+	revealItems.forEach((sel) => {
+		document
+			.querySelectorAll(sel)
+			.forEach((el) => el.classList.add("reveal"));
+	});
+	document
+		.querySelectorAll(".contact__left")
+		.forEach((el) => el.classList.add("reveal", "reveal--from-left"));
+	document
+		.querySelectorAll(".contact__form")
+		.forEach((el) => el.classList.add("reveal", "reveal--from-right"));
 
-	// Challenge body text
-	gsap.from(".challenge__text", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.25, // ≈ 0.155
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".challenge__body",
-			start: s85,
+	const revealObserver = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("is-visible");
+					revealObserver.unobserve(entry.target);
+				}
+			});
 		},
+		{ threshold: 0, rootMargin: "0px 0px -8% 0px" },
+	);
+
+	document
+		.querySelectorAll(".reveal, .reveal-group")
+		.forEach((el) => revealObserver.observe(el));
+
+	// Safety net: after window.load + 1.8s, force any still-hidden
+	// reveals to their visible state. Catches any IO edge case.
+	window.addEventListener("load", () => {
+		setTimeout(() => {
+			document
+				.querySelectorAll(
+					".reveal:not(.is-visible), .reveal-group:not(.is-visible)",
+				)
+				.forEach((el) => el.classList.add("is-visible"));
+		}, 1800);
 	});
 
-	// ===== 4. Approach — header + intro + staggered pillars =====
-	gsap.from(".approach__header > *", {
-		...fadeUp,
-		duration: φInv + φInv * φInv, // ≈ 1.0
-		stagger: φInv * 0.2,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".approach__header",
-			start: s85,
-		},
-	});
-
-	gsap.from(".approach__intro > *", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.18,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".approach__intro",
-			start: s85,
-		},
-	});
-
-	gsap.from(".pillar", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.2,
-		ease: "settle",
-		scrollTrigger: {
-			trigger: ".pillar",
-			start: s85,
-		},
-	});
-
-	// ===== 5. Where We Work — layered reveal =====
-	gsap.from(".where__header", {
-		...fadeUp,
-		duration: φInv + φInv * φInv,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".where__header",
-			start: s85,
-		},
-	});
-
+	// ===== Maps — IO-triggered GSAP timelines =====
 	const scienceMap = document.querySelector(".science-map");
 	if (scienceMap) {
 		const scienceMapImage = scienceMap.querySelector(".science-map__image");
@@ -370,42 +291,56 @@ if (!prefersReducedMotion) {
 			gsap.set(scienceMapLabels, { opacity: 0, y: 4 });
 		}
 
-		ScrollTrigger.create({
-			trigger: scienceMap,
-			start: s85,
-			once: true,
-			onEnter: () => {
-				const tl = gsap.timeline();
-
-				if (scienceMapImage) {
-					tl.to(scienceMapImage, {
+		let playedScienceMap = false;
+		const playScienceMap = () => {
+			if (playedScienceMap) return;
+			playedScienceMap = true;
+			const tl = gsap.timeline();
+			if (scienceMapImage) {
+				tl.to(scienceMapImage, {
+					opacity: 1,
+					scale: 1,
+					duration: φInv + φInv * φInv,
+					ease: "reveal",
+				});
+			}
+			if (scienceMapLabels.length) {
+				tl.to(
+					scienceMapLabels,
+					{
 						opacity: 1,
-						scale: 1,
-						duration: φInv + φInv * φInv,
+						y: 0,
+						duration: φInv * 0.55,
+						stagger: 0.012,
 						ease: "reveal",
-					});
-				}
+					},
+					"-=0.45",
+				);
+			}
+		};
 
-				if (scienceMapLabels.length) {
-					tl.to(
-						scienceMapLabels,
-						{
-							opacity: 1,
-							y: 0,
-							duration: φInv * 0.55,
-							stagger: 0.012,
-							ease: "reveal",
-						},
-						"-=0.45",
-					);
-				}
+		const scienceMapObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						scienceMapObserver.disconnect();
+						playScienceMap();
+					}
+				});
 			},
+			{ threshold: 0, rootMargin: "0px 0px -8% 0px" },
+		);
+		scienceMapObserver.observe(scienceMap);
+
+		window.addEventListener("load", () => {
+			setTimeout(() => {
+				scienceMapObserver.disconnect();
+				playScienceMap();
+			}, 2200);
 		});
 	}
 
-	// Map — fetch SVG inline, then animate states + stagger pins.
-	// `cache: "no-cache"` forces a revalidation (ETag/If-Modified-Since) so
-	// edits to the SVG show up on reload without stale-cache surprises.
+	// WAF map — fetch SVG inline, then animate states + stagger pins on IO.
 	const mapContainer = document.querySelector(".map-placeholder[data-svg-src]");
 	if (mapContainer) {
 		fetch(mapContainer.dataset.svgSrc, { cache: "no-cache" })
@@ -418,10 +353,7 @@ if (!prefersReducedMotion) {
 				const markers = svg.querySelectorAll(".marker, circle");
 				const mapLayers = [states, borders].filter(Boolean);
 
-				// Hide everything initially
-				if (mapLayers.length) {
-					gsap.set(mapLayers, { opacity: 0 });
-				}
+				if (mapLayers.length) gsap.set(mapLayers, { opacity: 0 });
 				if (markers.length) {
 					gsap.set(markers, {
 						opacity: 0,
@@ -430,114 +362,62 @@ if (!prefersReducedMotion) {
 					});
 				}
 
-				// Refresh ScrollTrigger after SVG changes page height
-				ScrollTrigger.refresh();
-
-				// Animate on scroll
-				ScrollTrigger.create({
-					trigger: mapContainer,
-					start: s85,
-					once: true,
-					onEnter: () => {
-						const tl = gsap.timeline();
-						// States fade in
-						if (mapLayers.length) {
-							tl.to(mapLayers, {
+				let playedWafMap = false;
+				const playWafMap = () => {
+					if (playedWafMap) return;
+					playedWafMap = true;
+					const tl = gsap.timeline();
+					if (mapLayers.length) {
+						tl.to(mapLayers, {
+							opacity: 1,
+							duration: φInv,
+							ease: "reveal",
+						});
+					}
+					if (markers.length) {
+						tl.to(
+							markers,
+							{
 								opacity: 1,
-								duration: φInv, // faster map reveal
-								ease: "reveal",
-							});
-						}
-						// Pins stagger in almost immediately after
-						if (markers.length) {
-							tl.to(
-								markers,
-								{
-									opacity: 1,
-									scale: 1,
-									duration: φInv * 0.6,
-									stagger: φInv * 0.08,
-									ease: "settle",
-								},
-								`-=${φInv * 0.5}`,
-							);
-						}
+								scale: 1,
+								duration: φInv * 0.6,
+								stagger: φInv * 0.08,
+								ease: "settle",
+							},
+							`-=${φInv * 0.5}`,
+						);
+					}
+				};
+
+				const wafMapObserver = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								wafMapObserver.disconnect();
+								playWafMap();
+							}
+						});
 					},
-				});
+					{ threshold: 0, rootMargin: "0px 0px -8% 0px" },
+				);
+				wafMapObserver.observe(mapContainer);
+
+				setTimeout(() => {
+					wafMapObserver.disconnect();
+					playWafMap();
+				}, 3000);
 			});
 	}
 
-	gsap.from(".gaviota__image", {
-		opacity: 0,
-		scale: 1.03,
-		duration: φ,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".gaviota",
-			start: s80,
-		},
-	});
-
-	gsap.from(".gaviota__text > *", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.2,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".gaviota",
-			start: s80,
-		},
-	});
-
-	// ===== 6. Team — portrait + bio reveals =====
-	gsap.from(".team__header", {
-		...fadeUp,
-		duration: φInv + φInv * φInv,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".team__header",
-			start: s85,
-		},
-	});
-
-	ScrollTrigger.batch(".member", {
-		start: s85,
-		onEnter: (batch) => {
-			gsap.from(batch, {
-				...fadeUp,
-				duration: φInv + φInv * φInv,
-				stagger: φInv * 0.25,
-				ease: "settle",
-			});
-		},
-		once: true,
-	});
-
-	// ===== 7. Resources — row-by-row reveal =====
-	gsap.from(".resources__heading", {
-		...fadeUp,
-		duration: φInv + φInv * φInv,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".resources__inner",
-			start: s85,
-		},
-	});
-
-	gsap.from(".resource-row", {
-		...fadeUp,
-		duration: φInv,
-		stagger: φInv * 0.2,
-		ease: "settle",
-		scrollTrigger: {
-			trigger: ".resources__list",
-			start: s85,
-		},
-	});
-
-	// Resource row hover — black bg scales in, colors invert
-	const creamColor = getComputedStyle(document.documentElement).getPropertyValue('--cream').trim();
-	const cream55Color = getComputedStyle(document.documentElement).getPropertyValue('--cream-55').trim();
+	// Resource row hover — black bg scales in, colors invert.
+	// (No-op if no .resource-row exists; kept for if the resources
+	// section returns.)
+	const creamColor = getComputedStyle(document.documentElement)
+		.getPropertyValue("--cream")
+		.trim();
+	const cream55Color = getComputedStyle(document.documentElement)
+		.getPropertyValue("--cream-55")
+		.trim();
 	document.querySelectorAll(".resource-row").forEach((row) => {
 		const bg = row.querySelector(".resource-row__bg");
 		const title = row.querySelector(".resource-row__title");
@@ -546,78 +426,27 @@ if (!prefersReducedMotion) {
 
 		const enterTl = gsap.timeline({ paused: true });
 		enterTl
-			.to(bg, {
-				scaleY: 1,
-				duration: φInv * φInv, // 0.382s
-				ease: "reveal",
-			})
+			.to(bg, { scaleY: 1, duration: φInv * φInv, ease: "reveal" })
 			.to(
 				title,
 				{ color: creamColor, duration: φInv * φInv, ease: "reveal" },
-				φInv * 0.062, // ≈ 0.038
+				φInv * 0.062,
 			)
 			.to(
 				tag,
-				{
-					color: cream55Color,
-					duration: φInv * φInv,
-					ease: "reveal",
-				},
-				φInv * 0.16, // ≈ 0.1
+				{ color: cream55Color, duration: φInv * φInv, ease: "reveal" },
+				φInv * 0.16,
 			)
 			.to(
 				icon,
 				{ color: creamColor, y: -2, duration: φInv * φInv, ease: "reveal" },
-				φInv * 0.1, // ≈ 0.062
+				φInv * 0.1,
 			);
 
 		row.addEventListener("mouseenter", () => enterTl.timeScale(1).play());
 		row.addEventListener("mouseleave", () => enterTl.timeScale(φ).reverse());
 	});
 
-	// ===== 8. Contact — split reveal =====
-	gsap.from(".contact__left", {
-		opacity: 0,
-		x: -φ * 24, // ≈ -38.8
-		duration: φ, // 1.618s
-		ease: "drift",
-		scrollTrigger: {
-			trigger: ".contact",
-			start: s80,
-		},
-	});
-
-	gsap.from(".contact__form", {
-		opacity: 0,
-		x: φ * 24,
-		duration: φ,
-		ease: "drift",
-		scrollTrigger: {
-			trigger: ".contact",
-			start: s80,
-		},
-	});
-	// ===== 9. Footer — reveal on enter, guaranteed to fire =====
-	gsap.from(".footer__sponsor", {
-		...fadeUp,
-		duration: φInv,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".footer",
-			start: "top bottom",
-		},
-	});
-
-	gsap.from(".footer__logo", {
-		...fadeUp,
-		duration: φInv,
-		delay: φInv * 0.15,
-		ease: "reveal",
-		scrollTrigger: {
-			trigger: ".footer",
-			start: "top bottom",
-		},
-	});
 } // end reduced-motion guard
 
 // ===== Bio Modal =====
