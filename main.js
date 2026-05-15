@@ -9,10 +9,17 @@ ScrollTrigger.config({
 	ignoreMobileResize: true,
 });
 ScrollTrigger.defaults({
-	fastScrollEnd: true,
 	once: true,
 	toggleActions: "play none none none",
+	invalidateOnRefresh: true,
 });
+
+// Re-measure trigger positions after late-loading fonts and images so
+// adaptive `start` calculations don't fire at stale offsets.
+if (document.fonts && document.fonts.ready) {
+	document.fonts.ready.then(() => ScrollTrigger.refresh());
+}
+window.addEventListener("load", () => ScrollTrigger.refresh());
 
 const prefersReducedMotion = window.matchMedia(
 	"(prefers-reduced-motion: reduce)",

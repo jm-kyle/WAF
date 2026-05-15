@@ -37,7 +37,7 @@ html {
 }
 
 body {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	color: var(--body-text);
 	background: var(--white);
 }
@@ -65,7 +65,7 @@ a {
 	padding: 0.75em 1.25em;
 	background: var(--dark-green);
 	color: var(--cream);
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 500;
 	border-radius: 0 0 4px 4px;
@@ -96,7 +96,7 @@ a {
 
 /* ===== Utility ===== */
 .section-label {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	font-weight: 500;
 	letter-spacing: 0.16em;
@@ -144,7 +144,7 @@ a {
 }
 
 .nav__link {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 600;
 	letter-spacing: 0.04em;
@@ -160,7 +160,7 @@ a {
 	padding: 0.625em 1.5em;
 	border-radius: 4px;
 	background-color: var(--dark-green);
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 500;
 	letter-spacing: 0.04em;
@@ -219,7 +219,7 @@ a {
 }
 
 .hero__eyebrow {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
 	font-weight: 600;
 	letter-spacing: 0.08em;
@@ -325,7 +325,7 @@ a {
 	padding: 0.875em 2em;
 	border-radius: 4px;
 	background-color: var(--light-green);
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 600;
 	letter-spacing: 0.04em;
@@ -352,7 +352,7 @@ a {
 	border-radius: 4px;
 	border: 1.5px solid var(--border-dark);
 	background: transparent;
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 500;
 	letter-spacing: 0.04em;
@@ -400,7 +400,7 @@ a {
 }
 
 .hero__banner-text {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.12vw, 1.0625rem);
 	line-height: 1.8;
 	font-weight: 400;
@@ -432,7 +432,7 @@ a {
 }
 
 .banner-stat__label {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
 	line-height: 1.4;
 	font-weight: 400;
@@ -502,13 +502,34 @@ a {
 }
 
 .biodiversity__text {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.65;
 	font-weight: 400;
 	color: var(--cream-75);
 	width: 100%;
 	max-width: 72ch;
+}
+
+/* Cream variant — for separation between green sections */
+.biodiversity--cream {
+	background-color: var(--cream);
+}
+
+.biodiversity--cream .biodiversity__title {
+	color: var(--dark-text);
+}
+
+.biodiversity--cream .biodiversity__lead {
+	color: var(--dark-text);
+}
+
+.biodiversity--cream .biodiversity__text {
+	color: var(--body-text);
+}
+
+.biodiversity--cream .biodiversity__divider {
+	border-top-color: var(--border-light);
 }
 
 /* ===== 4. The Market Challenge ===== */
@@ -562,7 +583,7 @@ a {
 }
 
 .stat__number {
-	font-family: "Fraunces", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(3.125rem, 2.5rem + 2.25vw, 4.5rem);
 	line-height: 1;
 	letter-spacing: -0.03em;
@@ -571,7 +592,7 @@ a {
 }
 
 .stat__label {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
 	line-height: 1.4;
 	font-weight: 400;
@@ -612,7 +633,7 @@ a {
 }
 
 .challenge__text {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.65;
 	font-weight: 400;
@@ -708,7 +729,7 @@ a {
 }
 
 .approach__intro-text {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
 	line-height: 1.7;
 	font-weight: 400;
@@ -735,7 +756,7 @@ a {
 }
 
 .pillar__number {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	line-height: 1.29;
 	font-weight: 400;
@@ -756,12 +777,131 @@ a {
 }
 
 .pillar__desc {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.875rem, 0.83rem + 0.15vw, 1rem);
 	line-height: 1.63;
 	font-weight: 400;
 	color: var(--body-text);
 	flex: 1;
+}
+
+/* ===== Pillar Grid (2x2) ===== */
+.pillar-grid {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 8.75em 5em;
+	gap: 4em;
+}
+
+.pillar-grid__header {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25em;
+	max-width: 48em;
+}
+
+.pillar-grid__title {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	font-weight: 400;
+	color: var(--dark-text);
+	margin: 0;
+}
+
+.pillar-grid__lead {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+	line-height: 1.55;
+	color: var(--body-text);
+	margin: 0;
+}
+
+.pillar-grid__cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+}
+
+.pillar-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25em;
+	padding: 3em;
+}
+
+/* Plus-sign divider: right border on left column, bottom border on top row */
+.pillar-card:nth-child(odd) {
+	border-right: 1px solid var(--border-light);
+}
+
+.pillar-card:nth-child(-n + 2) {
+	border-bottom: 1px solid var(--border-light);
+}
+
+.pillar-card:nth-child(odd) {
+	padding-left: 0;
+}
+
+.pillar-card:nth-child(even) {
+	padding-right: 0;
+}
+
+.pillar-card:nth-child(-n + 2) {
+	padding-top: 0;
+}
+
+.pillar-card:nth-child(n + 3) {
+	padding-bottom: 0;
+}
+
+.pillar-card__number {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--dark-green);
+	letter-spacing: 0.04em;
+}
+
+.pillar-card__title {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(1.375rem, 1.25rem + 0.4vw, 1.625rem);
+	line-height: 1.25;
+	font-weight: 500;
+	color: var(--dark-text);
+	margin: 0;
+}
+
+.pillar-card__desc {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+	line-height: 1.6;
+	color: var(--body-text);
+	margin: 0;
+}
+
+@media (max-width: 900px) {
+	.pillar-grid {
+		padding: 5em 1.5em;
+		gap: 2.5em;
+	}
+	.pillar-grid__cards {
+		grid-template-columns: 1fr;
+	}
+	.pillar-card {
+		padding: 2em 0;
+		border-right: none !important;
+		border-bottom: 1px solid var(--border-light) !important;
+	}
+	.pillar-card:last-child {
+		border-bottom: none !important;
+		padding-bottom: 0;
+	}
+	.pillar-card:first-child {
+		padding-top: 0;
+	}
 }
 
 /* ===== 5. Where We Work ===== */
@@ -803,7 +943,7 @@ a {
 }
 
 .where__desc {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.65;
 	font-weight: 400;
@@ -853,7 +993,7 @@ a {
 }
 
 .where-map__eyebrow {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.75rem;
 	font-weight: 600;
 	letter-spacing: 0.12em;
@@ -924,7 +1064,7 @@ a {
 #g-big_map-Artboard-xl p,
 #g-big_map-Artboard-s p,
 #g-big_map-Artboard-l p {
-	font-family: "Figtree", arial, helvetica, sans-serif;
+	font-family: "Plus Jakarta Sans", arial, helvetica, sans-serif;
 	font-weight: 300;
 	line-height: 16px;
 	opacity: 1;
@@ -1010,7 +1150,7 @@ a {
 }
 
 #g-big_map-Artboard-m p {
-	font-family: "Figtree", arial, helvetica, sans-serif;
+	font-family: "Plus Jakarta Sans", arial, helvetica, sans-serif;
 	font-weight: 700;
 	line-height: 19px;
 	height: auto;
@@ -1149,7 +1289,7 @@ a {
 }
 
 .where-map__caption {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	line-height: 1.5;
 	color: var(--muted-text);
@@ -1171,7 +1311,7 @@ a {
 .map-placeholder__fallback {
 	padding: 3em;
 	text-align: center;
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	color: var(--muted-text);
 }
@@ -1212,7 +1352,7 @@ a {
 }
 
 .gaviota__desc {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.875rem, 0.85rem + 0.07vw, 0.9375rem);
 	line-height: 1.67;
 	font-weight: 400;
@@ -1265,7 +1405,7 @@ a {
 }
 
 .team__desc {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.91rem + 0.07vw, 1rem);
 	line-height: 1.63;
 	font-weight: 400;
@@ -1319,7 +1459,7 @@ a {
 }
 
 .member__role {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	font-weight: 500;
 	letter-spacing: 0.06em;
@@ -1337,7 +1477,7 @@ a {
 }
 
 .member__bio {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.875rem, 0.85rem + 0.07vw, 0.9375rem);
 	line-height: 1.6;
 	font-weight: 400;
@@ -1351,7 +1491,7 @@ a {
 }
 
 .member__more {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.875rem, 0.85rem + 0.07vw, 0.9375rem);
 	font-weight: 500;
 	color: var(--light-green);
@@ -1424,7 +1564,7 @@ a {
 }
 
 .bio-modal__role {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	font-weight: 500;
 	letter-spacing: 0.06em;
@@ -1442,7 +1582,7 @@ a {
 }
 
 .bio-modal__bio {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.65;
 	font-weight: 400;
@@ -1536,7 +1676,7 @@ a {
 }
 
 .resource-row__title {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(1.125rem, 1.04rem + 0.3vw, 1.375rem);
 	line-height: 1.27;
 	font-weight: 400;
@@ -1544,7 +1684,7 @@ a {
 }
 
 .resource-row__tag {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	line-height: 1.23;
 	font-weight: 400;
@@ -1610,7 +1750,7 @@ a {
 }
 
 .contact__label {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	font-weight: 500;
 	color: var(--cream-75);
@@ -1624,7 +1764,7 @@ a {
 
 .contact__input,
 .contact__textarea {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.9375rem;
 	line-height: 1.5;
 	font-weight: 400;
@@ -1663,7 +1803,7 @@ a {
 	padding: 1em 2.5em;
 	border-radius: 4px;
 	background-color: var(--light-green);
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.9375rem;
 	font-weight: 600;
 	letter-spacing: 0.02em;
@@ -1712,7 +1852,7 @@ a {
 }
 
 .footer__nav a {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 500;
 	color: var(--body-text);
@@ -1733,7 +1873,7 @@ a {
 }
 
 .footer__sponsor {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	line-height: 1.5;
 	font-weight: 400;
@@ -1741,7 +1881,7 @@ a {
 }
 
 .footer__legal {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.8125rem;
 	line-height: 1.5;
 	font-weight: 400;
@@ -2179,7 +2319,7 @@ a {
 
 /* ===== Prose ===== */
 .prose {
-	font-family: "Figtree", system-ui, sans-serif;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.07vw, 1rem);
 	line-height: 1.6;
 }
