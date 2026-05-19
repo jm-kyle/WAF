@@ -569,6 +569,25 @@ a {
 	max-width: 72ch;
 }
 
+.biodiversity__footnote {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.75rem, 0.72rem + 0.07vw, 0.8125rem);
+	line-height: 1.5;
+	font-weight: 400;
+	color: var(--cream-75, var(--cream));
+	margin: 0;
+	opacity: 0.85;
+}
+
+.stat__footnote-ref {
+	font-size: 0.5em;
+	vertical-align: super;
+	line-height: 0;
+	margin-left: 0.15em;
+	color: var(--cream-80, var(--cream));
+	opacity: 0.85;
+}
+
 /* Cream variant — for separation between green sections */
 .biodiversity--cream {
 	background-color: var(--cream);
@@ -641,7 +660,7 @@ a {
 }
 
 .stat__number {
-	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-family: "Fraunces", system-ui, sans-serif;
 	font-size: clamp(3.125rem, 2.5rem + 2.25vw, 4.5rem);
 	line-height: 1;
 	letter-spacing: -0.03em;
@@ -697,6 +716,52 @@ a {
 	font-weight: 400;
 	color: var(--body-text);
 	flex: 1;
+	max-width: 65ch;
+}
+
+/* Green variant — for visual rhythm against cream sections */
+.challenge--green {
+	background-color: var(--dark-green);
+}
+
+.challenge--green .challenge__title {
+	color: var(--cream);
+}
+
+.challenge--green .challenge__lead {
+	color: var(--cream);
+}
+
+.challenge--green .challenge__text {
+	color: var(--cream-75);
+}
+
+.challenge--green .challenge__body {
+	border-top-color: var(--border-dark);
+}
+
+.challenge--green .section-label--green {
+	color: var(--light-green);
+}
+
+.challenge--green .pillar {
+	border-bottom-color: var(--border-dark);
+}
+
+.challenge--green .pillar:first-of-type {
+	border-top-color: var(--border-dark);
+}
+
+.challenge--green .pillar__number {
+	color: var(--light-green);
+}
+
+.challenge--green .pillar__title {
+	color: var(--cream);
+}
+
+.challenge--green .pillar__desc {
+	color: var(--cream-75);
 }
 
 /* ===== 6. Our Approach ===== */
@@ -798,6 +863,15 @@ a {
 .approach__intro-text--emphasis {
 	color: var(--dark-text);
 	font-weight: 500;
+}
+
+.approach-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .pillar {
@@ -974,10 +1048,15 @@ a {
 	contain-intrinsic-size: auto 1100px;
 }
 
+.where--cream {
+	background-color: var(--bg-warm);
+}
+
 .where__header {
 	display: flex;
 	width: 100%;
 	gap: 5em;
+	align-items: flex-end;
 }
 
 .where__heading {
@@ -1764,6 +1843,64 @@ a {
 	gap: 5em;
 	justify-content: center;
 	background-color: var(--dark-green);
+}
+
+.contact__body {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+	line-height: 1.65;
+	font-weight: 400;
+	color: var(--cream-85);
+	max-width: 56ch;
+}
+
+/* Cream variant — for visual rhythm */
+.contact--cream {
+	background-color: var(--bg-warm);
+}
+
+.contact--cream .contact__title {
+	color: var(--dark-text);
+}
+
+.contact--cream .contact__body {
+	color: var(--body-text);
+}
+
+.contact--cream .contact__label {
+	color: var(--body-text);
+}
+
+.contact--cream .contact__optional {
+	color: var(--body-text);
+	opacity: 0.65;
+}
+
+.contact--cream .contact__input,
+.contact--cream .contact__textarea {
+	color: var(--dark-text);
+	background: rgba(0, 0, 0, 0.04);
+	border: 1px solid var(--border-light);
+}
+
+.contact--cream .contact__input::placeholder,
+.contact--cream .contact__textarea::placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+
+.contact--cream .contact__input:focus,
+.contact--cream .contact__textarea:focus {
+	border-color: var(--forest-green);
+	background: rgba(0, 0, 0, 0.06);
+}
+
+.contact--cream .contact__btn {
+	background-color: var(--dark-green);
+	color: var(--cream);
+}
+
+.contact--cream .contact__btn:hover {
+	background-color: var(--forest-green);
 }
 
 .contact__left {

@@ -21,7 +21,7 @@
       }
 
       .st4 {
-        fill: #3aa806;
+        fill: #2d5a3d;
       }
 
       .st4, .st5, .st6, .st7, .st8, .st9, .st10, .st11, .st12, .st13, .st14, .st15, .st16, .st17, .st18, .st19, .st20, .st21, .st22 {
@@ -29,47 +29,51 @@
       }
 
       .st4, .st5, .st6, .st7, .st8, .st9, .st11, .st12, .st13, .st14, .st15, .st16, .st17, .st19, .st20, .st21, .st22 {
-        opacity: .3;
+        fill-opacity: .3;
+        stroke: #2d5a3d;
+        stroke-width: 0.75px;
+        stroke-opacity: .3;
+        stroke-linejoin: round;
       }
 
       .st5 {
-        fill: #a7a807;
+        fill: #2d5a3d;
       }
 
       .st6 {
-        fill: #01a985;
+        fill: #2d5a3d;
       }
 
       .st7 {
-        fill: #96e600;
+        fill: #2d5a3d;
       }
 
       .st8 {
-        fill: #0da885;
+        fill: #2d5a3d;
       }
 
       .st9 {
-        fill: #a5c7b2;
+        fill: #2d5a3d;
       }
 
       .st11 {
-        fill: #3da70b;
+        fill: #2d5a3d;
       }
 
       .st12 {
-        fill: #277301;
+        fill: #2d5a3d;
       }
 
       .st13 {
-        fill: #fbc4bb;
+        fill: #2d5a3d;
       }
 
       .st14 {
-        fill: #cfa96a;
+        fill: #2d5a3d;
       }
 
       .st15 {
-        fill: #d6c29e;
+        fill: #2d5a3d;
       }
 
       .st23 {
@@ -77,16 +81,21 @@
       }
 
       .st16 {
-        fill: #70a700;
+        fill: #2d5a3d;
       }
 
       .st17 {
-        fill: #447c23;
+        fill: #2d5a3d;
       }
 
       .st18 {
         font-family: Helvetica, Helvetica;
         font-size: 9px;
+        paint-order: stroke fill;
+        stroke: #fff;
+        stroke-width: 1.5px;
+        stroke-linejoin: round;
+        stroke-opacity: .7;
       }
 
       .st18, .st1, .st2 {
@@ -98,15 +107,15 @@
       }
 
       .st19 {
-        fill: #50e50b;
+        fill: #2d5a3d;
       }
 
       .st3 {
-        fill: #e8e4df;
+        fill: #edeae3;
       }
 
       .st20 {
-        fill: #70a605;
+        fill: #2d5a3d;
       }
 
       .st24 {
@@ -114,11 +123,11 @@
       }
 
       .st21 {
-        fill: #5c8944;
+        fill: #2d5a3d;
       }
 
       .st22 {
-        fill: #4fe600;
+        fill: #2d5a3d;
       }
     </style>
   </defs>
