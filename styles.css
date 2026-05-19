@@ -938,7 +938,7 @@ a {
 	font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
 	line-height: 1.1;
 	letter-spacing: -0.01em;
-	font-weight: 400;
+	font-weight: 800;
 	color: var(--dark-text);
 	margin: 0;
 }
