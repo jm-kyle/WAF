@@ -112,8 +112,8 @@
 
       .st3 {
         fill: #edeae3;
-        stroke: #2d5a3d;
-        stroke-opacity: 0.4;
+        stroke: #ffffff;
+        stroke-opacity: 1;
         stroke-width: 1px;
       }
 
