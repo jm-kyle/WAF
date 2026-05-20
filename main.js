@@ -169,8 +169,8 @@ if (!prefersReducedMotion) {
 			`-=${φInv * φInv}`,
 		);
 
-	// ===== Hero parallax — background shifts on scroll =====
-	gsap.to(".hero", {
+	// ===== Hero parallax — slides shift on scroll =====
+	gsap.to(".hero__slide", {
 		backgroundPositionY: "55%",
 		ease: "none",
 		scrollTrigger: {
@@ -448,6 +448,95 @@ if (!prefersReducedMotion) {
 	});
 
 } // end reduced-motion guard
+
+// ===== Hero carousel =====
+{
+	const slides = Array.from(document.querySelectorAll(".hero__slide"));
+	const prevBtn = document.querySelector(".hero__control--prev");
+	const nextBtn = document.querySelector(".hero__control--next");
+
+	if (slides.length > 1 && prevBtn && nextBtn) {
+		const TRANSITION_MS = prefersReducedMotion ? 0 : 1200;
+		const AUTO_INTERVAL_MS = 6000;
+		let currentIdx = slides.findIndex((s) =>
+			s.classList.contains("is-current"),
+		);
+		if (currentIdx < 0) {
+			currentIdx = 0;
+			slides[0].classList.add("is-current");
+		}
+		let isTransitioning = false;
+		let autoTimer = null;
+
+		function goTo(newIdx) {
+			if (isTransitioning) return;
+			const total = slides.length;
+			const target = ((newIdx % total) + total) % total;
+			if (target === currentIdx) return;
+
+			isTransitioning = true;
+			const outgoing = slides[currentIdx];
+			const incoming = slides[target];
+
+			incoming.classList.add("is-entering");
+
+			window.setTimeout(() => {
+				outgoing.classList.remove("is-current");
+				incoming.classList.remove("is-entering");
+				incoming.classList.add("is-current");
+				currentIdx = target;
+				isTransitioning = false;
+			}, TRANSITION_MS);
+		}
+
+		function next() {
+			goTo(currentIdx + 1);
+		}
+		function prev() {
+			goTo(currentIdx - 1);
+		}
+
+		function startAuto() {
+			if (prefersReducedMotion) return;
+			stopAuto();
+			autoTimer = window.setInterval(next, AUTO_INTERVAL_MS);
+		}
+		function stopAuto() {
+			if (autoTimer !== null) {
+				window.clearInterval(autoTimer);
+				autoTimer = null;
+			}
+		}
+		function resetAuto() {
+			if (autoTimer !== null) startAuto();
+		}
+
+		nextBtn.addEventListener("click", () => {
+			next();
+			resetAuto();
+		});
+		prevBtn.addEventListener("click", () => {
+			prev();
+			resetAuto();
+		});
+
+		const hero = document.querySelector(".hero");
+		if (hero) {
+			hero.addEventListener("mouseenter", stopAuto);
+			hero.addEventListener("mouseleave", startAuto);
+		}
+
+		document.addEventListener("visibilitychange", () => {
+			if (document.hidden) {
+				stopAuto();
+			} else {
+				startAuto();
+			}
+		});
+
+		startAuto();
+	}
+}
 
 // ===== Bio Modal =====
 const bioModal = document.querySelector(".bio-modal");

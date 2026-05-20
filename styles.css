@@ -245,12 +245,107 @@ a {
 	align-items: center;
 	width: 100%;
 	position: relative;
-	overflow: visible;
-	/*background-image: url("/images/waf-header.jpg");*/
-	background-image: url("/images/WAF-hero.jpg");
+	overflow: hidden;
+	background-color: var(--dark-green);
+}
+
+.hero__carousel {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.hero__slide {
+	position: absolute;
+	inset: 0;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
+	opacity: 0;
+	z-index: 0;
+	transition: opacity 1.2s ease;
+	will-change: opacity;
+}
+
+.hero__slide.is-current {
+	opacity: 1;
+	z-index: 1;
+}
+
+.hero__slide.is-entering {
+	opacity: 1;
+	z-index: 2;
+}
+
+.hero__slide--1 {
+	background-image: url("/images/richard-ringel-RKeT5jnittY-unsplash.jpg");
+}
+.hero__slide--2 {
+	background-image: url("/images/peter-robbins-ojswDCtlE44-unsplash.jpg");
+}
+.hero__slide--3 {
+	background-image: url("/images/greg-jurgajtis-2NyNF1mrYGY-unsplash.jpg");
+}
+.hero__slide--4 {
+	background-image: url("/images/iStock-2271166474.jpg");
+}
+.hero__slide--5 {
+	background-image: url("/images/iStock-1159855567.jpg");
+}
+.hero__slide--6 {
+	background-image: url("/images/iStock-1071574574.jpg");
+}
+
+.hero__controls {
+	position: absolute;
+	bottom: 1.75em;
+	right: 1.75em;
+	z-index: 3;
+	display: flex;
+	gap: 0.5em;
+}
+
+.hero__control {
+	width: 2.75em;
+	height: 2.75em;
+	border-radius: 50%;
+	border: 1px solid color-mix(in srgb, var(--cream) 55%, transparent);
+	background: color-mix(in srgb, var(--black) 35%, transparent);
+	color: var(--cream);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+	padding: 0;
+}
+
+.hero__control:hover {
+	background: color-mix(in srgb, var(--black) 55%, transparent);
+	border-color: var(--cream);
+}
+
+.hero__control:focus-visible {
+	outline: 2px solid var(--cream);
+	outline-offset: 3px;
+}
+
+.hero__control:active {
+	transform: scale(0.96);
+}
+
+.hero__control svg {
+	width: 1em;
+	height: 1em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero__slide {
+		transition: none;
+	}
 }
 
 .hero::before {
@@ -1461,6 +1556,15 @@ a {
 	display: block;
 	width: 100%;
 	height: auto;
+}
+
+/* WAF map — state boundaries readable on cream bg */
+.where-map--waf .map-placeholder svg .st3,
+.where-map--waf .map-placeholder svg .st0 {
+	stroke: var(--dark-green);
+	stroke-opacity: 0.55;
+	stroke-width: 0.9px;
+	vector-effect: non-scaling-stroke;
 }
 
 .gaviota {
