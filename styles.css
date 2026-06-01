@@ -2212,6 +2212,128 @@ a {
 	padding: 0.25em;
 }
 
+/* ===== Legal pages ===== */
+.legal-page {
+	background: var(--cream);
+}
+
+.legal {
+	background: var(--cream);
+	padding: 6em 5em 7em;
+}
+
+.legal__container {
+	max-width: 48em;
+	margin: 0 auto;
+}
+
+.legal__header {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	padding-bottom: 2.5em;
+	margin-bottom: 2.5em;
+	border-bottom: 1px solid var(--border-light);
+}
+
+.legal__title {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(2rem, 1.6rem + 1.4vw, 3rem);
+	line-height: 1.15;
+	font-weight: 800;
+	color: var(--dark-text);
+	text-wrap: balance;
+}
+
+.legal__meta {
+	font-size: 0.9375rem;
+	color: var(--muted-text);
+}
+
+.legal__meta strong {
+	color: var(--dark-text);
+	font-weight: 600;
+}
+
+.legal__heading {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+	line-height: 1.25;
+	font-weight: 700;
+	color: var(--dark-text);
+	margin-top: 2.5em;
+	margin-bottom: 0.75em;
+}
+
+.legal__subheading {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--forest-green);
+	margin-top: 1.75em;
+	margin-bottom: 0.75em;
+}
+
+.legal p {
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--body-text);
+	margin-bottom: 1em;
+}
+
+.legal__list,
+.legal__sublist {
+	padding-left: 1.5em;
+	margin-bottom: 1em;
+}
+
+.legal__list > li,
+.legal__sublist > li {
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--body-text);
+	margin-bottom: 0.75em;
+}
+
+.legal__sublist {
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+.legal strong {
+	color: var(--dark-text);
+	font-weight: 600;
+}
+
+.legal a {
+	color: var(--forest-green);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+}
+
+.legal a:hover {
+	color: var(--dark-green);
+}
+
+@media (max-width: 1024px) {
+	.legal {
+		padding: 5em 2.5em 6em;
+	}
+}
+
+@media (max-width: 905px) {
+	.legal {
+		padding: 4em 1.5em 5em;
+	}
+	.legal__list,
+	.legal__sublist {
+		padding-left: 1.25em;
+	}
+}
+
 /* ===== Responsive: Tablet (<=1024px) ===== */
 @media (max-width: 1024px) {
 	.nav {
