@@ -1,4 +1,11 @@
 node_modules
 dist
 .DS_Store
-.DS_Store
+
+# Local tooling and scratch artifacts
+.claude/
+.playwright-mcp/
+EDITS.md
+EDITS_PROGRESS.md
+v2-full.jpeg
+v2-full2.jpeg

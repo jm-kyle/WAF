@@ -157,16 +157,6 @@ if (!prefersReducedMotion) {
 				ease: "reveal",
 			},
 			`-=${φInv * φInv}`, // -=0.382
-		)
-		.from(
-			".hero__banner",
-			{
-				opacity: 0,
-				y: φ * 15,
-				duration: φInv + φInv * φInv, // ≈ 1.0
-				ease: "reveal",
-			},
-			`-=${φInv * φInv}`,
 		);
 
 	// ===== Hero parallax — slides shift on scroll =====
@@ -205,21 +195,23 @@ if (!prefersReducedMotion) {
 	// not care about layout shifts, and pairs with a safety net.
 
 	const revealGroups = [
+		".model__intro",
+		".model__body",
 		".biodiversity__heading",
 		".biodiversity__body",
-		".challenge__heading",
-		".challenge__body",
+		".biodiversity__sections",
 		".approach__heading",
 		".approach__intro",
 		".pillar-grid__header",
 		".pillar-grid__cards",
-		".gaviota__text",
+		".proof__header",
+		".case-study__content",
 		".team__heading",
 	];
 
 	const revealItems = [
 		".where__header",
-		".gaviota__image",
+		".case-study__image",
 		".team__desc",
 		".member",
 		".pillar",
