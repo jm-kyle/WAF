@@ -135,6 +135,18 @@ a {
 	top: 0;
 }
 
+.sr-only {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
 /* ===== Focus Indicators ===== */
 :focus-visible {
 	outline: 2px solid var(--light-green);
@@ -197,13 +209,13 @@ a {
 .nav__links {
 	display: flex;
 	align-items: center;
-	gap: 1.65em;
+	gap: clamp(0.9em, 1.5vw, 1.65em);
 	list-style: none;
 }
 
 .nav__link {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-	font-size: 0.875rem;
+	font-size: clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);
 	font-weight: 600;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
@@ -247,6 +259,11 @@ a {
 	position: relative;
 	overflow: hidden;
 	background-color: var(--dark-green);
+}
+
+.hero:focus-visible {
+	outline: 3px solid var(--cream);
+	outline-offset: -5px;
 }
 
 .hero__carousel {
@@ -355,8 +372,9 @@ a {
 	background: linear-gradient(
 		180deg,
 		transparent 0%,
-		transparent 28%,
-		color-mix(in srgb, var(--black) 84%, transparent) 100%
+		color-mix(in oklch, var(--black) 8%, transparent) 24%,
+		color-mix(in oklch, var(--black) 60%, transparent) 60%,
+		color-mix(in oklch, var(--black) 90%, transparent) 100%
 	);
 	z-index: 1;
 }
@@ -419,7 +437,7 @@ a {
 	flex: 1 1 40em;
 	min-width: 0;
 	max-width: 52em;
-	gap: 1.5em;
+	gap: 1.1em;
 }
 
 .hero__right {
@@ -442,7 +460,7 @@ a {
 	margin: 0;
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.85rem + 0.2vw, 1.0625rem);
-	line-height: 1.8;
+	line-height: 1.65;
 	font-weight: 400;
 	color: inherit;
 	text-wrap: pretty;
@@ -1129,19 +1147,23 @@ a {
 	flex: 1;
 }
 
-/* ===== Pillar Grid (2x2) ===== */
+/* ===== Strategic Pillars ===== */
 .pillar-grid {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	padding: 8.75em 5em;
 	gap: 4em;
+	background-color: var(--cream);
 }
 
 .pillar-grid__header {
 	display: flex;
 	flex-direction: column;
+	align-self: flex-start;
 	gap: 1.25em;
+	width: 100%;
 	max-width: 48em;
 }
 
@@ -1153,6 +1175,7 @@ a {
 	font-weight: 800;
 	color: var(--dark-text);
 	margin: 0;
+	text-wrap: balance;
 }
 
 .pillar-grid__lead {
@@ -1161,69 +1184,155 @@ a {
 	line-height: 1.55;
 	color: var(--body-text);
 	margin: 0;
+	max-width: 46em;
+	text-wrap: balance;
 }
 
 .pillar-grid__cards {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0;
-}
-
-.pillar-card {
 	display: flex;
 	flex-direction: column;
-	gap: 1.25em;
-	padding: 3em;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid var(--border-light);
 }
 
-/* Plus-sign divider: right border on left column, bottom border on top row */
-.pillar-card:nth-child(odd) {
-	border-right: 1px solid var(--border-light);
-}
-
-.pillar-card:nth-child(-n + 2) {
+.pillar-item {
+	list-style: none;
 	border-bottom: 1px solid var(--border-light);
 }
 
-.pillar-card:nth-child(odd) {
-	padding-left: 0;
+.pillar-card {
+	display: block;
+	inline-size: 100%;
 }
 
-.pillar-card:nth-child(even) {
-	padding-right: 0;
+.pillar-card__summary {
+	display: grid;
+	grid-template-columns: minmax(5.5rem, 0.28fr) minmax(0, 1.72fr) 2.75rem;
+	align-items: center;
+	column-gap: clamp(1rem, 3vw, 3rem);
+	padding-block: clamp(1.75rem, 2.5vw, 2.6rem);
+	cursor: pointer;
+	list-style: none;
+	transition: color 180ms ease;
 }
 
-.pillar-card:nth-child(-n + 2) {
-	padding-top: 0;
+.pillar-card__summary::-webkit-details-marker {
+	display: none;
 }
 
-.pillar-card:nth-child(n + 3) {
-	padding-bottom: 0;
+.pillar-card__summary:focus-visible {
+	outline: 3px solid var(--light-green);
+	outline-offset: 0.45rem;
+	border-radius: 0.2rem;
 }
 
 .pillar-card__number {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-	font-size: 0.875rem;
-	font-weight: 500;
-	color: var(--dark-green);
-	letter-spacing: 0.04em;
+	font-size: clamp(0.6875rem, 0.65rem + 0.12vw, 0.8125rem);
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--forest-green);
+}
+
+.pillar-card__heading {
+	display: grid;
+	grid-template-columns: minmax(12rem, 0.7fr) minmax(16rem, 1.3fr);
+	align-items: baseline;
+	gap: clamp(1rem, 3vw, 3.5rem);
 }
 
 .pillar-card__title {
+	display: block;
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-	font-size: clamp(1.375rem, 1.25rem + 0.4vw, 1.625rem);
+	font-size: clamp(1.35rem, 1.2rem + 0.5vw, 1.75rem);
 	line-height: 1.25;
-	font-weight: 500;
+	font-weight: 700;
 	color: var(--dark-text);
 	margin: 0;
+	text-wrap: balance;
+}
+
+.pillar-card__teaser {
+	display: block;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.875rem, 0.84rem + 0.12vw, 1rem);
+	line-height: 1.55;
+	color: var(--muted-text);
+}
+
+.pillar-card__icon {
+	position: relative;
+	display: grid;
+	place-items: center;
+	inline-size: 2.5rem;
+	aspect-ratio: 1;
+	justify-self: end;
+	border: 1px solid color-mix(in oklch, var(--dark-green) 35%, transparent);
+	border-radius: 50%;
+	color: var(--dark-green);
+}
+
+.pillar-card__icon::before,
+.pillar-card__icon::after {
+	content: "";
+	position: absolute;
+	inline-size: 0.85rem;
+	block-size: 1.5px;
+	background: currentColor;
+	transition: transform 180ms ease;
+}
+
+.pillar-card__icon::after {
+	transform: rotate(90deg);
+}
+
+.pillar-card[open] .pillar-card__icon::after {
+	transform: rotate(0deg);
+}
+
+.pillar-card__panel {
+	display: grid;
+	grid-template-columns: minmax(5.5rem, 0.28fr) minmax(0, 1.72fr) 2.75rem;
+	column-gap: clamp(1rem, 3vw, 3rem);
+	padding-block: 0 clamp(2rem, 3vw, 3rem);
 }
 
 .pillar-card__desc {
+	grid-column: 2;
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
 	line-height: 1.6;
 	color: var(--body-text);
 	margin: 0;
+	max-inline-size: 74ch;
+	text-wrap: pretty;
+}
+
+.pillar-card__summary:hover .pillar-card__title,
+.pillar-card[open] .pillar-card__title {
+	color: var(--forest-green);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.pillar-card[open] .pillar-card__panel {
+		animation: pillar-reveal 240ms ease-out both;
+	}
+
+	@keyframes pillar-reveal {
+		from {
+			opacity: 0;
+			transform: translateY(-0.45rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 }
 
 @media (max-width: 900px) {
@@ -1231,20 +1340,42 @@ a {
 		padding: 5em 1.5em;
 		gap: 2.5em;
 	}
-	.pillar-grid__cards {
+	.pillar-card__summary {
+		grid-template-columns: minmax(4.5rem, 0.24fr) minmax(0, 1.76fr) 2.5rem;
+	}
+	.pillar-card__heading {
 		grid-template-columns: 1fr;
+		gap: 0.4rem;
 	}
-	.pillar-card {
-		padding: 2em 0;
-		border-right: none !important;
-		border-bottom: 1px solid var(--border-light) !important;
+	.pillar-card__panel {
+		grid-template-columns: minmax(4.5rem, 0.24fr) minmax(0, 1.76fr) 2.5rem;
 	}
-	.pillar-card:last-child {
-		border-bottom: none !important;
-		padding-bottom: 0;
+}
+
+@media (max-width: 560px) {
+	.pillar-card__summary {
+		grid-template-columns: minmax(0, 1fr) 2.5rem;
+		row-gap: 0.55rem;
+		padding-block: 1.5rem;
 	}
-	.pillar-card:first-child {
-		padding-top: 0;
+	.pillar-card__number {
+		grid-column: 1;
+		grid-row: 1;
+	}
+	.pillar-card__heading {
+		grid-column: 1;
+		grid-row: 2;
+	}
+	.pillar-card__icon {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+	}
+	.pillar-card__panel {
+		grid-template-columns: 1fr;
+		padding-block-end: 1.75rem;
+	}
+	.pillar-card__desc {
+		grid-column: 1;
 	}
 }
 
@@ -1288,6 +1419,9 @@ a {
 }
 
 .where__desc-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9em;
 	flex: 1;
 }
 
@@ -1297,6 +1431,15 @@ a {
 	line-height: 1.65;
 	font-weight: 400;
 	color: var(--body-text);
+}
+
+.where__instruction {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.75rem, 0.72rem + 0.08vw, 0.8125rem);
+	line-height: 1.5;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	color: var(--forest-green);
 }
 
 .where__lead-block {
@@ -1387,6 +1530,163 @@ a {
 	position: absolute;
 	inset: 0;
 	overflow: hidden;
+}
+
+/* One-frame comparison of scientific need and WAF's response. */
+.map-comparison {
+	--reveal: 50%;
+	position: relative;
+	isolation: isolate;
+	container: map-comparison / inline-size;
+	inline-size: 100%;
+	aspect-ratio: 959 / 593;
+	overflow: clip;
+	border: 1px solid color-mix(in oklch, var(--dark-green) 18%, transparent);
+	border-radius: 0.6em;
+	background: var(--white);
+	box-shadow: 0 1.25em 3.5em color-mix(in oklch, var(--dark-green) 12%, transparent);
+	touch-action: pan-y;
+}
+
+.map-comparison__science,
+.map-comparison__response {
+	position: absolute;
+	inset: 0;
+	inline-size: 100%;
+	block-size: 100%;
+	margin: 0;
+	border-radius: 0;
+}
+
+.map-comparison__science {
+	z-index: 1;
+}
+
+.map-comparison__science .science-map__image {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+}
+
+/* The imported ai2html legend used fixed pixel widths that no longer match
+   the shared comparison frame. Replace only its type with a responsive key. */
+.map-comparison__science .science-map__overlay :is(.g-key, .g-left, .g-right) {
+	display: none;
+}
+
+.science-map__legend {
+	position: absolute;
+	z-index: 2;
+	inset-block-start: 2.7cqi;
+	inset-inline-end: 7cqi;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: clamp(0.25rem, 0.55cqi, 0.5rem);
+	inline-size: clamp(13rem, 29cqi, 22rem);
+	padding: clamp(0.55rem, 1cqi, 0.85rem);
+	border: none;
+	border-radius: 0.35em;
+	background: transparent;
+	box-shadow: none;
+	color: var(--dark-text);
+	pointer-events: none;
+}
+
+.science-map__legend strong {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.6875rem, 0.55rem + 0.3cqi, 0.9375rem);
+	font-weight: 800;
+	line-height: 1.2;
+	text-align: center;
+	text-wrap: balance;
+}
+
+.science-map__legend-ramp {
+	display: block;
+	block-size: clamp(0.35rem, 0.65cqi, 0.55rem);
+	border: none;
+	background: transparent;
+}
+
+.science-map__legend-scale {
+	display: flex;
+	justify-content: space-between;
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.625rem, 0.53rem + 0.2cqi, 0.8125rem);
+	font-weight: 500;
+	line-height: 1;
+	color: var(--body-text);
+}
+
+.map-comparison__response {
+	z-index: 2;
+	display: grid;
+	place-items: center;
+	clip-path: inset(0 calc(100% - var(--reveal)) 0 0);
+	background: var(--white);
+}
+
+.map-comparison__response svg {
+	inline-size: 100%;
+	block-size: 100%;
+	/* The source maps use slightly different projections. A small vertical
+	   correction keeps Texas and the Gulf Coast aligned without shifting the
+	   shared northern landmarks. */
+	transform: translateY(1%) scaleY(0.98);
+	transform-origin: center top;
+}
+
+.map-comparison__divider {
+	position: absolute;
+	z-index: 4;
+	inset-block: 0;
+	inset-inline-start: var(--reveal);
+	inline-size: 2px;
+	transform: translateX(-50%);
+	background: var(--white);
+	box-shadow: 0 0 0 1px color-mix(in oklch, var(--dark-green) 25%, transparent);
+	pointer-events: none;
+}
+
+.map-comparison__handle {
+	position: absolute;
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	display: grid;
+	place-items: center;
+	inline-size: clamp(2.75rem, 5cqi, 3.75rem);
+	aspect-ratio: 1;
+	transform: translate(-50%, -50%);
+	border: 2px solid var(--white);
+	border-radius: 50%;
+	background: var(--dark-green);
+	box-shadow: 0 0.4em 1.25em color-mix(in oklch, var(--black) 25%, transparent);
+	color: var(--white);
+}
+
+.map-comparison__handle svg {
+	inline-size: 62%;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.map-comparison__range {
+	position: absolute;
+	z-index: 5;
+	inset: 0;
+	inline-size: 100%;
+	block-size: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: ew-resize;
+}
+
+.map-comparison:has(.map-comparison__range:focus-visible) {
+	outline: 3px solid var(--light-green);
+	outline-offset: 4px;
 }
 
 #g-big_map-box {
@@ -1647,6 +1947,14 @@ a {
 	margin-inline: auto;
 }
 
+.where-map--comparison .where-map__caption {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(1rem, 4cqi, 3rem);
+	max-width: 110ch;
+	text-align: left;
+}
+
 .where-map__mobile-legend {
 	display: none;
 }
@@ -1680,8 +1988,8 @@ a {
 }
 
 /* WAF map — state boundaries readable on cream bg */
-.where-map--waf .map-placeholder svg .st3,
-.where-map--waf .map-placeholder svg .st0 {
+.map-comparison__response svg .st3,
+.map-comparison__response svg .st0 {
 	stroke: var(--dark-green);
 	stroke-opacity: 0.55;
 	stroke-width: 0.9px;
@@ -1722,6 +2030,15 @@ a {
 	font-weight: 800;
 	color: var(--dark-text);
 	text-wrap: balance;
+}
+
+.proof__intro {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+	line-height: 1.6;
+	color: var(--body-text);
+	max-inline-size: 68ch;
+	text-wrap: pretty;
 }
 
 .case-studies {
@@ -2165,6 +2482,31 @@ a {
 	max-width: 56ch;
 }
 
+.contact__about {
+	display: grid;
+	gap: 0.55em;
+	max-inline-size: 62ch;
+	padding-block-start: 0.35em;
+}
+
+.contact__about-label {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: 0.75rem;
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--forest-green);
+}
+
+.contact__about-body {
+	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	font-size: clamp(0.8125rem, 0.78rem + 0.1vw, 0.9rem);
+	line-height: 1.65;
+	color: var(--muted-text);
+	text-wrap: pretty;
+}
+
 /* Cream variant — for visual rhythm */
 .contact--cream {
 	background-color: var(--bg-warm);
@@ -2354,6 +2696,8 @@ a {
 
 .footer__nav {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
 	gap: 2.5em;
 }
 
@@ -2717,6 +3061,11 @@ a {
 	}
 
 	/* Hero */
+	.hero__controls {
+		top: 1.5rem;
+		right: 1.5rem;
+		bottom: auto;
+	}
 	.hero__content {
 		padding: 10em 1.5em 1.5em;
 		gap: 1.5em;
@@ -2781,7 +3130,7 @@ a {
 
 	/* Challenge */
 	.biodiversity {
-		padding: 10em 1.5em 5em;
+		padding: 5em 1.5em;
 		gap: 3em;
 	}
 	.biodiversity__stats {
@@ -2890,30 +3239,40 @@ a {
 	#g-big_map-Artboard-xl .g-right {
 		display: none;
 	}
+	.science-map__legend {
+		display: none;
+	}
 	.where-map__mobile-legend {
 		display: grid;
-		grid-template-columns: auto 1fr auto;
+		grid-template-columns: 1fr 1fr;
 		align-items: center;
-		gap: 0.75em;
+		gap: 0.3em 1em;
 		font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-		font-size: 0.75rem;
+		font-size: clamp(0.6875rem, 0.64rem + 0.2vw, 0.75rem);
 		line-height: 1.35;
 		color: var(--muted-text);
 	}
-	.where-map__mobile-legend::before {
-		content: "";
-		grid-column: 1 / -1;
-		display: block;
-		height: 0.5em;
-		border-radius: 999px;
-		background: linear-gradient(90deg, #f2e8cf, #d8c45d, #b64b43);
+	.where-map__mobile-legend span:first-child {
+		grid-column: 1;
+		grid-row: 2;
+		justify-self: start;
 	}
 	.where-map__mobile-legend span:nth-child(2) {
+		grid-column: 1 / -1;
+		grid-row: 1;
 		text-align: center;
 		font-weight: 700;
 		color: var(--dark-text);
 	}
-
+	.where-map__mobile-legend span:last-child {
+		grid-column: 2;
+		grid-row: 2;
+		justify-self: end;
+	}
+	.where-map--comparison .where-map__caption {
+		grid-template-columns: 1fr;
+		gap: 0.75em;
+	}
 	/* Proof */
 	.proof {
 		padding: 5em 1.5em;
@@ -3025,6 +3384,33 @@ a {
 		gap: 0.5em;
 		padding: 1.5em;
 		text-align: center;
+	}
+}
+
+/* Keep the HTML labels registered to the ramp baked into the image while the
+   map is still large enough to support them. Below this range, use a compact
+   text-only key and let the image remain the single source for the color ramp. */
+@media (750px <= width <= 960px) {
+	.science-map__legend {
+		inline-size: 29cqi;
+	}
+
+	.science-map__legend strong {
+		font-size: clamp(0.5625rem, 1.25cqi, 0.6875rem);
+	}
+
+	.science-map__legend-scale {
+		font-size: clamp(0.5625rem, 1.15cqi, 0.6875rem);
+	}
+}
+
+@media (750px <= width <= 905px) {
+	.science-map__legend {
+		display: grid;
+	}
+
+	.where-map__mobile-legend {
+		display: none;
 	}
 }
 

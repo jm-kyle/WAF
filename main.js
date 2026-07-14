@@ -195,16 +195,13 @@ if (!prefersReducedMotion) {
 	// not care about layout shifts, and pairs with a safety net.
 
 	const revealGroups = [
-		".model__intro",
-		".model__body",
 		".biodiversity__heading",
 		".biodiversity__body",
 		".biodiversity__sections",
-		".approach__heading",
-		".approach__intro",
 		".pillar-grid__header",
 		".pillar-grid__cards",
 		".proof__header",
+		".proof__intro",
 		".case-study__content",
 		".team__heading",
 	];
@@ -441,13 +438,85 @@ if (!prefersReducedMotion) {
 
 } // end reduced-motion guard
 
+// ===== Need / response map comparison =====
+document.querySelectorAll("[data-map-comparison]").forEach((comparison) => {
+	const range = comparison.querySelector(".map-comparison__range");
+	if (!range) return;
+
+	const updateReveal = () => {
+		const reveal = `${range.value}%`;
+		comparison.style.setProperty("--reveal", reveal);
+		range.setAttribute(
+			"aria-valuetext",
+			`${range.value}% of the WAF priority-region map revealed`,
+		);
+	};
+	const setRevealFromPointer = (event) => {
+		const bounds = comparison.getBoundingClientRect();
+		const value = ((event.clientX - bounds.left) / bounds.width) * 100;
+		range.value = String(Math.round(Math.max(0, Math.min(100, value))));
+		updateReveal();
+	};
+
+	range.addEventListener("input", updateReveal);
+	range.addEventListener("pointerdown", (event) => {
+		range.setPointerCapture?.(event.pointerId);
+		setRevealFromPointer(event);
+	});
+	range.addEventListener("pointermove", (event) => {
+		if (event.buttons === 1) setRevealFromPointer(event);
+	});
+	range.addEventListener("keydown", (event) => {
+		const keys = {
+			ArrowLeft: -1,
+			ArrowDown: -1,
+			ArrowRight: 1,
+			ArrowUp: 1,
+		};
+
+		if (event.key in keys) {
+			event.preventDefault();
+			range.value = String(Number(range.value) + keys[event.key]);
+			updateReveal();
+		} else if (event.key === "Home" || event.key === "End") {
+			event.preventDefault();
+			range.value = event.key === "Home" ? range.min : range.max;
+			updateReveal();
+		}
+	});
+	updateReveal();
+});
+
+// The animated map loader lives inside the motion guard above. Keep the
+// comparison fully functional when a visitor prefers reduced motion.
+if (prefersReducedMotion) {
+	document
+		.querySelectorAll(".map-placeholder[data-svg-src]")
+		.forEach((mapContainer) => {
+			fetch(mapContainer.dataset.svgSrc, { cache: "no-cache" })
+				.then((response) => {
+					if (!response.ok) throw new Error("Map failed to load");
+					return response.text();
+				})
+				.then((svgText) => {
+					mapContainer.innerHTML = svgText;
+				})
+				.catch(() => {
+					// Preserve the readable fallback already in the markup.
+				});
+		});
+}
+
 // ===== Hero carousel =====
 {
 	const slides = Array.from(document.querySelectorAll(".hero__slide"));
 	const prevBtn = document.querySelector(".hero__control--prev");
 	const nextBtn = document.querySelector(".hero__control--next");
+	const hero = document.querySelector(".hero");
+	const position = document.querySelector("[data-hero-carousel-position]");
+	const status = document.querySelector("[data-hero-carousel-status]");
 
-	if (slides.length > 1 && prevBtn && nextBtn) {
+	if (slides.length > 1 && prevBtn && nextBtn && hero) {
 		const TRANSITION_MS = prefersReducedMotion ? 0 : 1200;
 		const AUTO_INTERVAL_MS = 6000;
 		let currentIdx = slides.findIndex((s) =>
@@ -460,7 +529,7 @@ if (!prefersReducedMotion) {
 		let isTransitioning = false;
 		let autoTimer = null;
 
-		function goTo(newIdx) {
+		function goTo(newIdx, announce = false) {
 			if (isTransitioning) return;
 			const total = slides.length;
 			const target = ((newIdx % total) + total) % total;
@@ -478,14 +547,19 @@ if (!prefersReducedMotion) {
 				incoming.classList.add("is-current");
 				currentIdx = target;
 				isTransitioning = false;
+				const message = `Background image ${currentIdx + 1} of ${total}.`;
+				if (position) position.textContent = message;
+				if (status && announce) {
+					status.textContent = message;
+				}
 			}, TRANSITION_MS);
 		}
 
-		function next() {
-			goTo(currentIdx + 1);
+		function next(announce = false) {
+			goTo(currentIdx + 1, announce);
 		}
-		function prev() {
-			goTo(currentIdx - 1);
+		function prev(announce = false) {
+			goTo(currentIdx - 1, announce);
 		}
 
 		function startAuto() {
@@ -504,24 +578,42 @@ if (!prefersReducedMotion) {
 		}
 
 		nextBtn.addEventListener("click", () => {
-			next();
+			next(true);
 			resetAuto();
 		});
 		prevBtn.addEventListener("click", () => {
-			prev();
+			prev(true);
 			resetAuto();
 		});
 
-		const hero = document.querySelector(".hero");
-		if (hero) {
-			hero.addEventListener("mouseenter", stopAuto);
-			hero.addEventListener("mouseleave", startAuto);
-		}
+		hero.addEventListener("keydown", (event) => {
+			if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+			if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+				event.preventDefault();
+				if (event.key === "ArrowLeft") prev(true);
+				else next(true);
+			}
+		});
+
+		hero.addEventListener("mouseenter", stopAuto);
+		hero.addEventListener("mouseleave", () => {
+			if (!hero.contains(document.activeElement)) startAuto();
+		});
+		hero.addEventListener("focusin", stopAuto);
+		hero.addEventListener("focusout", (event) => {
+			if (!hero.contains(event.relatedTarget) && !hero.matches(":hover")) {
+				startAuto();
+			}
+		});
 
 		document.addEventListener("visibilitychange", () => {
 			if (document.hidden) {
 				stopAuto();
-			} else {
+			} else if (
+				!hero.contains(document.activeElement) &&
+				!hero.matches(":hover")
+			) {
 				startAuto();
 			}
 		});
