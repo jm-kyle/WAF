@@ -1506,32 +1506,6 @@ a {
 	aspect-ratio: 2030 / 1350;
 }
 
-.where-map__ai2html {
-	width: 100%;
-	margin-inline: auto;
-	position: relative;
-	overflow: clip;
-	border-radius: 0.5em;
-	background-color: var(--white);
-	flex-shrink: 0;
-}
-
-.science-map {
-	display: block;
-}
-
-.science-map__image {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-
-.science-map__overlay {
-	position: absolute;
-	inset: 0;
-	overflow: hidden;
-}
-
 /* One-frame comparison of scientific need and WAF's response. */
 .map-comparison {
 	--reveal: 50%;
@@ -1539,7 +1513,7 @@ a {
 	isolation: isolate;
 	container: map-comparison / inline-size;
 	inline-size: 100%;
-	aspect-ratio: 959 / 593;
+	aspect-ratio: 2100 / 1303;
 	overflow: clip;
 	border: 1px solid color-mix(in oklch, var(--dark-green) 18%, transparent);
 	border-radius: 0.6em;
@@ -1560,62 +1534,7 @@ a {
 
 .map-comparison__science {
 	z-index: 1;
-}
-
-.map-comparison__science .science-map__image {
-	inline-size: 100%;
-	block-size: 100%;
 	object-fit: cover;
-}
-
-/* The imported ai2html legend used fixed pixel widths that no longer match
-   the shared comparison frame. Replace only its type with a responsive key. */
-.map-comparison__science .science-map__overlay :is(.g-key, .g-left, .g-right) {
-	display: none;
-}
-
-.science-map__legend {
-	position: absolute;
-	z-index: 2;
-	inset-block-start: 2.7cqi;
-	inset-inline-end: 7cqi;
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: clamp(0.25rem, 0.55cqi, 0.5rem);
-	inline-size: clamp(13rem, 29cqi, 22rem);
-	padding: clamp(0.55rem, 1cqi, 0.85rem);
-	border: none;
-	border-radius: 0.35em;
-	background: transparent;
-	box-shadow: none;
-	color: var(--dark-text);
-	pointer-events: none;
-}
-
-.science-map__legend strong {
-	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-	font-size: clamp(0.6875rem, 0.55rem + 0.3cqi, 0.9375rem);
-	font-weight: 800;
-	line-height: 1.2;
-	text-align: center;
-	text-wrap: balance;
-}
-
-.science-map__legend-ramp {
-	display: block;
-	block-size: clamp(0.35rem, 0.65cqi, 0.55rem);
-	border: none;
-	background: transparent;
-}
-
-.science-map__legend-scale {
-	display: flex;
-	justify-content: space-between;
-	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-	font-size: clamp(0.625rem, 0.53rem + 0.2cqi, 0.8125rem);
-	font-weight: 500;
-	line-height: 1;
-	color: var(--body-text);
 }
 
 .map-comparison__response {
@@ -1689,254 +1608,6 @@ a {
 	outline-offset: 4px;
 }
 
-#g-big_map-box {
-	margin: 0 auto;
-}
-
-#g-big_map-box p {
-	margin: 0;
-}
-
-#g-big_map-box .g-aiAbs {
-	position: absolute;
-}
-
-#g-big_map-box .g-aiSymbol {
-	position: absolute;
-	box-sizing: border-box;
-}
-
-#g-big_map-box .g-aiPointText p {
-	white-space: nowrap;
-}
-
-#g-big_map-Artboard-xl p,
-#g-big_map-Artboard-s p,
-#g-big_map-Artboard-l p {
-	font-family: "Plus Jakarta Sans", arial, helvetica, sans-serif;
-	font-weight: 300;
-	line-height: 16px;
-	opacity: 1;
-	letter-spacing: 0;
-	font-size: 13px;
-	text-align: left;
-	color: rgb(0, 0, 0);
-	text-transform: none;
-	padding-bottom: 0;
-	padding-top: 0;
-	mix-blend-mode: normal;
-	font-style: normal;
-	height: auto;
-	position: static;
-}
-
-#g-big_map-Artboard-xl .g-pstyle0,
-#g-big_map-Artboard-s .g-pstyle0,
-#g-big_map-Artboard-l .g-pstyle0 {
-	font-weight: 700;
-	line-height: 19px;
-	height: 19px;
-	font-size: 16px;
-	text-align: center;
-	top: 1.3px;
-	position: relative;
-}
-
-#g-big_map-Artboard-xl .g-pstyle1 {
-	font-weight: 500;
-	line-height: 8px;
-	height: 8px;
-	opacity: 0.8;
-	font-size: 11px;
-	text-align: center;
-	text-transform: uppercase;
-	color: rgb(51, 51, 51);
-	top: 0.9px;
-	position: relative;
-}
-
-#g-big_map-Artboard-xl .g-pstyle2 {
-	height: 16px;
-	top: 1px;
-	position: relative;
-}
-
-#g-big_map-Artboard-xl .g-pstyle3 {
-	height: 16px;
-	text-align: right;
-	top: 1px;
-	position: relative;
-}
-
-#g-big_map-Artboard-xl .g-pstyle4 {
-	font-weight: 500;
-	line-height: 8px;
-	height: 8px;
-	opacity: 0.8;
-	font-size: 11px;
-	text-align: center;
-	color: rgb(51, 51, 51);
-	top: 0.9px;
-	position: relative;
-}
-
-#g-big_map-Artboard-xl .g-pstyle5 {
-	font-weight: 500;
-	line-height: 8px;
-	height: 8px;
-	opacity: 0.8;
-	font-size: 11px;
-	text-transform: uppercase;
-	color: rgb(51, 51, 51);
-	top: 0.9px;
-	position: relative;
-}
-
-#g-big_map-Artboard-xl .g-cstyle0,
-#g-big_map-Artboard-s .g-cstyle0,
-#g-big_map-Artboard-l .g-cstyle0 {
-	font-weight: 700;
-}
-
-#g-big_map-Artboard-m p {
-	font-family: "Plus Jakarta Sans", arial, helvetica, sans-serif;
-	font-weight: 700;
-	line-height: 19px;
-	height: auto;
-	opacity: 1;
-	letter-spacing: 0;
-	font-size: 16px;
-	text-align: left;
-	color: rgb(0, 0, 0);
-	top: 1.3px;
-	position: static;
-	text-transform: none;
-	padding-bottom: 0;
-	padding-top: 0;
-	mix-blend-mode: normal;
-	font-style: normal;
-}
-
-#g-big_map-Artboard-m .g-pstyle0 {
-	height: 19px;
-	text-align: center;
-	position: relative;
-}
-
-#g-big_map-Artboard-m .g-pstyle1 {
-	font-weight: 300;
-	line-height: 16px;
-	height: 16px;
-	font-size: 13px;
-	top: 1px;
-	position: relative;
-}
-
-#g-big_map-Artboard-m .g-pstyle2 {
-	font-weight: 300;
-	line-height: 16px;
-	height: 16px;
-	font-size: 13px;
-	text-align: right;
-	top: 1px;
-	position: relative;
-}
-
-#g-big_map-Artboard-s .g-pstyle1,
-#g-big_map-Artboard-l .g-pstyle1 {
-	height: 16px;
-	top: 1px;
-	position: relative;
-}
-
-#g-big_map-Artboard-s .g-pstyle2,
-#g-big_map-Artboard-l .g-pstyle2 {
-	height: 16px;
-	text-align: right;
-	top: 1px;
-	position: relative;
-}
-
-#g-big_map-Artboard-s .g-pstyle3 {
-	font-weight: 500;
-	line-height: 5px;
-	height: 5px;
-	opacity: 0.8;
-	font-size: 9px;
-	text-align: center;
-	text-transform: uppercase;
-	color: rgb(51, 51, 51);
-	top: 0.7px;
-	position: relative;
-}
-
-#g-big_map-Artboard-s .g-pstyle4 {
-	font-weight: 500;
-	line-height: 5px;
-	height: 5px;
-	opacity: 0.8;
-	font-size: 9px;
-	text-align: center;
-	color: rgb(51, 51, 51);
-	top: 0.7px;
-	position: relative;
-}
-
-#g-big_map-Artboard-s .g-pstyle5 {
-	font-weight: 500;
-	line-height: 5px;
-	height: 5px;
-	opacity: 0.8;
-	font-size: 9px;
-	text-transform: uppercase;
-	color: rgb(51, 51, 51);
-	top: 0.7px;
-	position: relative;
-}
-
-#g-big_map-Artboard-l .g-pstyle3 {
-	font-weight: 500;
-	line-height: 6px;
-	height: 6px;
-	opacity: 0.8;
-	font-size: 10px;
-	text-align: center;
-	text-transform: uppercase;
-	color: rgb(51, 51, 51);
-	top: 0.8px;
-	position: relative;
-}
-
-#g-big_map-Artboard-l .g-pstyle4 {
-	font-weight: 500;
-	line-height: 6px;
-	height: 6px;
-	opacity: 0.8;
-	font-size: 10px;
-	text-align: center;
-	color: rgb(51, 51, 51);
-	top: 0.8px;
-	position: relative;
-}
-
-#g-big_map-Artboard-l .g-pstyle5 {
-	font-weight: 500;
-	line-height: 6px;
-	height: 6px;
-	opacity: 0.8;
-	font-size: 10px;
-	text-transform: uppercase;
-	color: rgb(51, 51, 51);
-	top: 0.8px;
-	position: relative;
-}
-
-@media (max-width: 900px) {
-	#g-big_map-Artboard-xl .g-statenames {
-		display: none;
-	}
-}
-
 .where-map__caption {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: 0.875rem;
@@ -1953,10 +1624,6 @@ a {
 	gap: clamp(1rem, 4cqi, 3rem);
 	max-width: 110ch;
 	text-align: left;
-}
-
-.where-map__mobile-legend {
-	display: none;
 }
 
 .map-placeholder {
@@ -3234,41 +2901,6 @@ a {
 	.where__lead {
 		text-align: left;
 	}
-	#g-big_map-Artboard-xl .g-key,
-	#g-big_map-Artboard-xl .g-left,
-	#g-big_map-Artboard-xl .g-right {
-		display: none;
-	}
-	.science-map__legend {
-		display: none;
-	}
-	.where-map__mobile-legend {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		gap: 0.3em 1em;
-		font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-		font-size: clamp(0.6875rem, 0.64rem + 0.2vw, 0.75rem);
-		line-height: 1.35;
-		color: var(--muted-text);
-	}
-	.where-map__mobile-legend span:first-child {
-		grid-column: 1;
-		grid-row: 2;
-		justify-self: start;
-	}
-	.where-map__mobile-legend span:nth-child(2) {
-		grid-column: 1 / -1;
-		grid-row: 1;
-		text-align: center;
-		font-weight: 700;
-		color: var(--dark-text);
-	}
-	.where-map__mobile-legend span:last-child {
-		grid-column: 2;
-		grid-row: 2;
-		justify-self: end;
-	}
 	.where-map--comparison .where-map__caption {
 		grid-template-columns: 1fr;
 		gap: 0.75em;
@@ -3384,33 +3016,6 @@ a {
 		gap: 0.5em;
 		padding: 1.5em;
 		text-align: center;
-	}
-}
-
-/* Keep the HTML labels registered to the ramp baked into the image while the
-   map is still large enough to support them. Below this range, use a compact
-   text-only key and let the image remain the single source for the color ramp. */
-@media (750px <= width <= 960px) {
-	.science-map__legend {
-		inline-size: 29cqi;
-	}
-
-	.science-map__legend strong {
-		font-size: clamp(0.5625rem, 1.25cqi, 0.6875rem);
-	}
-
-	.science-map__legend-scale {
-		font-size: clamp(0.5625rem, 1.15cqi, 0.6875rem);
-	}
-}
-
-@media (750px <= width <= 905px) {
-	.science-map__legend {
-		display: grid;
-	}
-
-	.where-map__mobile-legend {
-		display: none;
 	}
 }
 
