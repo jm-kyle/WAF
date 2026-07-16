@@ -296,12 +296,12 @@ a {
 }
 
 .hero__slide--1 {
-	background-image: url("/images/richard-ringel-RKeT5jnittY-unsplash.jpg");
-}
-.hero__slide--2 {
 	background-image: url("/images/iStock-518276326.jpg");
 	background-position: left 52%;
 	transform: scaleX(-1);
+}
+.hero__slide--2 {
+	background-image: url("/images/richard-ringel-RKeT5jnittY-unsplash.jpg");
 }
 .hero__slide--3 {
 	background-image: url("/images/iStock-2265753807.jpg");
@@ -2780,7 +2780,7 @@ a {
 	}
 
 	/* Hero */
-	.hero__slide--2,
+	.hero__slide--1,
 	.hero__slide--3 {
 		transform: none;
 	}
