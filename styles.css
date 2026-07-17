@@ -1165,6 +1165,8 @@ a {
 	width: 100%;
 	min-block-size: clamp(17rem, 26vw, 23rem);
 	padding-block: clamp(1.5rem, 3vw, 3rem);
+	background: var(--cream);
+	overflow: clip;
 }
 
 .pillar-grid__header::after {
@@ -1174,27 +1176,22 @@ a {
 	inset-inline: 0;
 	z-index: 0;
 	pointer-events: none;
-	background-image:
-		linear-gradient(var(--dark-green), var(--dark-green)),
-		url("/images/iStock-2278129574.jpg");
-	background-position: center, clamp(4rem, 10vw, 8rem) 45%;
-	background-size: cover, 116% auto;
+	background-image: url("/images/buffalo-yellowstone-jon-gudorf.jpg");
+	background-position: right 88%;
+	background-size: cover;
 	background-repeat: no-repeat;
-	background-blend-mode: screen;
-	filter: contrast(0.92) saturate(0.82);
-	opacity: 0.24;
 	-webkit-mask-image: linear-gradient(
 		to right,
 		transparent 0%,
-		transparent 42%,
-		#000 58%,
+		transparent 43%,
+		#000 85%,
 		#000 100%
 	);
 	mask-image: linear-gradient(
 		to right,
 		transparent 0%,
-		transparent 42%,
-		#000 58%,
+		transparent 43%,
+		#000 85%,
 		#000 100%
 	);
 }
@@ -1202,7 +1199,7 @@ a {
 .pillar-grid__header > * {
 	position: relative;
 	z-index: 1;
-	max-inline-size: 48rem;
+	max-inline-size: min(48rem, 58%);
 }
 
 .pillar-grid__title {
@@ -1381,16 +1378,18 @@ a {
 	.pillar-grid__header {
 		justify-content: flex-start;
 		min-block-size: 0;
-		padding-block: 0 clamp(10rem, 38vw, 14rem);
+		padding-block: 0 clamp(12rem, 43vw, 16rem);
 	}
 	.pillar-grid__header::after {
 		inset-block: auto 0;
 		inset-inline: 0;
-		block-size: clamp(10rem, 38vw, 14rem);
-		background-position: center, center 50%;
-		opacity: 0.26;
-		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
-		mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+		block-size: clamp(12rem, 43vw, 16rem);
+		background-position: center 66%;
+		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, #000 58%);
+		mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, #000 58%);
+	}
+	.pillar-grid__header > * {
+		max-inline-size: 100%;
 	}
 	.pillar-card__summary {
 		grid-template-columns: minmax(4.5rem, 0.24fr) minmax(0, 1.76fr) 2.5rem;
@@ -1674,8 +1673,42 @@ a {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: clamp(1rem, 4cqi, 3rem);
-	max-width: 110ch;
+	max-width: none;
 	text-align: left;
+}
+
+.where-map__caption-item {
+	display: grid;
+	grid-template-columns: 0.5rem minmax(0, 1fr);
+	gap: 0.15rem 0.7rem;
+}
+
+.where-map__caption-item::before {
+	content: "";
+	grid-column: 1;
+	grid-row: 1;
+	align-self: center;
+	inline-size: 0.45rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--forest-green);
+}
+
+.where-map__caption-item--science::before {
+	background: oklch(50% 0.16 34);
+}
+
+.where-map__caption-item > * {
+	grid-column: 2;
+}
+
+.where-map__caption-item strong {
+	color: var(--dark-green);
+	font-size: 0.75rem;
+	font-weight: 800;
+	letter-spacing: 0.09em;
+	line-height: 1.25;
+	text-transform: uppercase;
 }
 
 .map-placeholder {
