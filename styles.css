@@ -1977,7 +1977,6 @@ a {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	width: 100%;
-	max-inline-size: 72rem;
 	align-self: flex-start;
 	margin-inline: 0 auto;
 	gap: clamp(2.5rem, 4vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
