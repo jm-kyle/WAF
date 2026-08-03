@@ -558,6 +558,7 @@ if (prefersReducedMotion) {
 const bioModal = document.querySelector(".bio-modal");
 const bioBackdrop = bioModal.querySelector(".bio-modal__backdrop");
 const bioCard = bioModal.querySelector(".bio-modal__card");
+const bioPortrait = bioModal.querySelector(".bio-modal__portrait");
 const bioRole = bioModal.querySelector(".bio-modal__role");
 const bioName = bioModal.querySelector(".bio-modal__name");
 const bioBio = bioModal.querySelector(".bio-modal__bio");
@@ -593,7 +594,10 @@ function handleFocusTrap(e) {
 function openBioModal(member) {
 	const role = member.querySelector(".member__role").textContent;
 	const name = member.querySelector(".member__name").textContent;
+	const sourcePortrait = member.querySelector(".member__portrait img");
 
+	bioPortrait.src = sourcePortrait.currentSrc || sourcePortrait.src;
+	bioPortrait.alt = `Portrait of ${name}`;
 	bioRole.textContent = role;
 	bioName.textContent = name;
 	const sourceBio = member.querySelector(".member__bio");
