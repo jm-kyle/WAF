@@ -1170,51 +1170,35 @@ a {
 }
 
 .pillar-grid__header {
-	position: relative;
-	isolation: isolate;
+	display: grid;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+	align-items: center;
+	gap: clamp(2.5rem, 6vw, 6rem);
+	width: 100%;
+	padding-block-end: clamp(4rem, 7vw, 7rem);
+	background: var(--cream);
+}
+
+.pillar-grid__copy {
 	display: flex;
 	flex-direction: column;
-	align-self: flex-start;
-	justify-content: center;
+	align-items: flex-start;
 	gap: 1.25em;
-	width: 100%;
-	min-block-size: clamp(17rem, 26vw, 23rem);
-	padding-block: clamp(1.5rem, 3vw, 3rem);
-	background: var(--cream);
+	max-inline-size: 48rem;
+}
+
+.pillar-grid__media {
+	margin: 0;
+	inline-size: 100%;
 	overflow: clip;
 }
 
-.pillar-grid__header::after {
-	content: "";
-	position: absolute;
-	inset-block: 0;
-	inset-inline: 0;
-	z-index: 0;
-	pointer-events: none;
-	background-image: url("/images/buffalo-yellowstone-jon-gudorf.jpg");
-	background-position: right 88%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	-webkit-mask-image: linear-gradient(
-		to right,
-		transparent 0%,
-		transparent 43%,
-		#000 85%,
-		#000 100%
-	);
-	mask-image: linear-gradient(
-		to right,
-		transparent 0%,
-		transparent 43%,
-		#000 85%,
-		#000 100%
-	);
-}
-
-.pillar-grid__header > * {
-	position: relative;
-	z-index: 1;
-	max-inline-size: min(48rem, 58%);
+.pillar-grid__image {
+	display: block;
+	inline-size: 100%;
+	block-size: auto;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
 }
 
 .pillar-grid__title {
@@ -1235,7 +1219,7 @@ a {
 	color: var(--body-text);
 	margin: 0;
 	max-width: 46em;
-	text-wrap: balance;
+	text-wrap: pretty;
 }
 
 .pillar-grid__cards {
@@ -1391,19 +1375,11 @@ a {
 		gap: 0;
 	}
 	.pillar-grid__header {
-		justify-content: flex-start;
-		min-block-size: 0;
-		padding-block: 0 clamp(12rem, 43vw, 16rem);
+		grid-template-columns: 1fr;
+		gap: clamp(2rem, 7vw, 3.5rem);
+		padding-block-end: clamp(3.5rem, 10vw, 5rem);
 	}
-	.pillar-grid__header::after {
-		inset-block: auto 0;
-		inset-inline: 0;
-		block-size: clamp(12rem, 43vw, 16rem);
-		background-position: center 66%;
-		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, #000 58%);
-		mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, #000 58%);
-	}
-	.pillar-grid__header > * {
+	.pillar-grid__copy {
 		max-inline-size: 100%;
 	}
 	.pillar-card__summary {
@@ -1462,10 +1438,11 @@ a {
 }
 
 .where__header {
-	display: flex;
+	display: grid;
 	width: 100%;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 5em;
-	align-items: flex-end;
+	align-items: end;
 }
 
 .where__heading {
@@ -1499,12 +1476,17 @@ a {
 	color: var(--body-text);
 }
 
+.where__desc--lead {
+	max-inline-size: 45ch;
+}
+
 .where__instruction {
 	font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 	font-size: clamp(0.75rem, 0.72rem + 0.08vw, 0.8125rem);
-	line-height: 1.5;
-	font-weight: 700;
-	letter-spacing: 0.02em;
+	line-height: 1.45;
+	font-weight: 800;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
 	color: var(--forest-green);
 }
 
@@ -1548,6 +1530,11 @@ a {
 	flex-direction: column;
 	gap: 1em;
 	flex-shrink: 0;
+}
+
+.where-map--comparison {
+	--caption-response-share: 50fr;
+	--caption-science-share: 50fr;
 }
 
 .where-map__eyebrow {
@@ -1686,7 +1673,9 @@ a {
 
 .where-map--comparison .where-map__caption {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-columns:
+		minmax(0, var(--caption-response-share))
+		minmax(0, var(--caption-science-share));
 	gap: clamp(1rem, 4cqi, 3rem);
 	max-width: none;
 	text-align: left;
@@ -2298,11 +2287,13 @@ a {
 
 /* ===== 8. Contact ===== */
 .contact {
-	display: flex;
+	display: grid;
 	width: 100%;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 28em);
 	align-items: start;
 	padding: 8.75em 5em;
-	gap: 5em;
+	column-gap: 5em;
+	row-gap: 1.5em;
 	justify-content: center;
 	background-color: var(--dark-green);
 }
@@ -2318,8 +2309,11 @@ a {
 
 .contact__about {
 	display: grid;
+	grid-column: 1 / -1;
 	gap: 0.55em;
-	max-inline-size: 62ch;
+	inline-size: 100%;
+	max-inline-size: 1140px;
+	justify-self: start;
 	padding-block-start: 0.35em;
 }
 
@@ -2764,6 +2758,7 @@ a {
 	}
 	.contact {
 		padding: 6.25em 2.5em;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 21.25em);
 	}
 	.footer__main,
 	.footer__sub {
@@ -2843,7 +2838,7 @@ a {
 	}
 
 	.contact {
-		gap: 3em;
+		column-gap: 3em;
 	}
 	.contact__form {
 		max-width: 21.25em;
@@ -3064,6 +3059,7 @@ a {
 	}
 	.where__header {
 		flex-direction: column;
+		grid-template-columns: 1fr;
 		gap: 1em;
 	}
 	.where__lead {
@@ -3171,9 +3167,12 @@ a {
 
 	/* Contact */
 	.contact {
-		flex-direction: column;
+		grid-template-columns: 1fr;
 		padding: 5em 1.5em;
 		gap: 2em;
+	}
+	.contact__about {
+		grid-column: 1;
 	}
 	.contact__form {
 		max-width: 100%;

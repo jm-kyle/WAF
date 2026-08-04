@@ -227,7 +227,7 @@ if (!prefersReducedMotion) {
 			.forEach((el) => el.classList.add("reveal"));
 	});
 	document
-		.querySelectorAll(".contact__left")
+		.querySelectorAll(".contact__left, .contact__about")
 		.forEach((el) => el.classList.add("reveal", "reveal--from-left"));
 	document
 		.querySelectorAll(".contact__form")
@@ -373,11 +373,24 @@ if (!prefersReducedMotion) {
 // ===== Need / response map comparison =====
 document.querySelectorAll("[data-map-comparison]").forEach((comparison) => {
 	const range = comparison.querySelector(".map-comparison__range");
+	const figure = comparison.closest(".where-map--comparison");
 	if (!range) return;
 
 	const updateReveal = () => {
 		const reveal = `${range.value}%`;
+		const captionResponseShare = Math.max(
+			38,
+			Math.min(62, Number(range.value)),
+		);
 		comparison.style.setProperty("--reveal", reveal);
+		figure?.style.setProperty(
+			"--caption-response-share",
+			`${captionResponseShare}fr`,
+		);
+		figure?.style.setProperty(
+			"--caption-science-share",
+			`${100 - captionResponseShare}fr`,
+		);
 		range.setAttribute(
 			"aria-valuetext",
 			`${range.value}% of the WAF priority-region map revealed`,
